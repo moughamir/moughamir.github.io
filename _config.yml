@@ -1,0 +1,25 @@
+# Site settings
+title: Moughamir Mohamed
+email: moughamir@gmail.com
+description: >
+  Awesome description for my Personal Page/Blog on GitHub
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum itaque saepe magnam minima, possimus cumque voluptas, quam ad voluptatum ullam maxime. Provident voluptatum excepturi aspernatur amet maiores iste voluptas dicta!
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://moughamir.github.com" # the base hostname & protocol for your site
+
+#
+
+encoding: "utf-8"
+#Social Netwokk accounts
+twitter_username: omnizya
+github_username: moughamir
+google_username: +MohamedMoughamir
+faceboook_username: odin911
+
+# Build settings
+markdown: kramdown
+
+# Serv
+port: 8095
+host: omnizya.dev
+
