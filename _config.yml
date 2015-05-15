@@ -3,18 +3,17 @@ title: Moughamir Mohamed
 email: moughamir@gmail.com
 description: >
   Awesome description for my Personal Page/Blog on GitHub
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum itaque saepe magnam minima, possimus cumque voluptas, quam ad voluptatum ullam maxime. Provident voluptatum excepturi aspernatur amet maiores iste voluptas dicta!
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://moughamir.github.com" # the base hostname & protocol for your site
 
 #
-
 encoding: "utf-8"
 #Social Netwokk accounts
-twitter_username: omnizya
-github_username: moughamir
-google_username: +MohamedMoughamir
-faceboook_username: odin911
+twitter: omnizya
+github: moughamir
+google: +MohamedMoughamir
+faceboook: odin911
 
 # Build settings
 markdown: kramdown
