@@ -15,9 +15,14 @@ github: moughamir
 google: +MohamedMoughamir
 faceboook: odin911
 
+#
+ga_id: UA-50755011-1
 # Build settings
 markdown: kramdown
 
+highlighter: pygments
+sass:
+  style: compressed
 # Serv
 port: 8095
 host: omnizya.dev
