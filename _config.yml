@@ -7,22 +7,31 @@ description: >
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://moughamir.github.com" # the base hostname & protocol for your site
 
+# add-ons
+gems:
+- jekyll-mentions
+- jemoji
+- jekyll-redirect-from
+- jekyll-sitemap
+
 #
 encoding: "utf-8"
-#Social Netwokk accounts
+
+# Social Netwokk accounts
 twitter: omnizya
 github: moughamir
 google: +MohamedMoughamir
 faceboook: odin911
 
-#
+# Analytics
 ga_id: UA-50755011-1
+
 # Build settings
 markdown: kramdown
-
 highlighter: pygments
 sass:
   style: compressed
+
 # Serv
 port: 8095
 host: omnizya.dev
