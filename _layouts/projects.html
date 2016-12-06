@@ -1,0 +1,17 @@
+---
+layout: page
+---
+<ul class="projects">
+    {% for project in site.data.projects %}
+
+    <li class="project">
+        <a href="/project/{{project.teaser}}" class="project-link">
+            <article class="project-content">
+                <img src="{{ project.image }}" alt="" class="project-pic">
+                <h2 class="project-name">{{ project.name }}</h2>
+            </article>
+        </a>
+    </li>
+
+    {% endfor %}
+</ul>

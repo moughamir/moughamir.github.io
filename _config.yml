@@ -1,11 +1,11 @@
 # Site settings
 title: OmniZya
 description: >
-  No Idea.
+  Wana Ash Dani nakteb shi Ndkhol l Shboqat.
 
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://omnizya.com" # the base hostname & protocol for your site
-
+cover: "/assets/images/cover/omnigram.png"
 author:
   fullname: Moughamir Mohamed
   googleplus: +MohamedMoughamir

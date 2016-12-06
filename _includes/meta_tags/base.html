@@ -5,3 +5,14 @@
 <meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 {% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+<!--ICONZ ☺-->
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/touch/apple-touch-icon.png?v=0.1">
+<link rel="icon" type="image/png" href="assets/images/touch/favicon-32x32.png?v=0.1" sizes="32x32">
+<link rel="icon" type="image/png" href="assets/images/touch/favicon-16x16.png?v=0.1" sizes="16x16">
+<link rel="manifest" href="/app.manifest?v=0.1">
+<link rel="mask-icon" href="assets/images/touch/safari-pinned-tab.svg?v=0.1" color="#333333">
+<link rel="shortcut icon" href="/favicon.ico?v=0.1">
+<meta name="apple-mobile-web-app-title" content="{{site.title}}">
+<meta name="application-name" content="{{site.title}}">
+<meta name="msapplication-config" content="browserconfig.xml?v=0.1">
+<meta name="theme-color" content="#f5f5f5">

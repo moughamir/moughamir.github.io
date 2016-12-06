@@ -1,18 +1,20 @@
 /* =Base */
+
 body {
     font-family: 'Inconsolata', ;
     color: $iron;
-    background-color: $dorian;
+    background: $dorian;
+}
+
+body.glitch {
+    background: $dorian url('../assets/images/whitenoise.png?v=0.1');
 }
 
 a {
     color: $cloudy;
     font-weight: bold;
     text-decoration: none;
-
-    &:hover {
-
-    }
+    &:hover {}
 }
 
 p {
@@ -28,33 +30,38 @@ img {
 
 blockquote {
     letter-spacing: 3px;
-    margin:0px;
+    margin: 0px;
     margin-top: 40px;
     margin-bottom: 70px;
     padding: 0px;
     text-align: center;
     position: relative;
-
     footer {
         position: absolute;
         bottom: -35px;
         font-size: 15px;
         color: $iron;
         letter-spacing: 0px;
-        left:0px;
+        left: 0px;
         right: 0px;
-
-        &:before { content: "** "; }
-        &:after { content: " **"; }
+        &:before {
+            content: "** ";
+        }
+        &:after {
+            content: " **";
+        }
     }
-
     p {
         display: inline;
         font-size: 20px;
         color: $cloudy;
         font-weight: 400;
-        &:before { content: "“ "; }
-        &:after { content: " ”"; }
+        &:before {
+            content: "“ ";
+        }
+        &:after {
+            content: " ”";
+        }
     }
 }
 
@@ -62,7 +69,9 @@ strong {
     color: $iron;
 }
 
+
 /* =Header */
+
 .wrapper {
     max-width: 800px;
     margin: 100px auto;
@@ -70,10 +79,23 @@ strong {
 
 .header {
     overflow: hidden;
+    width: 100%;
+    position: relative;
 }
-
+.logo-container{
+    width: 72px
+}
+.center {
+    margin: 0 auto;
+    width: 72px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin: 0 !important
+}
 .navigation {
-    float:left;
+    left: 0;
+    display: inline-block;
 }
 
 .logo {
@@ -86,7 +108,7 @@ strong {
 .menu {
     color: $cloudy;
     font-size: 18px;
-    margin:0px;
+    margin: 0px;
     margin-top: 6px;
     padding: 0px;
     list-style-type: none;
@@ -95,7 +117,6 @@ strong {
 .menu__entry {
     display: inline-block;
     margin-right: 35px;
-
     &:last-child {
         margin-right: 0px;
     }
@@ -106,10 +127,12 @@ strong {
 }
 
 .social-links {
-    float:right;
     font-size: 24px;
     color: $cloudy;
     list-style-type: none;
+    display: inline-block;
+    right: 0;
+    position: absolute;
 }
 
 .social-links__entry {
@@ -117,10 +140,12 @@ strong {
     margin-left: 10px;
 }
 
+
 /* =Titles */
+
 .page-title {
-    margin-top:100px;
-    margin-bottom:125px;
+    margin-top: 100px;
+    margin-bottom: 125px;
     text-align: center;
 }
 
@@ -146,6 +171,7 @@ strong {
 .post-title__subtitle {
     font-size: 20px;
 }
+
 
 /* =Post teasers */
 
@@ -178,7 +204,9 @@ strong {
     text-align: center;
 }
 
+
 /* =Explore */
+
 .explore {
     text-align: center;
     color: $cloudy;
@@ -224,6 +252,7 @@ strong {
 
 
 /* =Post page */
+
 .about {
     color: $cloudy;
     margin-top: 70px;
@@ -247,58 +276,54 @@ strong {
 
 @media (max-width: 800px) {
     /* =Base */
+    .header {
+        overflow: visible;
+        height: 95px;
+    }
+    .center{
+        top: -76px;
+    }
     p {
         font-size: 16px;
         line-height: 1.6;
     }
-
     .wrapper {
         width: 80%;
     }
-
     .navigation,
     .social-links {
         @include centered-block();
     }
-
     .social-links {
         font-size: 30px;
         margin-top: 35px;
     }
-
     .page-title {
         margin-top: 80px;
         margin-bottom: 60px;
     }
-
     .page-title__text {
         font-size: 40px;
     }
-
     .page-title__subtitle {
         font-size: 18px;
     }
-
     .post-teaser__title {
         font-size: 18px;
         @include centered-block();
     }
-
     .post-teaser__date {
         font-size: 16px;
         margin-top: 10px;
         float: none;
         @include centered-block();
     }
-
     .explore {
         margin-top: 80px;
     }
-
     .post-title__text {
         font-size: 28px;
     }
-
     .post-title__subtitle {
         font-size: 18px;
     }

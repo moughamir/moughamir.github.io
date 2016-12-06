@@ -1,7 +1,9 @@
 <div class="about">
     <div class="about__devider">*****</div>
+    
     <div class="about__text">
-        Written by <strong> {% if page.author.fullname %} {{ page.author.fullname }} {% else %} {{ site.author.fullname }} {% endif %}</strong>
-        on <strong>{{ page.date | date: "%d %B %Y" }}</strong>
+        Written by <strong><a rel="author" itemprop="author" itemscope itemtype="https://schema.org/Person" href="https://google.com/{{ site.author.googleplus }}?rel=author" target="_blan"><span itemprop="name"> {% if page.author.fullname %} {{ page.author.fullname }} {% else %} {{ site.author.fullname }} {% endif %}</span></a></strong>
+        on <strong><meta itemprop="datePublished" content="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date: "%d %B %Y" }} <meta itemprop="dateModified" content="{{page.updated | date: "%Y-%m-%d"}}"></strong>
+        <meta itemprop="mainEntityOfPage" content="{{page.url}}">
     </div>
 </div>

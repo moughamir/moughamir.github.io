@@ -1,0 +1,20 @@
+[
+    {
+    "name": "The Anpu",
+    "image": "../assets/images/projects/placeholder.png",
+    "type" : "platform",
+    "teaser": "anpu"
+    },
+  {
+    "name": "RetaStore",
+    "image": "../assets/images/projects/placeholder.png",
+    "type" : "e-commerce",
+    "teaser": "reta"
+  },
+  {
+    "name": "Moroccan Gaming Community",
+    "image": "../assets/images/projects/placeholder.png",
+    "type" : "community",
+    "teaser": "mgc"
+  }
+]

@@ -3,7 +3,10 @@ layout: post
 title:  "Welcome to Jekyll!"
 subtitle: "Feel home!"
 date:   2015-09-06 23:34:01
+updated: 2016-12-06 13:47:00
 categories: [design, tool]
+comments: true
+color: 6675b9
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
