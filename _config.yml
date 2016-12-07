@@ -13,7 +13,7 @@ author:
   twitter: omnizya
   disqus: omnizya
 
-  google_analytics: 'UA-84932212-1'
+google_analytics: 'UA-84932212-1'
 
 # Syntax highlighting
 highlightstyle: 'github-gist'
