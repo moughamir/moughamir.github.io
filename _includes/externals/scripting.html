@@ -1,4 +1,15 @@
-<script src="{{ "/assets/vendor/highlight/highlight.pack.js" | prepend: site.baseurl }}"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<script src="{{ " /assets/vendor/highlight/highlight.pack.js " | prepend: site.baseurl }}"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
 <script src="https://use.fontawesome.com/{{ site.fontawesomeId }}.js"></script>
-<script src="//my.hellobar.com/e335993e5470795274937cc870c202501f6ab702.js" type="text/javascript" charset="utf-8" async="async"></script>
+<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
+<script type="text/javascript">
+    require(["mojo/signup-forms/Loader"], function(L) {
+        L.start({
+            "baseUrl": "mc.us3.list-manage.com",
+            "uuid": "7fb1cd4993d6f1745f12cb75e",
+            "lid": "cf705f6b78"
+        })
+    })
+</script>
