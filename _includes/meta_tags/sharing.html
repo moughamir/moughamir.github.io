@@ -7,16 +7,18 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="{{ title }}" />
 <meta name="twitter:description" content="{{ description }}" />
-<meta name="twitter:image" content="{{ site.url }}/{{ site.cover }}" />
+<meta name="twitter:image" content="{{ cover }}" />
 
 <!-- Google plus -->
 <meta name="author" content="{{ site.author.googleplus }}">
 <link rel="author" href="https://google.com/{ site.author.googleplus }}">
 
 <!-- Open Graph -->
+<meta property="fb:app_id" content="{{ site.fbapp }}">
 <meta property="og:locale" content="{{ site.lang }}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{{ title }}">
 <meta property="og:description" content="{{ description }}">
 <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}">
 <meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:image" content="{{ cover }}">

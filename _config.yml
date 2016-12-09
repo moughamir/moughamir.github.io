@@ -2,10 +2,12 @@
 title: OmniZya
 description: >
   Wana Ash Dani nakteb shi Ndkhol l Shboqat.
-
+lang: en_US
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://omnizya.com" # the base hostname & protocol for your site
-cover: "/assets/images/cover/omnigram.png"
+cover: /assets/images/cover/omnigram.png
+fbapp: 315781848821058
+
 author:
   fullname: Moughamir Mohamed
   googleplus: +MohamedMoughamir
@@ -15,12 +17,12 @@ author:
 
 google_analytics: 'UA-84932212-1'
 
+
 # Syntax highlighting
 highlightstyle: 'github-gist'
 styles: [agate, androidstudio, arta, asceti, atelier-cave.dark, atelier-cave.light, atelier-dune.dark, atelier-dune.light, atelier-estuary.dark, atelier-estuary.light, atelier-forest.dark, atelier-forest.light, atelier-heath.dark, atelier-heath.light, atelier-lakeside.dark, atelier-lakeside.light, atelier-plateau.dark, atelier-plateau.light, atelier-savanna.dark, atelier-savanna.light, atelier-seaside.dark, atelier-seaside.light, atelier-sulphurpool.dark, atelier-sulphurpool.light, brown_paper, codepen-embed, color-brewer, dark, darkula, default, docco, far, foundation, github, github-gist, googlecode, grayscale, hemisu-light, hopscotch, hybrid, idea, ir_black, kimbie.dark, kimbie.light, magula, mono-blue, monokai, monokai_sublime, obsidian, paraiso.dark, paraiso.light, pojoaque, railscast, rainbow, school_book, solarized_dark, solarized_light, styles_list.txt, sunburst, tomorrow, tomorrow-night-blue, tomorrow-night-bright, tomorrow-night, tomorrow-night-eightie, v, xcode, zenburn]
 # Addons
 fontawesomeId: '27f81a8a19'
-
 # Handling Reading
 exclude: ["README.md", "README.html"]
 
