@@ -319,3 +319,43 @@
 .go-home {
     text-align: center;
 }
+.glitch .logo-container {
+    width: 320px;
+    position: absolute;
+    z-index: -5;
+    opacity: .4;
+    margin: 0 auto;
+    display: block;
+    left: 50%;
+    transform: translate(-50%);
+}
+.glitch svg#logo {
+    filter: url(#filter);
+    fill: #333333;
+}
+.glitch .header {
+    overflow: visible;
+}
+.glitch .wrapper {
+    max-width: 800px;
+    padding-top: 100px;
+    margin: 0 auto;
+}
+.glitch canvas#tv{
+  display: block;
+}
+.glitch canvas#tv {
+    top: 0;
+    left: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: transparent;
+    z-index: -15;
+    /* margin-top: 0 !important; */
+}
