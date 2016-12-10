@@ -4,7 +4,7 @@ description: >
   Wana Ash Dani nakteb shi Ndkhol l Shboqat.
 lang: en_US
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://omnizya.com" # the base hostname & protocol for your site
+url: "https://omnizya.com" # the base hostname & protocol for your site
 cover: /assets/images/cover/omnigram.png
 fbapp: 315781848821058
 facebook: 'omnizya.gg'
