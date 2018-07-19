@@ -4,8 +4,8 @@
   "lang": "en-US",
   "start_url": "./?utm_source=web_app_manifest",
   "display": "standalone",
-  "background_color": "#F5F5F5",
-  "theme_color": "#F5F5F5",
+  "background_color": "#ec767d",
+  "theme_color": "#ec767d",
   "description": "A Simply writting Site using Daktilo.",
   "icons": [{
     "src": "assets/images/touch/cube-48.png",
