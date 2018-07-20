@@ -14,8 +14,6 @@ a {
   color: $cloudy;
   font-weight: bold;
   text-decoration: none;
-
-  &:hover {}
 }
 
 p {
@@ -84,7 +82,7 @@ strong {
 }
 
 .header {
-  overflow: hidden;
+  overflow: visible;
   width: 100%;
   position: relative;
 }
@@ -148,6 +146,7 @@ strong {
 .social-links__entry {
   display: inline-block;
   margin-left: 10px;
+  z-index: -9;
 }
 
 /* =Titles */
