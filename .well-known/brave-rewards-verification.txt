@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: omnizya.com
+Token: 1bb0a0bd839ae43386452f188cfb36c7e05b014d30afd057d91338e060a65079
