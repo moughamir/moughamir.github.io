@@ -1,3 +1,16 @@
+<form id="cloudsh">
+  <input id="q" />
+  <button class="btn">Search</button>
+</form>
+<div id="results"></div>
+<script src="https://app.cloudsh.com/js/cloudsh.js"></script>
+<script>
+  var CshConf = {
+    token: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOTI2MTRiMzItMjZjOS00MTJhLWJmZTktODdmNTRkNzU2ZGYxIiwiaW5kZXhfaWQiOiI2NTVmYjNkMi03NDZiLTRjZmEtODk0Ny1iY2UyNjNhOWU3ZGMiLCJpbmRleF91cmwiOiJodHRwczovL29tbml6eWEuY29tIn0.15Y4p_EF7qfOFvc0se_mfbDJnplQweacngo7vkbwEcc",
+    formId: "#cloudsh",
+    resultsId: "#results",
+  };
+</script>
 <script src="{{ " /assets/vendor/highlight/highlight.pack.js " | prepend: site.baseurl }}"></script>
 <script>
     hljs.initHighlightingOnLoad();
