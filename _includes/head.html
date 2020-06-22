@@ -3,49 +3,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta itemprop="name" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-    <meta itemprop="description" name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-    <meta name="keywords" content="content">
     <link rel="stylesheet" href="{{ " /css/main.css " | prepend: site.baseurl }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ " /feed.xml " | prepend: site.baseurl | prepend: site.url }}" />
     <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-    <meta itemprop="image" content="{{ site.url }}/static/images/html5rocks-logo-wings.png">
-    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-    <meta property="og:image" content="{{ site.url }}/static/images/html5rocks-logo-wings.png" />
-    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
-    <meta property="og:site_name" content="{{ site.title }}" />
-    <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
-    <meta property="og:type" content="article" />
-    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-    <meta name="twitter:image" content="{{ site.url }}/static/images/html5rocks-logo-wings.png" />
-    <meta name="twitter:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="{{site.twitter}}">
-
-    <link rel="author" href="https://www.google.com/profiles/{{site.googe}}">
-    <!--google optimize-->
-    <style>.async-hide { opacity: 0 !important} </style>
-    <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};(a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;})(window,document.documentElement,'async-hide','dataLayer',4000,{'GTM-T8J9VVV':true});</script>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5B7M5NH');</script>
-<!-- End Google Tag Manager -->
 </head>
-<!-- UBEX Pixel start -->
-<script>
-    (function (w, d, n, u, s) {
-        var t = "", possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        for (var i = 0; i < 10; i++)
-            t += possible.charAt(Math.floor(Math.random() * possible.length));
-        w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)};
-        var a=d.createElement(s),m=d.getElementsByTagName(s)[0];
-        a.async=true;a.src=u + '?' + t;m.parentNode.insertBefore(a,m);
-    })(window, document, 'ubx', '//static.ubex.io/pixel.js', 'script');
-    ubx('createCounter', 'UBX-00000431');
-</script>
-<noscript><img src="//pixel.ubex.io/pixel.gif?c=UBX-00000431" style="position:absolute; left:-9999px;" alt="" /></noscript>
-<!-- UBEX Pixel end -->
