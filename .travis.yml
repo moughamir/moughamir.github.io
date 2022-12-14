@@ -8,6 +8,7 @@ branches:
 	only:
 	- gh-pages
 	- /pages-(.*)/
+	- main
 
 env:
 	global:
