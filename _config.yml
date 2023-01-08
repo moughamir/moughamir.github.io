@@ -4,7 +4,7 @@ description: >
   Tech for Better Life.
 lang: en
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://moughamir.github.io" # the base hostname & protocol for your site
+url: "https://omnizya.com" # the base hostname & protocol for your site
 cover: /assets/images/cover/omnigram.png
 fbapp: 315781848821058
 
