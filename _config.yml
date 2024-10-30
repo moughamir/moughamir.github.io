@@ -23,7 +23,7 @@ styles: [darkula, solarized_dark]
 # Addons
 fontawesomeId: '27f81a8a19'
 # Handling Reading
-exclude: ["README.md", "README.html"]
+exclude: ["README.md", "README.html", "vendor"]
 
 # Build settings
 highlighter: null
