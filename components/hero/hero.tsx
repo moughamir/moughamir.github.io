@@ -42,11 +42,11 @@ export default function HeroImage() {
     <section
       ref={parallaxRef}
       style={{ backgroundImage: "url(/cover.jpeg)" }}
-      className="relative bg-center bg-cover flex justify-center items-center bg-no-repeat bg-hero "
+      className="relative bg-cover  flex justify-center items-center bg-no-repeat  h-screen"
     >
-      <div className="text-center text-white bg-transparent backdrop-blur-sm w-full h-full mix-blend-difference flex flex-col justify-center gap-20 p-8 container">
+      <div className="text-center text-white bg-transparent  w-full h-full mix-blend-difference flex flex-col justify-center gap-20 p-8 container">
         <h1
-          className="relative  text-zinc-100 text-9xl font-serif font-extrabold hover:text-shadow-[0px_-5px_#ec2225,0px_5px_#00c2cb,-5px_0px_#ec2225,5px_0px_#00c2cb] before:content-[attr(data-text)] before:absolute before:top-0 before:left-0 before:text-[#25F4EE] before:z-[-1] hover:before:animate-glitch hover:before:z-[1] mix-blend-exclusion"
+          className="relative  text-zinc-100 text-8xl font-serif font-extrabold hover:text-shadow-[0px_-5px_#ec2225,0px_5px_#00c2cb,-5px_0px_#ec2225,5px_0px_#00c2cb] before:content-[attr(data-text)] before:absolute before:top-0 before:left-0 before:text-[#25F4EE] before:z-[-1] hover:before:animate-glitch hover:before:z-[1] mix-blend-exclusion before:text-8xl"
           data-text="Mohamed MOUGHAMIR"
         >
           Mohamed MOUGHAMIR

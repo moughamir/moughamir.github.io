@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navigation from "@/components/navigation/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="MouGhamiR" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-radial from-[#480d35] to-[#17151d] `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-radial from-[#480d35] to-[#17151d] relative`}
       >
         {children}
       </body>

@@ -3,6 +3,7 @@ import withTM from 'next-transpile-modules';
 
 
 const nextConfig: NextConfig = {
+  output: 'export',
   experimental: {
     turbo: {
       rules: {
