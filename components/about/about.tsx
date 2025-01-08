@@ -11,12 +11,12 @@ export default function About() {
         <Separator />
         <p className="text-2xl  max-w-prose  p-8 text-white">
           Welcome to my corner of the web!
-          <br /> I'm <strong>Mohamed Moughamir</strong>, a passionate front-end
-          developer with over 9 years of experience in crafting responsive and
-          user-friendly web applications.
+          <br /> I&apos;m <strong>Mohamed Moughamir</strong>, a passionate
+          front-end developer with over 9 years of experience in crafting
+          responsive and user-friendly web applications.
           <br />
-          Whether you're looking to collaborate on a project, need expert
-          advice, or simply want to connect, I'm here to help.
+          Whether you&apos;re looking to collaborate on a project, need expert
+          advice, or simply want to connect, I&apos;m here to help.
           <br /> Specializing in React, TypeScript, and TailwindCSS, I bring a
           creative and technical approach to every project.
         </p>

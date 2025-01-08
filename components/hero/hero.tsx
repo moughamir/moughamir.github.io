@@ -2,11 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import { GetInTouch } from "../form/contact";
-import HeroStyle from "./hero.module.css";
 
 export default function HeroImage() {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [, setScrollPosition] = useState(0);
 
   const handleScroll = () => {
     setScrollPosition(window.scrollY);
@@ -16,14 +14,6 @@ export default function HeroImage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDarkMode);
-  }, [isDarkMode]);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-  };
 
   const parallaxRef = useRef<HTMLDivElement | null>(null);
 

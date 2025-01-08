@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "../ui/textarea";
 import { Separator } from "@radix-ui/react-separator";
-import { Github, Linkedin, Mail, Minus, Phone, Plus } from "lucide-react";
+import { Github, Linkedin, Mail, Phone } from "lucide-react";
 
 import {
   Drawer,
@@ -113,11 +113,15 @@ export function GetInTouch() {
               Hello
             </DrawerTitle>
             <DrawerDescription className="text-justify text-lg max-w-prose mb-4 mix-blend-exclusion  text-zinc-50 ">
-              <br /> Whether you're looking to collaborate on a project, need
-              expert advice, or simply want to connect, I'm here to help. Let's
-              turn your ideas into reality and create something amazing
-              together.
-              <br /> Don't hesitate to reach out—I'm excited to hear from you!
+              Whether you&apos;re looking to collaborate on a project, need
+              expert advice, or simply want to connect, I&apos;m here to help.
+              <br />
+              Let&apos;s turn your ideas into reality and create something
+              amazing together.
+              <br />
+              Don&apos;t hesitate to reach out
+              <br />
+              I&apos;m excited to hear from you!
             </DrawerDescription>
           </DrawerHeader>
 

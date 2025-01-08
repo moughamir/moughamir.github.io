@@ -1,10 +1,4 @@
-import {
-  HomeIcon,
-  UserIcon,
-  BriefcaseIcon,
-  BookOpenIcon,
-  MailIcon,
-} from "lucide-react";
+import { HomeIcon, BriefcaseIcon, BookOpenIcon, MailIcon } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuLink,

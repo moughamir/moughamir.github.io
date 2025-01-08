@@ -1,4 +1,5 @@
 import { projects } from "@/lib/data";
+import Image from "next/image";
 
 export default function ProjectsShowcase() {
   return (
@@ -19,7 +20,7 @@ export default function ProjectsShowcase() {
             key={index}
             className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg"
           >
-            <img
+            <Image
               src={project.imageUrl}
               alt={project.title}
               className="w-full h-auto mb-4 rounded-lg"

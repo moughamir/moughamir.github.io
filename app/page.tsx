@@ -1,10 +1,8 @@
 import About from "@/components/about/about";
 import Footer from "@/components/footer/footer";
-import { GetInTouch } from "@/components/form/contact";
+
 import HeroImage from "@/components/hero/hero";
 import Projects from "@/components/projects/projects";
-
-import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
   return (
