@@ -1,3 +1,0 @@
-.title {
-  @apply relative  text-[#f6d8d5] text-[150px] hover:opacity-90 hover:text-shadow-[0px_-5px_#ec2225,0px_5px_#00c2cb,-5px_0px_#ec2225,5px_0px_#00c2cb] before:content-[attr(data-text)] before:absolute before:top-0 before:left-0 before:text-[#e0ffff] before:z-[-1] hover:before:animate-glitch hover:before:z-[1];
-}
