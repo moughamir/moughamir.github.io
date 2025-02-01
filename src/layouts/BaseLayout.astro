@@ -18,6 +18,7 @@ const { title, description } = Astro.props;
 <html lang="en">
   <head>
     <MainHead title={title} description={description} />
+
   </head>
   <body>
     <div class="stack backgrounds">
@@ -29,7 +30,7 @@ const { title, description } = Astro.props;
     <script>
       // Add “loaded” class once the document has completely loaded.
       addEventListener("load", () =>
-        document.documentElement.classList.add("loaded")
+        document.documentElement.classList.add("loaded"),
       );
     </script>
 
@@ -119,14 +120,5 @@ const { title, description } = Astro.props;
         }
       }
     </style>
-  </body><co-pilot
-    platform-id="73d658ee-445f-455d-8219-b1a475c32d6b"
-    user-id="f32afe72-604b-4370-8925-4bd184983c75"
-    chatbot-id="34cc3044-4b91-4680-ada3-289c6f429d8f"
-    is-local="false"
-    ><a href="https://www.chatsimple.ai/?utm_source=widget&utm_medium=referral"
-      >AI Nav</a
-    ></co-pilot
-  >
-  <script src="https://cdn.chatsimple.ai/ai-loader.js" defer></script>
+  </body>
 </html>

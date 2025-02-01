@@ -3,55 +3,17 @@ import Icon from "./Icon.astro";
 ---
 
 <section class="box skills">
-  <div class="stack gap-2 lg:gap-4">
-    <Icon
-      icon="terminal-window"
-      color="var(--accent-regular)"
-      size="2.5rem"
-      gradient
-    />
-    <h2>Full Stack</h2>
-    <p>
-      As a seasoned Full Stack Developer, I possess a comprehensive
-      understanding of both front-end and back-end technologies. My expertise
-      spans across HTML, CSS, JavaScript, React, Node.js, and databases like
-      MongoDB and MySQL. I excel in creating seamless, responsive, and
-      user-friendly web applications that deliver exceptional user experiences.
-      With a keen eye for detail and a passion for innovation, I transform
-      complex ideas into functional, future-ready digital solutions.
-    </p>
-  </div>
-  <div class="stack gap-2 lg:gap-4">
-    <Icon icon="trophy" color="var(--accent-regular)" size="2.5rem" gradient />
-    <h2>Industry Leader</h2>
-    <p>
-      I have consistently demonstrated my ability to stay ahead of the curve in
-      the ever-evolving world of web development and design. My innovative
-      approach and commitment to excellence have earned me recognition and
-      respect within the industry. With a deep understanding of the latest
-      technologies and trends, I lead by example, inspiring others to push the
-      boundaries of what's possible. My work is a testament to my dedication to
-      creating cutting-edge, future-ready digital solutions.
-    </p>
-  </div>
-  <div class="stack gap-2 lg:gap-4">
-    <Icon
-      icon="strategy"
-      color="var(--accent-regular)"
-      size="2.5rem"
-      gradient
-    />
-    <h2>Strategy-Minded</h2>
-    <p>
-      As a strategy-minded professional, I excel in developing and executing
-      comprehensive plans that drive success. My ability to analyze complex
-      situations, identify opportunities, and create actionable strategies sets
-      me apart. With a focus on long-term goals and sustainable growth, I ensure
-      that every project is aligned with the overall vision and objectives. My
-      strategic approach enables me to deliver innovative solutions that meet
-      the evolving needs of clients and stakeholders.
-    </p>
-  </div>
+  <h2>Bref</h2>
+
+  <p>
+    A seasoned <b>Full Stack Developer</b> with 9+ years of experience:
+  </p>
+  <ul>
+    <li>✓ Designing intuitive web & mobile apps</li>
+    <li>✓ Leading teams to ship scalable solutions</li>
+    <li>✓ Contributing to open-source ecosystems</li>
+    <li>✓ Featured in TechCrunch, Medium, and awwwards</li>
+  </ul>
 </section>
 
 <style>
@@ -61,12 +23,6 @@ import Icon from "./Icon.astro";
     padding: 1.5rem;
     background-color: var(--gray-999_40);
     box-shadow: var(--shadow-sm);
-  }
-
-  .skills {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
   }
 
   .skills h2 {
@@ -81,12 +37,6 @@ import Icon from "./Icon.astro";
     .box {
       border-radius: 1.5rem;
       padding: 2.5rem;
-    }
-
-    .skills {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5rem;
     }
 
     .skills h2 {

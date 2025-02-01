@@ -1,0 +1,29 @@
+---
+interface Props {
+    institution: string;
+    field?: string;
+    years?: {
+        from: number;
+        to: number;
+    };
+    note?: string;
+    align?: "start" | "center";
+}
+
+const { align = "center", institution, field, years, note } = Astro.props;
+---
+
+<div class:list={["hero stack gap-4", align]}>
+    <div
+        class="stack gap-4 hover:bg-gray-50 hover:dark:bg-gray-800 p-4 rounded"
+    >
+        <h5 class="title">
+            {institution}<br />
+            <span class="text-sm text-gray-400"
+                >{years?.from} - {years?.to}</span
+            >
+        </h5>
+        {field && <p>{field}</p>}
+        {note && <p>{note}</p>}
+    </div>
+</div>

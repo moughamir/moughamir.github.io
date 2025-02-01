@@ -18,6 +18,13 @@ const {
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>
 
+<link
+  rel="sitemap"
+  href="/sitemap-index.xml"
+  type="application/atom+xml"
+  title="SiteMap"
+/>
+
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,4 +56,19 @@ const {
       attributeFilter: ["class"],
     });
   }
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script
+  type="text/partytown"
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-21PS43ZF9X"></script>
+<script type="text/partytown">
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "G-21PS43ZF9X");
 </script>
