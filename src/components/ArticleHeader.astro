@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
     title: string;
     subtitle?: string;
@@ -7,23 +9,25 @@ interface Props {
     align?: "start" | "center";
 }
 
-const { align = "start", description, title, subtitle, cover } = Astro.props;
+const { align = "center", description, title, subtitle, cover } = Astro.props;
 ---
 
-<div class:list={["", align]}>
-    <div class="relative">
-        {cover && <img src={cover} alt={title || ""} class="" />}
-        <h1 class="text-lg">{title}</h1>
-        <h2 class="text-2xl">{subtitle}</h2>
-        {
-            description && (
-                <p class="tagline prose  text-xl bg-blue-500 p-2 leading-relaxed ">
-                    {description}
-                </p>
-            )
-        }
+<header class="relative">
+    <div
+        class=`w-full  h-96 bg-cover  bg-red-500 ${align}
+    bg-[url(${cover})]
+    `
+    >
+    </div>
+    <div class="title">
+        <nav>
+            <a class="back-link" href="/blog/"
+                ><Icon icon="arrow-left" /> Blog</a
+            >
+        </nav>
+        <h1>{title}</h1>
+        <p>{subtitle}</p>
+        {description && <p>{description}</p>}
     </div>
     <slot />
-</div>
-
-<style></style>
+</header>

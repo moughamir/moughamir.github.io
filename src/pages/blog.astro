@@ -4,9 +4,9 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 import ContactCTA from "../components/ContactCTA.astro";
-import PortfolioPreview from "../components/PortfolioPreview.astro";
+
 import Hero from "../components/Hero.astro";
-import Grid from "../components/Grid.astro";
+
 import ArticlePreview from "../components/ArticlePreview.astro";
 
 const articles = (await getCollection("blog")).sort(
@@ -16,24 +16,24 @@ const articles = (await getCollection("blog")).sort(
 
 <BaseLayout
     title="My Blog | Moughamir Mohamed"
-    description="Learn about Moughamir Mohamed's most recent projects"
+    description="Learn about Moughamir Mohamed's most recent articles"
 >
     <div class="stack gap-20">
         <main class="wrapper stack gap-8">
             <Hero
                 title="Blog"
-                tagline="See my most recent projects below to get an idea of my past experience."
+                tagline="See my most recent articles below."
                 align="start"
             />
-            <Grid variant="offset">
+            <ul class="stack gap-8 list">
                 {
                     articles.map((article) => (
-                        <li>
+                        <li class=" list-none">
                             <ArticlePreview article={article} />
                         </li>
                     ))
                 }
-            </Grid>
+            </ul>
         </main>
         <ContactCTA />
     </div>

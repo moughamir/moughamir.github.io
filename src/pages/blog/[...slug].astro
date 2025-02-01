@@ -8,6 +8,7 @@ import ArticleHeader from "../../components/ArticleHeader.astro";
 import Icon from "../../components/Icon.astro";
 import Pill from "../../components/Pill.astro";
 import { render } from "astro:content";
+import Prose from "../../components/Prose.astro";
 
 interface Props {
     entry: CollectionEntry<"blog">;
@@ -29,37 +30,24 @@ const { Content } = await render(entry);
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
-    <article class="stack">
-        <div class="">
-            <header class="bg-red-500">
-                <div class="">
-                    <a class="back-link" href="/blog/"
-                        ><Icon icon="arrow-left" /> Blog</a
-                    >
+    <sectio>
+        <ArticleHeader
+            title={entry.data.title}
+            align="start"
+            cover={entry.data.img}
+            description={entry.data.description}
+            subtitle={entry.data.subtitle}
+        >
+            <div class="details">
+                <ul class="tags flex gap-2 p-2 bg-zinc-900">
+                    {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
+                </ul>
+            </div>
+        </ArticleHeader>
 
-                    <ArticleHeader
-                        title={entry.data.title}
-                        align="start"
-                        cover={entry.data.img}
-                        description={entry.data.description}
-                        subtitle={entry.data.subtitle}
-                    >
-                        <div class="details">
-                            <ul class="tags flex gap-2 p-2 bg-zinc-900">
-                                {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
-                            </ul>
-                        </div>
-                    </ArticleHeader>
-                </div>
-            </header>
-            <main class="wrapper bg-blue-500 p-8 rounded-t-3xl pt-20">
-                <div class="stack gap-10 content">
-                    <article class="content">
-                        <Content />
-                    </article>
-                </div>
-            </main>
-        </div>
-        <ContactCTA />
-    </article>
+        <Prose>
+            <Content />
+        </Prose>
+    </sectio>
+    <ContactCTA />
 </BaseLayout>
