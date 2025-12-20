@@ -5,7 +5,7 @@ interface Props {
   title?: string | undefined;
   description?: string | undefined;
 }
-
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const {
   title = "Moughamir Mohamed: Personal Site",
   description = "The personal site of Moughamir Mohamed",
@@ -14,8 +14,8 @@ const {
 
 <meta charset="UTF-8" />
 <meta name="description" property="og:description" content={description} />
-<meta name="viewport" content="width=device-width" />
-<meta name="generator" content={Astro.generator} />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
 <title>{title}</title>
 
 <link
