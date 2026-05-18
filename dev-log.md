@@ -86,3 +86,10 @@ Replaced generic Astro starter README with a personalized professional README al
 
 ---
 *End of Audit*
+
+### Portfolio Dependency Audit — Mon May 18 15:14
+- Vulnerabilities: 57 -> 5 (1 high, 4 moderate) via local bun audit
+- GitHub Dependabot still shows 57 (stale, needs re-run)
+- Remaining high: Picomatch ReDoS (transitive, already at 4.0.4 but bun audit cached old advisory)
+- Commits: 126a222 (astro 5 upgrade), c85c78a (picomatch 4.0.4)
+- Build: healthy, 10 pages in ~13s
