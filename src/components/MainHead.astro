@@ -5,18 +5,44 @@ interface Props {
   title?: string | undefined;
   description?: string | undefined;
 }
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+
 const {
-  title = "Moughamir Mohamed: Personal Site",
-  description = "The personal site of Moughamir Mohamed",
+  title = "Mohamed Moughamir — Senior Full-Stack Developer",
+  description = "Senior full-stack developer in Morocco building practical web products with React, TypeScript, Node.js, PHP, Python, and AI-assisted delivery.",
 } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <meta charset="UTF-8" />
-<meta name="description" property="og:description" content={description} />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content={description} />
+<meta name="author" content="Mohamed Moughamir" />
+<meta name="theme-color" content="#ffffff" />
+<link rel="canonical" href={canonicalUrl} />
 
 <title>{title}</title>
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content="https://github.com/moughamir.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content="https://github.com/moughamir.png" />
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Mohamed Moughamir",
+  alternateName: "moughamir",
+  jobTitle: "Senior Full-Stack Developer",
+  url: "https://moughamir.github.io",
+  image: "https://github.com/moughamir.png",
+  address: { "@type": "PostalAddress", addressLocality: "Bouskoura", addressRegion: "Casablanca", addressCountry: "MA" },
+  sameAs: ["https://github.com/moughamir", "https://linkedin.com/in/moughamir"],
+  knowsAbout: ["React", "TypeScript", "Node.js", "PHP", "Python", "Astro", "WordPress", "AI-assisted software delivery"]
+})} />
 
 <link
   rel="sitemap"
@@ -29,24 +55,20 @@ const {
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap"
   rel="stylesheet"
 />
 <script is:inline>
-  // This code is inlined in the head to make dark mode instant & blocking.
   const getThemePreference = () => {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
       return localStorage.getItem("theme");
     }
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    return "light";
   };
   const isDark = getThemePreference() === "dark";
   document.documentElement.classList[isDark ? "add" : "remove"]("theme-dark");
 
   if (typeof localStorage !== "undefined") {
-    // Watch the document element and persist user preference when it changes.
     const observer = new MutationObserver(() => {
       const isDark = document.documentElement.classList.contains("theme-dark");
       localStorage.setItem("theme", isDark ? "dark" : "light");
@@ -58,7 +80,6 @@ const {
   }
 </script>
 
-<!-- Google tag (gtag.js) -->
 <script
   type="text/partytown"
   async
@@ -69,6 +90,5 @@ const {
     dataLayer.push(arguments);
   }
   gtag("js", new Date());
-
   gtag("config", "G-21PS43ZF9X");
 </script>

@@ -1,263 +1,433 @@
 ---
-import { getCollection } from "astro:content";
-
-// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Component Imports
-import CallToAction from "../components/CallToAction.astro";
-import Grid from "../components/Grid.astro";
-import Hero from "../components/Hero.astro";
-import Icon from "../components/Icon.astro";
-import Pill from "../components/Pill.astro";
-import PortfolioPreview from "../components/PortfolioPreview.astro";
+const proof = [
+  { value: "10+", label: "years building for web, product, and business" },
+  { value: "249", label: "public GitHub repositories across experiments and apps" },
+  { value: "3", label: "working languages: Arabic, French, English" },
+  { value: "48–72h", label: "delivery window for focused rescue sprints" },
+];
 
-// Page section components
-import ContactCTA from "../components/ContactCTA.astro";
-import Skills from "../components/Skills.astro";
-import ArticlePreview from "../components/ArticlePreview.astro";
+const capabilities = [
+  {
+    title: "Full-stack product delivery",
+    body: "React, TypeScript, Node.js, PHP, Python, databases, APIs, and pragmatic deployment choices. I can move from idea to shipped web product without losing the business context.",
+  },
+  {
+    title: "Rescue and modernization",
+    body: "Stabilize broken websites, improve mobile UX, repair forms, clean WordPress/PHP stacks, and turn unclear codebases into something maintainable.",
+  },
+  {
+    title: "AI-assisted automation",
+    body: "Small internal tools, lead capture flows, reporting dashboards, scraping, email/WhatsApp workflows, and agent-assisted development loops.",
+  },
+];
 
-// Content Fetching: List four most recent work projects
-const projects = (await getCollection("work"))
-  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-  .slice(0, 4);
+const projects = [
+  {
+    title: "Hatom Labs showcase",
+    type: "Web3 / visual product showcase",
+    body: "Designed and built a visual showcase for a blockchain ecosystem, combining brand direction, responsive UI, and front-end delivery.",
+    href: "/work/hatom-labs/",
+  },
+  {
+    title: "v2fa",
+    type: "Bun + SQLite security utility",
+    body: "A TOTP vault implementation exploring Bun, built-in SQLite, and practical authentication tooling.",
+    href: "https://github.com/moughamir/v2fa",
+  },
+  {
+    title: "vnode",
+    type: "Distributed ML infrastructure experiment",
+    body: "A TypeScript experiment around Bitcoin-inspired coordination ideas for distributed ML training infrastructure.",
+    href: "https://github.com/moughamir/vnode",
+  },
+];
 
-const articles = (await getCollection("blog"))
-  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-  .slice(0, 4);
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+const principles = [
+  "Ship the smallest useful version first.",
+  "Make the interface obvious before making it clever.",
+  "Treat business constraints as engineering inputs.",
+  "Use AI as leverage, not as a substitute for judgment.",
+];
 ---
 
-<BaseLayout>
-  <div class="stack gap-20 lg:gap-48">
-    <div class="wrapper stack gap-8 lg:gap-20">
-      <header class="hero">
-        <Hero
-          title="Crafting Digital Experiences"
-          tagline="Building future-ready digital experiences with code, creativity, and a touch of Moroccan flair."
-          align="start"
-        >
-          <div class="roles">
-            <Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
-            <Pill><Icon icon="strategy" size="1.33em" /> Researcher</Pill>
-            <Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
+<BaseLayout
+  title="Mohamed Moughamir — Senior Full-Stack Developer"
+  description="Senior full-stack developer in Morocco building practical web products with React, TypeScript, Node.js, PHP, Python, and AI-assisted delivery. Available for contract and full-time work."
+>
+  <main class="home wrapper">
+    <section class="hero-section">
+      <div class="eyebrow">Bouskoura / Casablanca · Morocco · Remote-ready</div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Senior full-stack developer shipping practical web products.</h1>
+          <p class="lede">
+            I’m Mohamed Moughamir, a product-minded web developer with 10+ years across startups, freelance delivery, open-source experiments, and business-facing software. I help teams turn messy ideas into clean, working products.
+          </p>
+          <div class="cta-row">
+            <a class="button primary" href="mailto:moughamir@gmail.com">Email me</a>
+            <a class="button" href="https://linkedin.com/in/moughamir">LinkedIn</a>
+            <a class="button" href="https://github.com/moughamir">GitHub</a>
           </div>
-        </Hero>
-
-        <img
-          alt="The portrait picture of Moughamir Mohamed is a high-contrast black and white silhouette. He is standing against a textured background, wearing a hooded garment. The face is partially visible, with some details obscured by shadows. The background has a rough, possibly stone-like texture with irregular patterns. The image uses light and shadow to create a dramatic effect, making it visually striking and intriguing. "
-          width="480"
-          height="620"
-          src="/assets/portrait.png"
-        />
-      </header>
-
-      <Skills />
-    </div>
-
-    <main class="wrapper stack gap-20 lg:gap-48">
-      <section class="section with-background with-cta">
-        <header class="section-header stack gap-2 lg:gap-4">
-          <h3>Selected Work</h3>
+        </div>
+        <aside class="availability-card" aria-label="Availability">
+          <span class="status-dot"></span>
+          <p class="small-label">Available now</p>
+          <h2>Full-time, contract, or urgent web rescue sprints.</h2>
           <p>
-            Take a look below at some of my featured work for clients from the
-            past few years.
+            Best fit: React/TypeScript/Node, PHP/Laravel/WordPress, product engineering, AI-assisted automation, and technical founder support.
           </p>
-        </header>
+        </aside>
+      </div>
+    </section>
 
-        <div class="gallery">
-          <Grid variant="offset">
-            {
-              projects.map((project) => (
-                <li>
-                  <PortfolioPreview project={project} />
-                </li>
-              ))
-            }
-          </Grid>
-        </div>
+    <section class="proof-grid" aria-label="Proof points">
+      {proof.map((item) => (
+        <article>
+          <strong>{item.value}</strong>
+          <span>{item.label}</span>
+        </article>
+      ))}
+    </section>
 
-        <div class="cta">
-          <CallToAction href="/work/">
-            Explore My Work
-            <Icon icon="arrow-right" size="1.2em" />
-          </CallToAction>
-        </div>
-      </section>
-      <section class="section with-background with-cta">
-        <header class="section-header stack gap-2 lg:gap-4">
-          <h3>Recent Articles</h3>
-          <p>
-            Take a look below at some of my featured work for clients from the
-            past few years.
-          </p>
-        </header>
+    <section class="section-block">
+      <div class="section-heading">
+        <span class="small-label">What I can do this week</span>
+        <h2>Useful work, shipped fast.</h2>
+      </div>
+      <div class="cards three">
+        {capabilities.map((item) => (
+          <article class="card">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
 
-        <div class="gallery">
-          <Grid variant="small">
-            {
-              articles.map((article) => (
-                <li>
-                  <ArticlePreview article={article} />
-                </li>
-              ))
-            }
-          </Grid>
-        </div>
-      </section>
-    </main>
+    <section class="section-block split">
+      <div class="section-heading sticky-heading">
+        <span class="small-label">Selected proof</span>
+        <h2>Recent signals and projects.</h2>
+        <p>
+          My GitHub shows breadth; this portfolio now focuses the story: full-stack execution, product sense, and practical technical experimentation.
+        </p>
+      </div>
+      <div class="project-list">
+        {projects.map((project) => (
+          <a class="project-card" href={project.href}>
+            <span>{project.type}</span>
+            <h3>{project.title}</h3>
+            <p>{project.body}</p>
+          </a>
+        ))}
+      </div>
+    </section>
 
-    <ContactCTA />
-  </div>
+    <section class="section-block principle-panel">
+      <div>
+        <span class="small-label">How I work</span>
+        <h2>Calm execution under real constraints.</h2>
+      </div>
+      <ul>
+        {principles.map((principle) => <li>{principle}</li>)}
+      </ul>
+    </section>
+
+    <section class="final-cta">
+      <p class="small-label">Need a builder who can start now?</p>
+      <h2>Let’s make the next 72 hours useful.</h2>
+      <p>
+        Send me the problem, the current link/repo if one exists, and what “fixed” means. I’ll reply with a practical next step.
+      </p>
+      <div class="cta-row centered">
+        <a class="button primary" href="mailto:moughamir@gmail.com">moughamir@gmail.com</a>
+        <a class="button" href="/about/">More about me</a>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
 
 <style>
-  .hero {
+  .home {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+    gap: 5rem;
+    padding-bottom: 5rem;
   }
 
-  .roles {
-    display: none;
+  .hero-section {
+    padding-top: 2rem;
   }
 
-  .hero img {
-    aspect-ratio: 5 / 4;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-md);
+  .eyebrow,
+  .small-label {
+    color: var(--gray-500);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
-  @media (min-width: 50em) {
-    .hero {
-      display: grid;
-      grid-template-columns: 6fr 4fr;
-      padding-inline: 2.5rem;
-      gap: 3.75rem;
-    }
-
-    .roles {
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .hero img {
-      aspect-ratio: 3 / 4;
-      border-radius: 4.5rem;
-      object-fit: cover;
-    }
-  }
-
-  /* ====================================================== */
-
-  .section {
+  .hero-grid {
     display: grid;
     gap: 2rem;
+    margin-top: 1rem;
   }
 
-  .with-background {
-    position: relative;
+  .hero-copy h1 {
+    max-width: 12ch;
+    color: var(--gray-0);
+    font-size: clamp(3rem, 9vw, 6.4rem);
+    letter-spacing: -0.07em;
+    line-height: 0.92;
   }
 
-  .with-background::before {
-    --hero-bg: var(--bg-image-subtle-2);
-
-    content: "";
-    position: absolute;
-    pointer-events: none;
-    left: 50%;
-    width: 100vw;
-    aspect-ratio: calc(2.25 / var(--bg-scale));
-    top: 0;
-    transform: translateY(-75%) translateX(-50%);
-    background:
-      url("/assets/backgrounds/noise.png") top center/220px repeat,
-      var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
-      var(--gray-999);
-    background-blend-mode: overlay, normal, normal, normal;
-    mix-blend-mode: var(--bg-blend-mode);
-    z-index: -1;
+  .lede {
+    max-width: 68ch;
+    margin-top: 1.5rem;
+    color: var(--gray-500);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    line-height: 1.65;
   }
 
-  .with-background.bg-variant::before {
-    --hero-bg: var(--bg-image-subtle-1);
-  }
-
-  .section-header {
-    justify-self: center;
-    text-align: center;
-    max-width: 50ch;
-    font-size: var(--text-md);
-    color: var(--gray-300);
-  }
-
-  .section-header h3 {
-    font-size: var(--text-2xl);
-  }
-
-  @media (min-width: 50em) {
-    .section {
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-areas: "header header header header" "gallery gallery gallery gallery";
-      gap: 5rem;
-    }
-
-    .section.with-cta {
-      grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
-    }
-
-    .section-header {
-      grid-area: header;
-      font-size: var(--text-lg);
-    }
-
-    .section-header h3 {
-      font-size: var(--text-4xl);
-    }
-
-    .with-cta .section-header {
-      justify-self: flex-start;
-      text-align: left;
-    }
-
-    .gallery {
-      grid-area: gallery;
-    }
-
-    .cta {
-      grid-area: cta;
-    }
-  }
-
-  /* ====================================================== */
-
-  .mention-card {
+  .cta-row {
     display: flex;
-    height: 7rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .cta-row.centered {
     justify-content: center;
+  }
+
+  .button {
+    display: inline-flex;
+    min-height: 2.75rem;
     align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--gray-999);
+    color: var(--gray-0);
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: var(--border-shadow);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .button:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--card-shadow);
+  }
+
+  .button.primary {
+    background: var(--gray-0);
+    color: var(--gray-999);
+  }
+
+  .availability-card,
+  .card,
+  .project-card,
+  .proof-grid article,
+  .principle-panel,
+  .final-cta {
+    border-radius: 1rem;
+    background: var(--gray-999);
+    box-shadow: var(--card-shadow);
+  }
+
+  .availability-card {
+    position: relative;
+    padding: 1.5rem;
+  }
+
+  .availability-card h2 {
+    margin-top: 0.75rem;
+    color: var(--gray-0);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: -0.04em;
+  }
+
+  .availability-card p:last-child {
+    margin-top: 1rem;
+    color: var(--gray-500);
+  }
+
+  .status-dot {
+    display: inline-block;
+    width: 0.65rem;
+    height: 0.65rem;
+    margin-right: 0.5rem;
+    border-radius: 999px;
+    background: #16a34a;
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.12);
+  }
+
+  .proof-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .proof-grid article {
+    padding: 1rem;
+  }
+
+  .proof-grid strong {
+    display: block;
+    color: var(--gray-0);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    letter-spacing: -0.07em;
+    line-height: 1;
+  }
+
+  .proof-grid span {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--gray-500);
+    font-size: 0.95rem;
+  }
+
+  .section-block {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .section-heading h2,
+  .principle-panel h2,
+  .final-cta h2 {
+    max-width: 14ch;
+    margin-top: 0.4rem;
+    color: var(--gray-0);
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    letter-spacing: -0.065em;
+    line-height: 0.98;
+  }
+
+  .section-heading p {
+    max-width: 42ch;
+    margin-top: 1rem;
+    color: var(--gray-500);
+  }
+
+  .cards {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  .card h3,
+  .project-card h3 {
+    color: var(--gray-0);
+    font-size: 1.35rem;
+    letter-spacing: -0.035em;
+  }
+
+  .card p,
+  .project-card p,
+  .final-cta p {
+    margin-top: 0.8rem;
+    color: var(--gray-500);
+    line-height: 1.65;
+  }
+
+  .project-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .project-card {
+    display: block;
+    padding: 1.25rem;
+    color: inherit;
+    text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow-strong);
+  }
+
+  .project-card span {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: var(--gray-500);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+
+  .principle-panel {
+    display: grid;
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+
+  .principle-panel ul {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .principle-panel li {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    color: var(--gray-0);
+    background: var(--gray-950);
+    box-shadow: var(--border-shadow);
+  }
+
+  .final-cta {
+    padding: clamp(2rem, 7vw, 5rem);
     text-align: center;
-    border: 1px solid var(--gray-800);
-    border-radius: 1.5rem;
-    color: var(--gray-300);
-    background: var(--gradient-subtle);
-    box-shadow: var(--shadow-sm);
   }
 
-  @media (min-width: 50em) {
-    .mention-card {
-      border-radius: 1.5rem;
-      height: 9.5rem;
+  .final-cta h2 {
+    max-width: 13ch;
+    margin-inline: auto;
+  }
+
+  .final-cta p:not(.small-label) {
+    max-width: 56ch;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 48rem) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr) 24rem;
+      align-items: end;
     }
-  }
 
-  div.tp-dfwv {
-    position: fixed;
+    .proof-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .cards.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .split {
+      grid-template-columns: 0.75fr 1fr;
+      align-items: start;
+    }
+
+    .sticky-heading {
+      position: sticky;
+      top: 2rem;
+    }
+
+    .principle-panel {
+      grid-template-columns: 0.8fr 1fr;
+      align-items: start;
+      padding: 2rem;
+    }
   }
 </style>

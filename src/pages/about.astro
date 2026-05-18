@@ -1,204 +1,228 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 import ContactCTA from "../components/ContactCTA.astro";
-import Hero from "../components/Hero.astro";
-import Education from "../components/education.astro";
+
+const stack = [
+  "React", "TypeScript", "Node.js", "PHP", "Python", "Astro", "Bun", "SQLite", "MongoDB", "MySQL", "WordPress", "Tailwind", "Git", "Linux"
+];
+
+const experienceSignals = [
+  "10+ years across web development, startup experiments, freelance delivery, and business-facing product work.",
+  "Public GitHub footprint across JavaScript, TypeScript, PHP, CSS, Python, Shell, Rust, Astro, and more.",
+  "Comfortable moving between frontend polish, backend logic, deployment constraints, and stakeholder communication.",
+  "Based in Bouskoura / Casablanca, available for Morocco, France/EMEA remote, contract, and full-time roles.",
+];
+
+const education = [
+  {
+    school: "Université Hassan II — FSJES Casablanca",
+    detail: "Licence en Gestion d’Entreprise, 2011–2015",
+  },
+  {
+    school: "HarvardX",
+    detail: "CS50: Introduction to Computer Science, online coursework, 2016–2017",
+  },
+  {
+    school: "MITx",
+    detail: "Algorithms, Python programming, and introductory AI coursework, 2017",
+  },
+];
 ---
 
 <BaseLayout
-  title="About | Moughamir Mohamed"
-  description="About Moughamir Mohamed Lorem Ipsum"
+  title="About Mohamed Moughamir — Full-Stack Developer"
+  description="About Mohamed Moughamir, a Morocco-based senior full-stack developer building practical web products with React, TypeScript, Node.js, PHP, Python, and AI-assisted workflows."
 >
-  <div class="stack gap-20">
-    <main class="wrapper about">
-      <Hero
-        title="About Me"
-        tagline="Thanks for stopping by! I'm Mohamed Moughamir, a creative and results-driven full-stack developer based in Bouskoura, Morocco. I'm passionate about crafting innovative digital experiences that are both beautiful and functional.  I thrive on transforming complex ideas into elegant, user-centered web applications."
-      >
-        <img
-          width="1553"
-          height="273"
-          src="/assets/at-work.png"
-          alt="Moughamir Mohamed at work with a colleague"
-        />
-      </Hero>
+  <main class="about wrapper">
+    <section class="intro">
+      <p class="label">About</p>
+      <h1>Product-minded full-stack developer with founder energy.</h1>
+      <p>
+        I’m Mohamed Moughamir, a full-stack developer based in Bouskoura / Casablanca, Morocco. My best work happens where product sense, clean interfaces, pragmatic engineering, and business urgency meet.
+      </p>
+      <p>
+        I have spent more than a decade building, experimenting, freelancing, learning in public, and working across the messy middle between idea and shipped software. I’m currently available for full-time roles, contract work, and focused web rescue sprints.
+      </p>
+    </section>
 
-      <section class="max-w-prose">
-        <h2 class="section-title">Background</h2>
-        <div class="content">
-          <p>
-            My journey in web development began with a fascination for both
-            design and code.
-          </p>
-          <p>
-            This dual passion enables me to approach projects with a holistic
-            perspective, ensuring seamless and visually appealing user
-            experiences.
-          </p>
-          <p>
-            My technical expertise spans a wide range of technologies, including
-            HTML, CSS, JavaScript, React, Node.js, Python, PHP, and databases
-            like MongoDB and MySQL.
-          </p>
-          <p>
-            I'm committed to continuous learning and staying at the forefront of
-            the ever-evolving web development landscape.
-          </p>
-        </div>
-      </section>
-      <section>
-        <h2 class="section-title">Education</h2>
-        <div class="content">
-          <p>
-            <ul>
-              <li>
-                <Education
-                  institution="Université Hassan II - FSJES, Casablanca "
-                  field="License en Gestion d'Entreprise"
-                  years={{
-                    from: 2011,
-                    to: 2015,
-                  }}
-                />
-              </li>
-              <li>
-                <Education
-                  institution="HarvardX "
-                  field="Introduction to Computer Science (CS50)"
-                  years={{
-                    from: 2016,
-                    to: 2017,
-                  }}
-                  note="This was an online introductory course, not a full degree program."
-                />
-              </li>
-              <li>
-                <Education
-                  institution="MITx "
-                  field="Algorithms and Computer Programming with Python; Artificial Intelligence (Learning Machine)"
-                  years={{
-                    from: 2017,
-                    to: 2017,
-                  }}
-                  note="This was an online introductory course, not a full degree program."
-                />
-              </li>
-            </ul>
-          </p>
-        </div>
-      </section>
-      <section>
-        <h2 class="section-title">Skills</h2>
-        <div class="content">
-          <article>
-            <h5>Full-Stack Development:</h5>
-            I have a comprehensive understanding of both front-end and back-end technologies,
-            allowing me to build complete web applications from start to finish.
-            I excel at creating responsive, user-friendly, and performant web experiences.
-          </article>
-          <article>
-            <h5>UI/UX Design:</h5>
-            I possess a strong understanding of user-centered design principles and
-            strive to create intuitive and engaging interfaces.
-          </article>
-          <article>
-            <h5>Problem-Solving & Innovation:</h5>
-            I enjoy tackling challenging problems and finding creative solutions
-            through code. I'm always looking for ways to push the boundaries of what's
-            possible with technology. My strategic thinking ensures alignment between
-            project goals and overall vision.
-          </article>
-        </div>
-      </section>
-      <section>
-        <h2 class="section-title">Professional Experience</h2>
-        <div class="content">
-          <p>
-            * **Hatom Labs:** Developed a virtual showcase for a blockchain
-            token project, handling both design and development. This project
-            involved [specific technologies used] and resulted in [quantifiable
-            results, e.g., increased website traffic, improved user engagement].
-            *(Add more professional experience here if applicable)*
-          </p>
-        </div>
-      </section>
-      <section>
-        <h2 class="section-title">Personal Projects</h2>
-        <div class="content">
-          <p>
-            * **Bloom Box:** Paired a cutting-edge music API with input from
-            horticulturalists to build AI-generated playlists designed to
-            maximize houseplant health. This project demonstrated my ability to
-            combine creativity, technical skills, and cross-disciplinary
-            collaboration to create a unique and engaging user experience.
-            *(Consider adding a link to a live demo or video if available)*
-            *(Add more personal projects here if applicable)* ## Open Source
-            Contributions *(Add specific contributions here with links to the
-            GitHub repositories. Quantify impact where possible.)*
-          </p>
-        </div>
-      </section>
-    </main>
+    <section class="two-column">
+      <div>
+        <p class="label">How I help</p>
+        <h2>I turn unclear digital problems into shipped next steps.</h2>
+      </div>
+      <div class="copy-stack">
+        <p>
+          I can design and build a landing page, repair a broken website, modernize a PHP/WordPress stack, ship React/TypeScript product features, wire APIs, automate a workflow, or help a small team make technical decisions without overcomplicating the system.
+        </p>
+        <p>
+          I’m not only interested in code that compiles. I care about whether the page converts, whether the handoff is understandable, whether the system can be maintained, and whether the work creates business value quickly.
+        </p>
+      </div>
+    </section>
 
-    <ContactCTA />
-  </div>
+    <section class="signal-grid" aria-label="Experience signals">
+      {experienceSignals.map((signal) => <article>{signal}</article>)}
+    </section>
+
+    <section class="two-column">
+      <div>
+        <p class="label">Stack</p>
+        <h2>Broad web range, with a practical full-stack core.</h2>
+      </div>
+      <ul class="tag-cloud">
+        {stack.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="two-column">
+      <div>
+        <p class="label">Work style</p>
+        <h2>Calm, direct, useful.</h2>
+      </div>
+      <div class="copy-stack">
+        <p>
+          I like small, sharp execution loops: understand the constraint, identify the highest-leverage fix, ship something visible, then iterate with evidence.
+        </p>
+        <p>
+          That makes me useful for startups, agencies, founders, and teams that need someone who can cross boundaries: design, frontend, backend, content, automation, and product judgment.
+        </p>
+      </div>
+    </section>
+
+    <section class="two-column">
+      <div>
+        <p class="label">Education</p>
+        <h2>Business foundation, computer science self-study, continuous practice.</h2>
+      </div>
+      <div class="timeline">
+        {education.map((item) => (
+          <article>
+            <h3>{item.school}</h3>
+            <p>{item.detail}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <ContactCTA />
 </BaseLayout>
 
 <style>
   .about {
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
+    gap: 5rem;
+    padding-bottom: 5rem;
   }
 
-  img {
-    margin-top: 1.5rem;
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-md);
+  .label {
+    color: var(--gray-500);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
-  section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    color: var(--gray-200);
+  .intro {
+    max-width: 68rem;
   }
 
-  .section-title {
-    grid-column-start: 1;
-    font-size: var(--text-xl);
+  h1,
+  h2 {
     color: var(--gray-0);
+    letter-spacing: -0.065em;
   }
 
-  .content {
-    grid-column: 2 / 4;
+  h1 {
+    max-width: 13ch;
+    margin-top: 0.5rem;
+    font-size: clamp(3rem, 9vw, 6rem);
+    line-height: 0.92;
   }
 
-  .content :global(a) {
-    text-decoration: 1px solid underline transparent;
-    text-underline-offset: 0.25em;
-    transition: text-decoration-color var(--theme-transition);
+  h2 {
+    max-width: 13ch;
+    margin-top: 0.4rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 0.98;
   }
 
-  .content :global(a:hover),
-  .content :global(a:focus) {
-    text-decoration-color: currentColor;
+  .intro p:not(.label),
+  .copy-stack p {
+    max-width: 64ch;
+    margin-top: 1.25rem;
+    color: var(--gray-500);
+    font-size: 1.1rem;
+    line-height: 1.7;
   }
 
-  @media (min-width: 50em) {
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 60% 1fr;
+  .two-column {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .copy-stack p:first-child {
+    margin-top: 0;
+  }
+
+  .signal-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .signal-grid article,
+  .timeline article {
+    border-radius: 1rem;
+    padding: 1.25rem;
+    color: var(--gray-0);
+    background: var(--gray-999);
+    box-shadow: var(--card-shadow);
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tag-cloud li {
+    border-radius: 999px;
+    padding: 0.5rem 0.75rem;
+    color: var(--gray-0);
+    background: var(--gray-950);
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    box-shadow: var(--border-shadow);
+  }
+
+  .timeline {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .timeline h3 {
+    color: var(--gray-0);
+    font-size: 1.2rem;
+    letter-spacing: -0.03em;
+  }
+
+  .timeline p {
+    margin-top: 0.4rem;
+    color: var(--gray-500);
+  }
+
+  @media (min-width: 52rem) {
+    .two-column {
+      grid-template-columns: 0.85fr 1fr;
+      align-items: start;
     }
 
-    .about > :global(:first-child) {
-      grid-column-start: 2;
-    }
-
-    section {
-      display: contents;
-      font-size: var(--text-lg);
+    .signal-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 </style>

@@ -4,50 +4,66 @@ import Icon from "./Icon.astro";
 ---
 
 <aside>
-  <h2>Interested in working together?</h2>
-  <p>
-    I'm always excited to discuss new opportunities and collaborate on exciting
-    projects. Feel free to reach out!
-  </p>
-  <CallToAction href="mailto:moughamit@gmail.com">
-    Let's Connect!
+  <div>
+    <p class="label">Available for useful work</p>
+    <h2>Need a senior builder who can start fast?</h2>
+    <p>
+      Send the problem, current link or repo, and what success should look like.
+      I can help with full-stack product work, rescue sprints, automation, and
+      practical technical leadership.
+    </p>
+  </div>
+  <CallToAction href="mailto:moughamir@gmail.com">
+    Email Mohamed
     <Icon icon="paper-plane-tilt" size="1.2em" />
   </CallToAction>
-  <!--
-  [Send Me a Message Button]  [View My Portfolio Button (Link to portfolio website/section)] [Download Resume Button]
-   -->
 </aside>
 
 <style>
   aside {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    gap: 2rem;
     align-items: center;
-    gap: 3rem;
-    border-top: 1px solid var(--gray-800);
-    border-bottom: 1px solid var(--gray-800);
-    padding: 5rem 1.5rem;
-    background-color: var(--gray-999_40);
-    box-shadow: var(--shadow-sm);
+    border-top: 1px solid var(--gray-850);
+    border-bottom: 1px solid var(--gray-850);
+    padding: clamp(3rem, 8vw, 7rem) 1.5rem;
+    background-color: var(--gray-950);
+  }
+
+  div {
+    max-width: 54rem;
+  }
+
+  .label {
+    color: var(--gray-500);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
   h2 {
-    font-size: var(--text-xl);
-    text-align: center;
     max-width: 15ch;
+    margin-top: 0.5rem;
+    color: var(--gray-0);
+    font-size: clamp(2rem, 5vw, 4rem);
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+  }
+
+  p:last-child {
+    max-width: 58ch;
+    margin-top: 1rem;
+    color: var(--gray-500);
+    font-size: 1.05rem;
+    line-height: 1.65;
   }
 
   @media (min-width: 50em) {
     aside {
-      padding: 7.5rem;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    h2 {
-      font-size: var(--text-3xl);
-      text-align: left;
+      grid-template-columns: 1fr auto;
+      padding-inline: 5rem;
     }
   }
 </style>

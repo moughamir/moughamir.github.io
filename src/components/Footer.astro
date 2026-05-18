@@ -3,40 +3,48 @@ import Icon from "./Icon.astro";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer
-  class="flex flex-col justify-center gap-4 p-4 text-center text-sm text-gray-400"
->
-  <div class="flex flex-col gap-4">
-    <p>
-      Designed & Developed in Bouskoura with <a href="https://astro.build/"
-        >Astro</a
-      >
-    </p>
-
-    <p>&copy; {currentYear} Moughamir Mohamed</p>
-  </div>
-  <p class="flex gap-2">
-    <a href="https://github.com/moughamir"> GitHub</a>
-    <a href="https://codepen.io/moughamir"> CodePen</a>
-    <a href="https://linkedin.com/in/moughamir"> LinkedIn</a>
+<footer>
+  <p>Designed and built in Bouskoura with <a href="https://astro.build/">Astro</a>.</p>
+  <p>&copy; {currentYear} Mohamed Moughamir</p>
+  <p class="links">
+    <a href="https://github.com/moughamir">GitHub</a>
+    <a href="https://linkedin.com/in/moughamir">LinkedIn</a>
+    <a href="mailto:moughamir@gmail.com">Email</a>
   </p>
 </footer>
+
 <style>
+  footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    justify-content: space-between;
+    padding: 2rem 1.25rem;
+    color: var(--gray-500);
+    font-size: 0.92rem;
+  }
+
+  a {
+    color: var(--gray-0);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+
   @media (min-width: 50em) {
     footer {
       flex-direction: row;
-      justify-content: space-between;
+      align-items: center;
       padding: 2.5rem 5rem;
-    }
-
-    .group {
-      flex-direction: row;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .socials {
-      justify-content: flex-end;
     }
   }
 </style>
