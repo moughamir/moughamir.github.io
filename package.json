@@ -11,8 +11,8 @@
   "dependencies": {
     "@astrojs/partytown": "^2.1.7",
     "@astrojs/sitemap": "^3.7.2",
-    "@astrojs/tailwind": "^5.1.5",
-    "astro": "^6.3.3",
+    "@astrojs/tailwind": "6.0.2",
+    "astro": "6.3.4",
     "defu": "^6.1.7",
     "mdast-util-to-hast": "^13.2.1",
     "picomatch": "^4.0.4",

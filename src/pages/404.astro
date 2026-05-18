@@ -1,8 +1,98 @@
 ---
-import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Not Found" description="404 Error — this page was not found">
-	<Hero title="Page Not Found" tagline="Not found" />
+  <main id="main-content" class="not-found wrapper">
+    <div class="code">404</div>
+    <h1>Page not found</h1>
+    <p class="message">
+      The page you're looking for doesn't exist or has been moved.
+    </p>
+    <div class="links">
+      <a href="/" class="btn-primary">Back to home</a>
+      <a href="/about/" class="btn-ghost">About me</a>
+      <a href="/work/" class="btn-ghost">Work</a>
+      <a href="/blog/" class="btn-ghost">Blog</a>
+    </div>
+  </main>
 </BaseLayout>
+
+<style>
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 16rem);
+    text-align: center;
+    gap: 1rem;
+    padding-block: 5rem;
+  }
+
+  .code {
+    font-size: clamp(6rem, 20vw, 12rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.08em;
+    color: var(--gray-800);
+    user-select: none;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    letter-spacing: -0.04em;
+  }
+
+  .message {
+    max-width: 32ch;
+    color: var(--gray-500);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--gray-0);
+    color: var(--gray-999);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255,255,255,0.15);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: var(--gray-400);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    border: 1px solid var(--gray-800);
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+
+  .btn-ghost:hover {
+    color: var(--gray-0);
+    border-color: var(--gray-600);
+  }
+</style>
