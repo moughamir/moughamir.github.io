@@ -35,6 +35,9 @@ const education = [
 >
   <main class="about wrapper">
     <section class="intro">
+      <div class="profile-photo" aria-label="Mohamed Moughamir profile photo" role="img">
+        <span class="initials">MM</span>
+      </div>
       <p class="label">About</p>
       <h1>Senior Full-Stack Developer: Product-Minded & Founder-Driven.</h1>
       <p>
@@ -127,6 +130,26 @@ const education = [
 
   .intro {
     max-width: 68rem;
+  }
+
+  .profile-photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 9999px;
+    background-color: var(--gray-900);
+    border: 1px solid var(--gray-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .initials {
+    color: var(--gray-500);
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
   }
 
   h1,
