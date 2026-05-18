@@ -39,7 +39,7 @@ const { Content } = await render(entry);
             subtitle={entry.data.subtitle}
         >
             <div class="details">
-                <ul class="tags flex gap-2 p-2 bg-zinc-900">
+                <ul class="tags">
                     {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
                 </ul>
             </div>
@@ -51,3 +51,21 @@ const { Content } = await render(entry);
     </sectio>
     <ContactCTA />
 </BaseLayout>
+
+<style>
+    .details {
+        margin-top: 1.5rem;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        list-style: none;
+        padding: 0.75rem;
+        margin: 0;
+        background-color: var(--gray-900);
+        border: 1px solid var(--gray-800);
+        border-radius: 9999px;
+    }
+</style>
