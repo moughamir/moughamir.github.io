@@ -1,12 +1,20 @@
 ---
 interface Props {
-	href: string;
+	href?: string;
+	email?: string;
 }
 
-const { href } = Astro.props;
+const { href, email } = Astro.props;
+const encoded = email ? btoa(email) : null;
 ---
 
-<a href={href}><slot /></a>
+{
+	email ? (
+		<a href="javascript:void(0)" data-email={encoded} onclick="location.href='mailto:'+atob(this.dataset.email)"><slot /></a>
+	) : (
+		<a href={href}><slot /></a>
+	)
+}
 
 <style>
 	a {

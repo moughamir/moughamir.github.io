@@ -43,7 +43,7 @@ const isCurrentPage = (href: string) => {
       <a href={href} class="social" aria-label={label}><Icon icon={icon} /></a>
     ))}
     <ThemeToggle />
-    <a class="hire" href="mailto:moughamir@gmail.com">Hire me</a>
+    <a class="hire" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">Hire me</a>
   </div>
 </nav>
 
