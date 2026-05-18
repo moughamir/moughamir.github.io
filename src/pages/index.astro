@@ -52,27 +52,30 @@ const principles = [
 >
   <main class="home wrapper">
     <section class="hero-section">
-      <div class="eyebrow">Bouskoura / Casablanca · Morocco · Remote-ready</div>
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <h1>Senior full-stack developer shipping practical web products.</h1>
+      <div class="hero-container">
+        <div class="hero-left">
+          <p class="eyebrow">Bouskoura / Casablanca · Morocco · Remote-ready</p>
+          <h1>I build things that ship and scale.</h1>
           <p class="lede">
-            I’m Mohamed Moughamir, a product-minded web developer with 10+ years across startups, freelance delivery, open-source experiments, and business-facing software. I help teams turn messy ideas into clean, working products.
+            Senior full-stack engineer with 10+ years. I move fast, write clean code, and deliver products—not just features. From React dashboards to PHP rescues to AI-assisted workflows, I get useful work shipped.
           </p>
-          <div class="cta-row">
-            <a class="button primary" href="mailto:moughamir@gmail.com">Email me</a>
-            <a class="button" href="https://linkedin.com/in/moughamir">LinkedIn</a>
-            <a class="button" href="https://github.com/moughamir">GitHub</a>
+          <div class="cta-group">
+            <a class="btn-primary" href="mailto:moughamir@gmail.com">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Hire me
+            </a>
+            <a class="btn-ghost" href="https://linkedin.com/in/moughamir">LinkedIn</a>
+            <a class="btn-ghost" href="https://github.com/moughamir">GitHub</a>
           </div>
         </div>
-        <aside class="availability-card" aria-label="Availability">
-          <span class="status-dot"></span>
-          <p class="small-label">Available now</p>
-          <h2>Full-time, contract, or urgent web rescue sprints.</h2>
-          <p>
-            Best fit: React/TypeScript/Node, PHP/Laravel/WordPress, product engineering, AI-assisted automation, and technical founder support.
-          </p>
-        </aside>
+        <div class="hero-right">
+          <div class="availability-badge">
+            <span class="status-dot"></span>
+            <span>Available now</span>
+          </div>
+          <p class="badge-sub">Full-time · Contract · Rescue sprints</p>
+          <p class="badge-detail">React/TypeScript · Node.js · PHP · Python · AI workflows</p>
+        </div>
       </div>
     </section>
 
@@ -152,113 +155,135 @@ const principles = [
   }
 
   .hero-section {
-    padding-top: 2rem;
+    padding-top: 3rem;
   }
 
-  .eyebrow,
-  .small-label {
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .hero-container {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 4rem;
+    }
+    .hero-left {
+      max-width: 36rem;
+    }
+    .hero-right {
+      flex-shrink: 0;
+      padding-top: 0.5rem;
+    }
+  }
+
+  .eyebrow {
     color: var(--gray-500);
     font-family: var(--font-mono);
     font-size: 0.78rem;
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    margin-bottom: 1.25rem;
   }
 
-  .hero-grid {
-    display: grid;
-    gap: 2rem;
-    margin-top: 1rem;
-  }
-
-  .hero-copy h1 {
-    max-width: 12ch;
+  .hero-left h1 {
     color: var(--gray-0);
-    font-size: clamp(3rem, 9vw, 6.4rem);
-    letter-spacing: -0.07em;
-    line-height: 0.92;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
   }
 
   .lede {
-    max-width: 68ch;
+    max-width: 60ch;
     margin-top: 1.5rem;
-    color: var(--gray-500);
-    font-size: clamp(1.05rem, 2vw, 1.35rem);
-    line-height: 1.65;
+    color: var(--gray-400);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
   }
 
-  .cta-row {
+  .cta-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1.75rem;
-  }
-
-  .cta-row.centered {
-    justify-content: center;
-  }
-
-  .button {
-    display: inline-flex;
-    min-height: 2.75rem;
     align-items: center;
-    justify-content: center;
-    border-radius: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: var(--gray-999);
-    color: var(--gray-0);
-    font-weight: 500;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--gray-0);
+    color: var(--gray-999);
+    font-weight: 600;
+    font-size: 0.95rem;
     text-decoration: none;
-    box-shadow: var(--border-shadow);
+    border-radius: 0.5rem;
     transition: transform 160ms ease, box-shadow 160ms ease;
   }
 
-  .button:hover {
+  .btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: var(--card-shadow);
+    box-shadow: 0 4px 12px rgba(255,255,255,0.15);
   }
 
-  .button.primary {
-    background: var(--gray-0);
-    color: var(--gray-999);
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: var(--gray-400);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    border: 1px solid var(--gray-800);
+    transition: color 160ms ease, border-color 160ms ease;
   }
 
-  .availability-card,
-  .card,
-  .project-card,
-  .proof-grid article,
-  .principle-panel,
-  .final-cta {
-    border-radius: 1rem;
-    background: var(--gray-999);
-    box-shadow: var(--card-shadow);
-  }
-
-  .availability-card {
-    position: relative;
-    padding: 1.5rem;
-  }
-
-  .availability-card h2 {
-    margin-top: 0.75rem;
+  .btn-ghost:hover {
     color: var(--gray-0);
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    letter-spacing: -0.04em;
+    border-color: var(--gray-600);
   }
 
-  .availability-card p:last-child {
-    margin-top: 1rem;
-    color: var(--gray-500);
+  .availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--gray-900);
+    border: 1px solid var(--gray-800);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gray-0);
   }
 
   .status-dot {
     display: inline-block;
-    width: 0.65rem;
-    height: 0.65rem;
-    margin-right: 0.5rem;
+    width: 0.5rem;
+    height: 0.5rem;
     border-radius: 999px;
     background: #16a34a;
-    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.12);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+  }
+
+  .badge-sub {
+    margin-top: 0.75rem;
+    color: var(--gray-500);
+    font-size: 0.85rem;
+  }
+
+  .badge-detail {
+    margin-top: 0.35rem;
+    color: var(--gray-600);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
   }
 
   .proof-grid {
