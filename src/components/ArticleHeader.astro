@@ -9,25 +9,100 @@ interface Props {
     align?: "start" | "center";
 }
 
-const { align = "center", description, title, subtitle, cover } = Astro.props;
+const { align = "start", description, title, subtitle, cover } = Astro.props;
 ---
 
-<header class="relative">
-    <div
-        class=`w-full  h-96 bg-cover  bg-red-500 ${align}
-    bg-[url(${cover})]
-    `
-    >
-    </div>
-    <div class="title">
-        <nav>
-            <a class="back-link" href="/blog/"
-                ><Icon icon="arrow-left" /> Blog</a
-            >
+<header class="article-header">
+    {cover && (
+        <div class="cover-image" style={`background-image: url(${cover})`} />
+    )}
+    <div class="header-content wrapper">
+        <nav class="back-nav">
+            <a class="back-link" href="/blog/">
+                <Icon icon="arrow-left" />
+                Blog
+            </a>
         </nav>
-        <h1>{title}</h1>
-        <p>{subtitle}</p>
-        {description && <p>{description}</p>}
+        <h1 class="article-title">{title}</h1>
+        {subtitle && <p class="article-subtitle">{subtitle}</p>}
+        {description && <p class="article-description">{description}</p>}
     </div>
     <slot />
 </header>
+
+<style>
+    .article-header {
+        padding-top: 2rem;
+        background-color: transparent;
+    }
+
+    .cover-image {
+        width: 100%;
+        height: 24rem;
+        background-size: cover;
+        background-position: center;
+        border-radius: var(--rounded-lg, 8px);
+        margin-bottom: 2rem;
+    }
+
+    .header-content {
+        max-width: 65ch;
+    }
+
+    .back-nav {
+        margin-bottom: 1.5rem;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4em;
+        color: var(--gray-500);
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color var(--theme-transition);
+    }
+
+    .back-link:hover {
+        color: var(--gray-0);
+    }
+
+    .back-link :global(svg) {
+        width: 1em;
+        height: 1em;
+    }
+
+    .article-title {
+        font-size: 2.25rem;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: var(--gray-0);
+        margin-bottom: 0.75rem;
+    }
+
+    .article-subtitle {
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--gray-400);
+        margin-bottom: 0.5rem;
+    }
+
+    .article-description {
+        font-size: 1rem;
+        line-height: 1.65;
+        color: var(--gray-500);
+    }
+
+    @media (min-width: 50em) {
+        .article-header {
+            padding-top: 3rem;
+        }
+
+        .article-title {
+            font-size: 2.75rem;
+        }
+    }
+</style>
