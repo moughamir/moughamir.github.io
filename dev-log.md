@@ -36,14 +36,27 @@ Replaced generic Astro starter README with a personalized professional README al
 - Cron job `systematic-dev-loop-refined` showed ERROR at 14:11 (investigation ongoing separately)
 - No pending issues from that run
 
-### Cron Jobs Status
-| Job Name | Schedule | Status | Last Run |
+### Kanban Board Status
+| ID | Task | Assignee | Status |
 |---|---|---|---|
-| systematic-dev-loop-refined | */10 * * * * | ACTIVE | 14:20 |
-| daily-comment-routine | 0 9 * * * | ERROR | 09:00 |
-| Mindera interview Monday evening prep reminder | once 19:00 | SCHEDULED | - |
-| Mindera interview Tuesday morning checklist | once 09:30 | SCHEDULED | - |
-| Mindera interview final 20 minute reminder | once 10:40 | SCHEDULED | - |
+| t_4f3128b9 | Blog UI: hero tagline + ArticlePreview typography | coder | done |
+| t_54520200 | Homepage Hero: rewrite value prop + clean layout | coder | done |
+| t_d3ea8e45 | Blog content audit: trim excerpts for conciseness | researcher | done |
+| t_3007cb65 | Prepare for Interview (Mindera) | — | triage |
+
+### Commits Today
+- `6e2b567`: fix: blog UI - tighter hero tagline + improved ArticlePreview typography
+- `ff37f42`: fix: homepage hero - senior builder value prop + clean minimal layout
+
+### Cron Jobs Status
+| Job Name | Schedule | Status | Last Run | Next Run |
+|---|---|---|---|---|
+| systematic-dev-loop-refined | */10 * * * * | OK | 14:33 | 14:40 |
+| daily-comment-routine | 0 9 * * * | ERROR (re-triggered) | 09:00 | 05-19 09:00 |
+| Mindera interview Monday prep | once 19:00 | SCHEDULED | — | 19:00 today |
+| Mindera interview Tuesday checklist | once 09:30 | SCHEDULED | — | 05-19 09:30 |
+| Mindera interview final reminder | once 10:40 | SCHEDULED | — | 05-19 10:40 |
+| WhatsApp Integration | once 20:00 | SCHEDULED | — | 20:00 today |
 
 ### Agent Profiles
 | Profile | Model | Gateway | Status |
