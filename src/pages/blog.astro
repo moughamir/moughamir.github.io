@@ -15,11 +15,11 @@ const articles = (await getCollection("blog")).sort(
 ---
 
 <BaseLayout
-    title="My Blog | Moughamir Mohamed"
-    description="Learn about Moughamir Mohamed's most recent articles"
+    title="Blog | Mohamed Moughamir"
+    description="Deep dives on AI agents, Bun/TypeScript architecture, MCP workflows, and building scalable web products. By Mohamed Moughamir, Senior Full-Stack Developer."
 >
     <div class="stack gap-20">
-        <main class="wrapper stack gap-8">
+        <main id="main-content" class="wrapper stack gap-8">
             <Hero
                 title="Blog"
                 tagline="Deep dives on AI agents, Bun/TypeScript architecture, and building for scale."

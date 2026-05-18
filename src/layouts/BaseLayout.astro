@@ -16,6 +16,7 @@ const { title, description } = Astro.props;
     <MainHead title={title} description={description} />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="stack backgrounds">
       <Nav />
       <slot />
@@ -31,5 +32,23 @@ const { title, description } = Astro.props;
     background:
       radial-gradient(circle at 15% 0%, rgba(0, 114, 245, 0.05), transparent 24rem),
       linear-gradient(180deg, var(--gray-999), var(--gray-950) 100%);
+  }
+
+  .skip-link {
+    position: fixed;
+    top: -100%;
+    left: 0.5rem;
+    z-index: 9999;
+    padding: 0.5rem 1rem;
+    background: var(--gray-0);
+    color: var(--gray-999);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0.45rem;
+    transition: top 160ms ease;
+  }
+
+  .skip-link:focus {
+    top: 0.5rem;
   }
 </style>

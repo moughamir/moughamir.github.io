@@ -4,45 +4,112 @@ import "../styles/global.css";
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  type?: "website" | "article";
+  publishDate?: Date;
+  author?: string;
 }
 
 const {
   title = "Mohamed Moughamir — Senior Full-Stack Developer",
   description = "Senior full-stack developer in Morocco building practical web products with React, TypeScript, Node.js, PHP, Python, and AI-assisted delivery.",
+  type = "website",
+  publishDate,
+  author = "Mohamed Moughamir",
 } = Astro.props;
+
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const siteName = "Mohamed Moughamir Portfolio";
+const ogImage = "/og.png";
+const twitterHandle = "@moughamir";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mohamed Moughamir",
+  "alternateName": "moughamir",
+  "jobTitle": "Senior Full-Stack Developer",
+  "url": "https://moughamir.github.io",
+  "image": "https://github.com/moughamir.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bouskoura",
+    "addressRegion": "Casablanca-Settat",
+    "addressCountry": "MA"
+  },
+  "sameAs": [
+    "https://github.com/moughamir",
+    "https://linkedin.com/in/moughamir",
+    "https://www.youtube.com/@moughamir"
+  ],
+  "knowsAbout": ["React", "TypeScript", "Node.js", "Bun", "PHP", "Python", "Astro", "WordPress", "AI-assisted software delivery", "Agentic AI workflows", "MCP (Model Context Protocol)", "RAG (Retrieval-Augmented Generation)", "Full-Stack Web Development", "Remote team collaboration"],
+  "alumniOf": [
+    { "@type": "EducationalOrganization", "name": "Université Hassan II — FSJES Casablanca" },
+    { "@type": "Course", "name": "Harvard CS50" },
+    { "@type": "Course", "name": "MITx Algorithms" }
+  ],
+  "email": "moughamir@gmail.com",
+  "telephone": "+212-6-00-00-00-00",
+  "description": "Senior Full-Stack Developer with 10+ years building high-conversion web products. React, TypeScript, Bun, AI-assisted workflows. Available for EMEA remote roles."
+};
+
+const podcastSchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Mohamed Moughamir Podcast",
+  "description": "Conversations on full-stack development, AI engineering, and building a remote tech career from Morocco.",
+  "url": "https://moughamir.github.io",
+  "author": { "@type": "Person", "name": "Mohamed Moughamir" },
+  "sameAs": "https://youtube.com/@moughamir"
+};
+
+const videoSchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Mohamed Moughamir YouTube",
+  "description": "Full-stack tutorials, AI workflow demos, and career advice for developers targeting remote EMEA roles.",
+  "url": "https://youtube.com/@moughamir",
+  "author": { "@type": "Person", "name": "Mohamed Moughamir" }
+};
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="description" content={description} />
-<meta name="author" content="Mohamed Moughamir" />
-<meta name="theme-color" content="#ffffff" />
+<meta name="author" content={author} />
+<meta name="theme-color" content="#080808" />
 <link rel="canonical" href={canonicalUrl} />
+
+<!-- RSS Autodiscovery -->
+<link rel="alternate" type="application/rss+xml" title="Mohamed Moughamir Podcast" href="/feed.xml" />
 
 <title>{title}</title>
 
-<meta property="og:type" content="website" />
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={siteName} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalUrl} />
-<meta property="og:image" content="https://github.com/moughamir.png" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Mohamed Moughamir — Senior Full-Stack Developer" />
+{publishDate && <meta property="article:published_time" content={publishDate.toISOString()} />}
+<meta property="article:author" content="https://linkedin.com/in/moughamir" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content={type === "article" ? "summary_large_image" : "summary_large_image"} />
+<meta name="twitter:site" content={twitterHandle} />
+<meta name="twitter:creator" content={twitterHandle} />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content="https://github.com/moughamir.png" />
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Mohamed Moughamir",
-  alternateName: "moughamir",
-  jobTitle: "Senior Full-Stack Developer",
-  url: "https://moughamir.github.io",
-  image: "https://github.com/moughamir.png",
-  address: { "@type": "PostalAddress", addressLocality: "Bouskoura", addressRegion: "Casablanca", addressCountry: "MA" },
-  sameAs: ["https://github.com/moughamir", "https://linkedin.com/in/moughamir"],
-  knowsAbout: ["React", "TypeScript", "Node.js", "PHP", "Python", "Astro", "WordPress", "AI-assisted software delivery"]
-})} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content="Mohamed Moughamir — Senior Full-Stack Developer" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(podcastSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
 
 <link
   rel="sitemap"
@@ -58,6 +125,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap"
   rel="stylesheet"
 />
+<!-- Preload hero font -->
+<link
+  rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap"
+  as="style"
+/>
+
 <script is:inline>
   const getThemePreference = () => {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
