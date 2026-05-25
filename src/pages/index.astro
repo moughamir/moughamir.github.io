@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
 
 const proof = [
   { value: "10+", label: "years building for web, product, and business" },
@@ -61,16 +62,24 @@ const principles = [
           </p>
           <div class="cta-group">
             <a class="btn-primary" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-              Hire me
+              <Icon icon="mail" /> Hire me
             </a>
-            <a class="btn-ghost" href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a class="btn-ghost" href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="btn-ghost" href="https://youtube.com/@moughamir" target="_blank" rel="noopener noreferrer">YouTube</a>
-            <a class="btn-ghost" href="/feed.xml">Podcast</a>
+            <a class="btn-ghost" href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="linkedin-logo" /> LinkedIn</a>
+            <a class="btn-ghost" href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="github-logo" /> GitHub</a>
+            <a class="btn-ghost" href="https://youtube.com/@moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="youtube-logo" /> YouTube</a>
+            <a class="btn-ghost" href="/feed.xml"><Icon icon="rss" /> Podcast</a>
           </div>
         </div>
         <div class="hero-right">
+          <div class="hero-graphic" aria-hidden="true">
+            <svg class="hero-code-icon" width="120" height="120" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <rect x="32" y="48" width="192" height="160" rx="8.5"/>
+              <path d="m80 96 40 32-40 32"/>
+              <path d="m136 128 40 0"/>
+            </svg>
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+          </div>
           <div class="availability-badge">
             <span class="status-dot"></span>
             <span>Available now</span>
@@ -157,6 +166,7 @@ const principles = [
   }
 
   .hero-section {
+    position: relative;
     padding-top: 3rem;
   }
 
@@ -238,6 +248,7 @@ const principles = [
   .btn-ghost {
     display: inline-flex;
     align-items: center;
+    gap: 0.35rem;
     padding: 0.75rem 1rem;
     color: var(--gray-400);
     font-weight: 500;
@@ -286,6 +297,73 @@ const principles = [
     color: var(--gray-600);
     font-family: var(--font-mono);
     font-size: 0.75rem;
+  }
+
+  /* ── Hero background graphics ── */
+  .hero-graphic {
+    position: absolute;
+    inset: -4rem -4rem auto auto;
+    width: 22rem;
+    height: 22rem;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-code-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14rem;
+    height: 14rem;
+    color: var(--gray-800);
+    opacity: 0.15;
+    z-index: 1;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+  }
+
+  .hero-orb-1 {
+    width: 18rem;
+    height: 18rem;
+    top: -6rem;
+    right: -4rem;
+    background: radial-gradient(circle, rgba(0, 114, 245, 0.12), transparent 70%);
+  }
+
+  .hero-orb-2 {
+    width: 14rem;
+    height: 14rem;
+    bottom: -4rem;
+    right: 2rem;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent 70%);
+  }
+
+  .hero-left {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-right {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, var(--gray-800) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.25;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 60% at 70% 20%, black, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 70% 20%, black, transparent 70%);
   }
 
   .proof-grid {
@@ -419,6 +497,15 @@ const principles = [
   .final-cta p:not(.small-label) {
     max-width: 56ch;
     margin-inline: auto;
+  }
+
+  @media (max-width: 47.99rem) {
+    .hero-graphic {
+      display: none;
+    }
+    .hero-section::before {
+      display: none;
+    }
   }
 
   @media (min-width: 48rem) {
