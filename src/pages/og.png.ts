@@ -30,7 +30,7 @@ export const GET: APIRoute = async () => {
   <text x="80" y="200" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="white" letter-spacing="-0.03em">Mohamed Moughamir</text>
 
   <!-- Title -->
-  <text x="80" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="400" fill="#8a8a8a">Senior Full-Stack Developer</text>
+  <text x="80" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="400" fill="#8a8a8a">Senior Software Engineer</text>
 
   <!-- Tagline -->
   <text x="80" y="330" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="300" fill="#666666">Building things that ship and scale</text>

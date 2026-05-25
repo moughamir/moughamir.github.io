@@ -4,7 +4,7 @@ export const GET: APIRoute = async () => {
   const content = `# Mohamed Moughamir — Portfolio
 
 ## Overview
-Senior Full-Stack Developer based in Bouskoura, Casablanca, Morocco. 10+ years of experience building high-conversion web products with React, TypeScript, Bun, Node.js, PHP, and Python. Available for remote EMEA contract and full-time roles.
+Senior Software Engineer based in Bouskoura, Casablanca, Morocco. 10+ years of experience building high-conversion web products with React, TypeScript, Bun, Node.js, PHP, and Python. Available for remote EMEA contract and full-time roles.
 
 ## Pages
 
@@ -18,7 +18,7 @@ Key sections:
 - Work principles: Calm execution, small useful versions first, business constraints as inputs
 
 ### About (/about/)
-Senior Full-Stack Developer: Product-Minded & Founder-Driven. Located in Bouskoura, Morocco.
+Senior Software Engineer: Product-Minded & Founder-Driven. Located in Bouskoura, Morocco.
 
 Stack includes: React, TypeScript, Node.js, PHP, Python, Astro, Bun, SQLite, MongoDB, MySQL, WordPress, Tailwind, Git, Linux
 

@@ -12,7 +12,7 @@ export type GlobalSite = {
 };
 
 export const GLOBAL: GlobalSite = {
-  title: "Mohamed Moughamir — Senior Full-Stack Developer",
+  title: "Mohamed Moughamir — Senior Software Engineer",
   description:
     "Senior full-stack developer in Morocco building practical web products with React, TypeScript, Node.js, PHP, Python, and AI-assisted delivery.",
   author: "Mohamed Moughamir",
