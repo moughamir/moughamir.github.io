@@ -99,48 +99,77 @@ const principles = [
       ))}
     </section>
 
-    <section class="section-block">
-      <div class="section-heading">
-        <span class="small-label">What I can do this week</span>
+    <section class="bento">
+      <div class="bento-label">
+        <span class="small-label">What I do</span>
         <h2>Useful work, shipped fast.</h2>
       </div>
-      <div class="cards three">
-        {capabilities.map((item) => (
-          <article class="card">
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </article>
-        ))}
-      </div>
-    </section>
 
-    <section class="section-block split">
-      <div class="section-heading sticky-heading">
-        <span class="small-label">Selected proof</span>
-        <h2>Recent signals and projects.</h2>
-        <p>
-          My GitHub shows breadth; this portfolio now focuses the story: full-stack execution, product sense, and practical technical experimentation.
-        </p>
-      </div>
-      <div class="project-list">
-        {projects.map((project) => (
-          <a class="project-card" href={project.href}>
-            <span>{project.type}</span>
-            <h3>{project.title}</h3>
-            <p>{project.body}</p>
-          </a>
-        ))}
-      </div>
-    </section>
+      <div class="bento-grid">
+        <!-- Tall card: Full-stack -->
+        <article class="bento-card bento-tall">
+          <div class="bento-card-bg"></div>
+          <div class="bento-card-content">
+            <span class="bento-icon"><Icon icon="code" size="1.1em" /></span>
+            <h3>{capabilities[0].title}</h3>
+            <p>{capabilities[0].body}</p>
+          </div>
+        </article>
 
-    <section class="section-block principle-panel">
-      <div>
-        <span class="small-label">How I work</span>
-        <h2>Calm execution under real constraints.</h2>
+        <!-- Rescue -->
+        <article class="bento-card">
+          <div class="bento-card-bg"></div>
+          <div class="bento-card-content">
+            <span class="bento-icon"><Icon icon="strategy" size="1.1em" /></span>
+            <h3>{capabilities[1].title}</h3>
+            <p>{capabilities[1].body}</p>
+          </div>
+        </article>
+
+        <!-- AI Automation -->
+        <article class="bento-card">
+          <div class="bento-card-bg"></div>
+          <div class="bento-card-content">
+            <span class="bento-icon"><Icon icon="rocket-launch" size="1.1em" /></span>
+            <h3>{capabilities[2].title}</h3>
+            <p>{capabilities[2].body}</p>
+          </div>
+        </article>
+
+        <!-- Project: Obsidian MCP (glass, full width) -->
+        <a class="bento-card bento-wide bento-glass" href={projects[0].href}>
+          <div class="bento-card-bg"></div>
+          <div class="bento-card-content">
+            <span class="project-tag">{projects[0].type}</span>
+            <h3>{projects[0].title}</h3>
+            <p>{projects[0].body}</p>
+            <span class="project-arrow"><Icon icon="arrow-right" size="0.9em" /></span>
+          </div>
+        </a>
+
+        <!-- Anaqio (glass) -->
+        <a class="bento-card bento-glass" href={projects[1].href}>
+          <div class="bento-card-bg"></div>
+          <div class="bento-card-content">
+            <span class="project-tag">{projects[1].type}</span>
+            <h3>{projects[1].title}</h3>
+            <p>{projects[1].body}</p>
+            <span class="project-arrow"><Icon icon="arrow-right" size="0.9em" /></span>
+          </div>
+        </a>
+
+        <!-- Principles (glass) -->
+        <article class="bento-card bento-glass">
+          <div class="bento-card-bg"></div>
+          <div class="bento-card-content">
+            <span class="small-label">How I work</span>
+            <h3 class="principles-heading">Calm execution under real constraints.</h3>
+            <ul class="principle-list">
+              {principles.map((p) => <li><Icon icon="list" size="0.75em" /> {p}</li>)}
+            </ul>
+          </div>
+        </article>
       </div>
-      <ul>
-        {principles.map((principle) => <li>{principle}</li>)}
-      </ul>
     </section>
 
     <section class="final-cta">
@@ -190,6 +219,178 @@ const principles = [
       flex-shrink: 0;
       padding-top: 0.5rem;
     }
+  }
+
+  /* ── Bento Grid ── */
+  .bento {
+    position: relative;
+  }
+
+  .bento-label {
+    margin-bottom: 0.5rem;
+  }
+
+  .bento-label h2 {
+    max-width: 14ch;
+    margin-top: 0.4rem;
+    color: var(--gray-0);
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    letter-spacing: -0.065em;
+    line-height: 0.98;
+  }
+
+  .bento-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .bento-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    padding: 0;
+    overflow: hidden;
+    isolation: isolate;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--gray-800);
+    background: var(--gray-950);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .bento-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .bento-card-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    background: radial-gradient(ellipse at 20% 30%, rgba(0, 114, 245, 0.06), transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(99, 102, 241, 0.04), transparent 50%);
+  }
+
+  .bento-card-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    height: 100%;
+  }
+
+  .bento-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.75rem;
+    background: var(--gray-900);
+    color: var(--gray-400);
+    border: 1px solid var(--gray-800);
+  }
+
+  .bento-card h3 {
+    color: var(--gray-0);
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  .bento-card p {
+    color: var(--gray-500);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  /* ── Glassmorphic cards ── */
+  .bento-glass {
+    background: transparent;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .bento-glass .bento-card-bg {
+    opacity: 0.6;
+    background: radial-gradient(ellipse at 30% 20%, rgba(0, 114, 245, 0.08), transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(139, 92, 246, 0.06), transparent 50%);
+  }
+
+  .bento-glass:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .project-tag {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    color: var(--gray-500);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+  }
+
+  .project-arrow {
+    display: inline-flex;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1rem;
+    color: var(--gray-500);
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .bento-glass:hover .project-arrow {
+    transform: translateX(4px);
+    color: var(--gray-0);
+  }
+
+  .principles-heading {
+    font-size: 1.15rem !important;
+    margin-bottom: 1rem !important;
+    color: var(--gray-0);
+  }
+
+  .principle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .principle-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gray-400);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .principle-list li svg {
+    flex-shrink: 0;
+    color: var(--gray-600);
+  }
+
+  /* ── Bento background orbs ── */
+  .bento::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 20%, rgba(0, 114, 245, 0.06), transparent 70%),
+      radial-gradient(ellipse 40% 50% at 85% 60%, rgba(139, 92, 246, 0.04), transparent 70%);
   }
 
   .eyebrow {
@@ -396,13 +597,6 @@ const principles = [
     font-size: 0.95rem;
   }
 
-  .section-block {
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .section-heading h2,
-  .principle-panel h2,
   .final-cta h2 {
     max-width: 14ch;
     margin-top: 0.4rem;
@@ -412,81 +606,10 @@ const principles = [
     line-height: 0.98;
   }
 
-  .section-heading p {
-    max-width: 42ch;
-    margin-top: 1rem;
-    color: var(--gray-500);
-  }
-
-  .cards {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .card {
-    padding: 1.25rem;
-  }
-
-  .card h3,
-  .project-card h3 {
-    color: var(--gray-0);
-    font-size: 1.35rem;
-    letter-spacing: -0.035em;
-  }
-
-  .card p,
-  .project-card p,
   .final-cta p {
     margin-top: 0.8rem;
     color: var(--gray-500);
     line-height: 1.65;
-  }
-
-  .project-list {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .project-card {
-    display: block;
-    padding: 1.25rem;
-    color: inherit;
-    text-decoration: none;
-    transition: transform 160ms ease, box-shadow 160ms ease;
-  }
-
-  .project-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--card-shadow-strong);
-  }
-
-  .project-card span {
-    display: block;
-    margin-bottom: 0.6rem;
-    color: var(--gray-500);
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-  }
-
-  .principle-panel {
-    display: grid;
-    gap: 2rem;
-    padding: 1.5rem;
-  }
-
-  .principle-panel ul {
-    display: grid;
-    gap: 0.75rem;
-    padding: 0;
-    list-style: none;
-  }
-
-  .principle-panel li {
-    padding: 1rem;
-    border-radius: 0.75rem;
-    color: var(--gray-0);
-    background: var(--gray-950);
-    box-shadow: var(--border-shadow);
   }
 
   .final-cta {
@@ -514,33 +637,39 @@ const principles = [
   }
 
   @media (min-width: 48rem) {
-    .hero-grid {
-      grid-template-columns: minmax(0, 1fr) 24rem;
-      align-items: end;
-    }
-
     .proof-grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    .cards.three {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* ── Bento grid: 2 columns with spans ── */
+    .bento-grid {
+      grid-template-columns: 1fr 1fr;
     }
 
-    .split {
-      grid-template-columns: 0.75fr 1fr;
-      align-items: start;
+    .bento-tall {
+      grid-row: span 2;
     }
 
-    .sticky-heading {
-      position: sticky;
-      top: 2rem;
+    .bento-wide {
+      grid-column: 1 / -1;
     }
 
-    .principle-panel {
-      grid-template-columns: 0.8fr 1fr;
-      align-items: start;
+    .bento-card-content {
       padding: 2rem;
+    }
+
+    .bento-tall .bento-card-content {
+      padding: 2rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .bento-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .bento-card-content {
+      padding: 2.5rem;
     }
   }
 </style>

@@ -27,7 +27,7 @@ Education:
 - HarvardX CS50: Introduction to Computer Science (2016–2017)
 - MITx Algorithms, Python programming, introductory AI (2017)
 
-Contact: moughamir@gmail.com | GitHub | LinkedIn | YouTube | Podcast RSS
+Contact: moughamir[at]Gmail[dot]com | GitHub | LinkedIn | YouTube | Podcast RSS
 
 ### Blog (/blog/)
 Articles on AI agents, Bun/TypeScript architecture, and building for scale.
