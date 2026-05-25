@@ -7,20 +7,21 @@ const socialLinks = [
   { label: "LinkedIn", href: "https://linkedin.com/in/moughamir", icon: "linkedin-logo" },
   { label: "YouTube", href: "https://youtube.com/@moughamir", icon: "youtube-logo" },
   { label: "Podcast RSS", href: "/feed.xml", icon: "rss" },
-  { label: "Email", href: "mailto:moughamir@gmail.com", icon: "mail" },
+  { label: "Email", href: "javascript:void(0)", icon: "mail", encoded: "bW91Z2hhbWlyQGdtYWlsLmNvbQ==" },
 ];
 ---
 
 <footer>
   <div class="social-row" aria-label="Social links">
-    {socialLinks.map(({ href, icon, label }) => (
-      <a href={href} class="social-link" aria-label={label} target="_blank" rel="noopener noreferrer">
+    {socialLinks.map(({ href, icon, label, encoded }) => {
+      const extra = encoded ? { "data-email": encoded, onclick: "location.href='mailto:'+atob(this.dataset.email)" } : {};
+      return <a href={href} class="social-link" aria-label={label} target="_blank" rel="noopener noreferrer" {...extra}>
         <Icon icon={icon} size="1.25rem" />
-      </a>
-    ))}
+      </a>;
+    })}
   </div>
   <div class="footer-text">
-    <p>Designed and built in Bouskoura with <a href="https://astro.build/">Astro</a>. Deployed on Vercel.</p>
+    <p>Designed and built in Bouskoura with <a href="https://astro.build/">Astro</a>. Deployed on GitHub Pages.</p>
     <p>&copy; {currentYear} Mohamed Moughamir — Available for remote EMEA work</p>
   </div>
 </footer>

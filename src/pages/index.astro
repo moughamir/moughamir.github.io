@@ -62,12 +62,12 @@ const principles = [
           </p>
           <div class="cta-group">
             <a class="btn-primary" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">
-              <Icon icon="mail" /> Hire me
+              <Icon icon="mail" size="1em" /> Hire me
             </a>
-            <a class="btn-ghost" href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="linkedin-logo" /> LinkedIn</a>
-            <a class="btn-ghost" href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="github-logo" /> GitHub</a>
-            <a class="btn-ghost" href="https://youtube.com/@moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="youtube-logo" /> YouTube</a>
-            <a class="btn-ghost" href="/feed.xml"><Icon icon="rss" /> Podcast</a>
+            <a class="btn-ghost" href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="linkedin-logo" size="1em" /> LinkedIn</a>
+            <a class="btn-ghost" href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="github-logo" size="1em" /> GitHub</a>
+            <a class="btn-ghost" href="https://youtube.com/@moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="youtube-logo" size="1em" /> YouTube</a>
+            <a class="btn-ghost" href="/feed.xml"><Icon icon="rss" size="1em" /> Podcast</a>
           </div>
         </div>
         <div class="hero-right">
@@ -150,7 +150,7 @@ const principles = [
         Send me the problem, the current link/repo if one exists, and what “fixed” means. I’ll reply with a practical next step.
       </p>
       <div class="cta-row centered">
-        <a class="button primary" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">moughamir@gmail.com</a>
+        <a class="button primary" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">Send an email</a>
         <a class="button" href="/about/">More about me</a>
       </div>
     </section>
@@ -250,7 +250,7 @@ const principles = [
     align-items: center;
     gap: 0.35rem;
     padding: 0.75rem 1rem;
-    color: var(--gray-400);
+    color: var(--gray-300);
     font-weight: 500;
     font-size: 0.9rem;
     text-decoration: none;
@@ -262,6 +262,11 @@ const principles = [
   .btn-ghost:hover {
     color: var(--gray-0);
     border-color: var(--gray-600);
+  }
+
+  .btn-primary svg,
+  .btn-ghost svg {
+    display: inline;
   }
 
   .availability-badge {
