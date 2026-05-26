@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#ffedd5"/>
+    </linearGradient>
+    <linearGradient id="orange-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="card-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.9)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.7)"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.08)"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Orbs -->
+  <circle cx="300" cy="200" r="200" fill="rgba(251,146,60,0.06)"/>
+  <circle cx="900" cy="400" r="180" fill="rgba(234,88,12,0.05)"/>
+  <circle cx="600" cy="100" r="160" fill="rgba(250,204,21,0.04)"/>
+
+  <!-- Title -->
+  <text x="60" y="52" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" fill="#171717">Dual-Memory Architecture for Autonomous Agents</text>
+  <text x="60" y="74" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#737373">Two-tier memory enables agents to navigate knowledge, not just retrieve fragments</text>
+
+  <!-- Working Memory -->
+  <rect x="60" y="100" width="520" height="200" rx="16" fill="url(#card-bg)" stroke="#fed7aa" stroke-width="1" filter="url(#shadow)"/>
+
+  <rect x="60" y="100" width="520" height="40" rx="16" fill="rgba(249,115,22,0.08)"/>
+  <rect x="60" y="124" width="520" height="16" fill="rgba(249,115,22,0.08)"/>
+  <text x="84" y="126" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="600" fill="#ea580c">WORKING MEMORY</text>
+  <text x="440" y="126" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#a3a3a3">ephemeral · per-session</text>
+
+  <text x="84" y="165" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="500" fill="#525252">Current research thread</text>
+  <rect x="84" y="175" width="476" height="24" rx="6" fill="rgba(255,255,255,0.7)" stroke="#e5e5e5" stroke-width="1"/>
+  <text x="96" y="191" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#a3a3a3">"Find connections between Knuth's literate programming and modern MCP tool design"</text>
+
+  <text x="84" y="218" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="500" fill="#525252">Pending questions</text>
+  <rect x="84" y="228" width="152" height="20" rx="6" fill="rgba(249,115,22,0.06)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="96" y="242" font-family="system-ui,-apple-system,sans-serif" font-size="10" fill="#ea580c">How did X implement Y?</text>
+  <rect x="244" y="228" width="152" height="20" rx="6" fill="rgba(249,115,22,0.06)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="256" y="242" font-family="system-ui,-apple-system,sans-serif" font-size="10" fill="#ea580c">What was the 2023 result?</text>
+  <rect x="404" y="228" width="80" height="20" rx="6" fill="rgba(249,115,22,0.06)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="416" y="242" font-family="system-ui,-apple-system,sans-serif" font-size="10" fill="#ea580c">Follow up?</text>
+
+  <text x="84" y="272" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="500" fill="#525252">Last tool call</text>
+  <text x="84" y="290" font-family="system-ui,monospace" font-size="10" fill="#737373">search_notes("literate programming AND MCP architecture") → 4 results</text>
+
+  <!-- Arrow between memories -->
+  <line x1="580" y1="200" x2="620" y2="200" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <polygon points="616,196 626,200 616,204" fill="#fb923c"/>
+  <text x="586" y="190" font-family="system-ui,-apple-system,sans-serif" font-size="9" fill="#a3a3a3">promote</text>
+
+  <!-- Episodic Memory -->
+  <rect x="620" y="100" width="520" height="200" rx="16" fill="url(#card-bg)" stroke="#fed7aa" stroke-width="1" filter="url(#shadow)"/>
+
+  <rect x="620" y="100" width="520" height="40" rx="16" fill="rgba(249,115,22,0.08)"/>
+  <rect x="620" y="124" width="520" height="16" fill="rgba(249,115,22,0.08)"/>
+  <text x="644" y="126" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="600" fill="#ea580c">EPISODIC MEMORY</text>
+  <text x="1000" y="126" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#a3a3a3">persistent · SQLite</text>
+
+  <!-- Episode 1 -->
+  <rect x="638" y="152" width="484" height="36" rx="8" fill="rgba(255,255,255,0.85)" stroke="#e5e5e5" stroke-width="1"/>
+  <circle cx="654" cy="170" r="4" fill="#22c55e"/>
+  <text x="668" y="166" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252">Session 2026-05-12 · Graph traversal strategy</text>
+  <text x="668" y="180" font-family="system-ui,monospace" font-size="9" fill="#a3a3a3">follow_backlinks + semantic_search hybrid → found 3x more connections</text>
+
+  <!-- Episode 2 -->
+  <rect x="638" y="194" width="484" height="36" rx="8" fill="rgba(255,255,255,0.85)" stroke="#e5e5e5" stroke-width="1"/>
+  <circle cx="654" cy="212" r="4" fill="#ef4444"/>
+  <text x="668" y="208" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252">Session 2026-05-10 · Vector search drift</text>
+  <text x="668" y="222" font-family="system-ui,monospace" font-size="9" fill="#a3a3a3">raw vector search returned outdated results · add date-weighted scoring</text>
+
+  <!-- Episode 3 -->
+  <rect x="638" y="236" width="484" height="36" rx="8" fill="rgba(255,255,255,0.85)" stroke="#e5e5e5" stroke-width="1"/>
+  <circle cx="654" cy="254" r="4" fill="#22c55e"/>
+  <text x="668" y="250" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252">Session 2026-05-08 · CAG warm-up caching</text>
+  <text x="668" y="264" font-family="system-ui,monospace" font-size="9" fill="#a3a3a3">pre-cache vault core structure → subsequent queries 2.3× faster</text>
+
+  <!-- Bottom: Tool layer -->
+  <rect x="60" y="320" width="1080" height="60" rx="12" fill="rgba(249,115,22,0.06)" stroke="#fed7aa" stroke-width="1" filter="url(#shadow)"/>
+  <text x="600" y="346" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#ea580c" text-anchor="middle">TOOL SURFACE</text>
+  <text x="600" y="366" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#737373" text-anchor="middle">search_notes · read_note · follow_link · list_backlinks · get_backlinks · inspect_topic</text>
+
+  <!-- Arrow down -->
+  <line x1="600" y1="380" x2="600" y2="410" stroke="#fb923c" stroke-width="1.5"/>
+  <polygon points="596,406 600,416 604,406" fill="#fb923c"/>
+
+  <!-- Knowledge layer -->
+  <rect x="60" y="420" width="1080" height="100" rx="12" fill="url(#card-bg)" stroke="#fed7aa" stroke-width="1" filter="url(#shadow)"/>
+
+  <text x="600" y="446" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#ea580c" text-anchor="middle">KNOWLEDGE LAYER</text>
+
+  <!-- Knowledge types -->
+  <rect x="82" y="460" width="155" height="44" rx="8" fill="rgba(255,255,255,0.85)" stroke="#e5e5e5" stroke-width="1"/>
+  <text x="159" y="480" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252" text-anchor="middle">Vector index</text>
+  <text x="159" y="494" font-family="system-ui,monospace" font-size="9" fill="#a3a3a3">semantic search</text>
+
+  <rect x="255" y="460" width="155" height="44" rx="8" fill="rgba(255,255,255,0.85)" stroke="#e5e5e5" stroke-width="1"/>
+  <text x="332" y="480" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252" text-anchor="middle">SQL graph</text>
+  <text x="332" y="494" font-family="system-ui,monospace" font-size="9" fill="#a3a3a3">links · tags · folders</text>
+
+  <rect x="428" y="460" width="155" height="44" rx="8" fill="rgba(255,255,255,0.85)" stroke="#e5e5e5" stroke-width="1"/>
+  <text x="505" y="480" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252" text-anchor="middle">Prompt cache</text>
+  <text x="505" y="494" font-family="system-ui,monospace" font-size="9" fill="#a3a3a3">CAG warm state</text>
+
+  <rect x="601" y="460" width="155" height="44" rx="8" fill="rgba(255,255,255,0.85)" stroke="#e5e5e5" stroke-width="1"/>
+  <text x="678" y="480" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252" text-anchor="middle">File system</text>
+  <text x="678" y="494" font-family="system-ui,monospace" font-size="9" fill="#a3a3a3">raw markdown vault</text>
+
+  <rect x="774" y="460" width="155" height="44" rx="8" fill="rgba(255,255,255,0.85)" stroke="#e5e5e5" stroke-width="1"/>
+  <text x="851" y="480" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252" text-anchor="middle">Episodic log</text>
+  <text x="851" y="494" font-family="system-ui,monospace" font-size="9" fill="#a3a3a3">what worked / failed</text>
+
+  <!-- Bottom stats -->
+  <rect x="60" y="540" width="1080" height="70" rx="12" fill="url(#orange-grad)" filter="url(#shadow)"/>
+  <text x="160" y="570" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="700" fill="#ffffff" text-anchor="middle">~35%</text>
+  <text x="160" y="594" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">lower hallucination rate</text>
+
+  <line x1="280" y1="558" x2="280" y2="592" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+
+  <text x="400" y="570" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="700" fill="#ffffff" text-anchor="middle">2.3×</text>
+  <text x="400" y="594" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">faster with prompt caching</text>
+
+  <line x1="520" y1="558" x2="520" y2="592" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+
+  <text x="660" y="570" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="700" fill="#ffffff" text-anchor="middle">8+</text>
+  <text x="660" y="594" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">semantic tool groups</text>
+
+  <line x1="770" y1="558" x2="770" y2="592" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+
+  <text x="920" y="570" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="700" fill="#ffffff" text-anchor="middle">50ms</text>
+  <text x="920" y="594" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">p50 tool response</text>
+</svg>
