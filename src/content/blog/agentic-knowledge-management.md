@@ -30,4 +30,4 @@ Most agents forget everything every turn.
 ### Implementation
 These patterns are live in my [Obsidian MCP Plugin](https://github.com/moughamir/obsidian-mcp-plugin). It bridges the gap between static markdown and active AI agents using Bun and SQLite.
 
-*I help teams build AI infrastructure that understands context. Let's move your stack past the RAG ceiling.*
+*These patterns don't require a research team — they require the right engineering foundation. If your team is hitting the RAG ceiling, reach out. I've already built past it.*

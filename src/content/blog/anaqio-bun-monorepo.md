@@ -1,6 +1,6 @@
 ---
-title: "Bun in Production: A 6-Week Monorepo Case Study"
-description: "Hard-won lessons building an AI fashion platform on Bun Workspaces. Performance metrics, type-safety wins, and real-world compatibility trade-offs."
+title: "Should You Build Your Next Product on Bun? A 6-Week Case Study"
+description: "Real metrics from an AI fashion platform built on Bun Workspaces — cold starts, CI speed, type safety, and the trade-offs you need before committing."
 publishDate: 2026-05-18
 tags: ["Bun", "TypeScript", "Architecture", "Monorepo", "Performance"]
 img: "/assets/stock-3.jpg"
@@ -29,4 +29,6 @@ I spent six weeks building **Anaqio**, an AI fashion platform, using Bun Workspa
 ### Verdict
 Use Bun for greenfield AI/ML products where shared types and fast I/O are the priority. For legacy migrations, evaluate if the millisecond gains justify the middleware rewrite.
 
-[github.com/moughamir/platform](https://github.com/moughamir/platform)
+The architecture is open source: [github.com/moughamir/platform](https://github.com/moughamir/platform).
+
+*Every stack decision has context. If your team needs someone who has already done this evaluation — who knows where Bun breaks, where it shines, and when to say no — I bring these lessons to your stack.*

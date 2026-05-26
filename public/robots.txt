@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Sitemap: https://moughamir.github.io/sitemap-index.xml
+
+# LLM Crawler specific settings
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /

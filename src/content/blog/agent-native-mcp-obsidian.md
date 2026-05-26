@@ -30,4 +30,6 @@ Standard RAG flattens Obsidian vaults into text chunks, losing the link graph. I
 ### Takeaway
 Agentic AI value is in the **tool engineering**, not the model. High-perf local bridges enable agents to navigate information with the same structural awareness as a human.
 
-[github.com/moughamir/obsidian-mcp-plugin](https://github.com/moughamir/obsidian-mcp-plugin)
+The full server implementation runs on Bun with zero config: [github.com/moughamir/obsidian-mcp-plugin](https://github.com/moughamir/obsidian-mcp-plugin).
+
+*Most of the value in AI tooling isn't the model — it's the schema design, the tool boundaries, the performance tuning. If you're building agent infrastructure and need that engineering foundation, let's talk.*

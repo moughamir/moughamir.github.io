@@ -1,0 +1,16 @@
+# Moughamir Portfolio
+
+Personal portfolio and blog of a Senior Full-Stack Engineer focused on AI, Agentic workflows, and modern web architecture.
+
+## Core Expertise
+- AI Agents & LLM Orchestration (MCP, LangChain)
+- Web Performance & Modern Tooling (Astro, Bun, Rust)
+- Technical Architecture & Knowledge Management (RAG, CAG)
+
+## Important Links
+- [Main Site](https://moughamir.github.io/)
+- [Blog](https://moughamir.github.io/blog/)
+- [Work](https://moughamir.github.io/work/)
+
+## Technical Persona
+Minimalist, performance-oriented, security-conscious. High technical authority in full-stack ecosystems.
