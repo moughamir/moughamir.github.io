@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#ffedd5"/>
+    </linearGradient>
+    <linearGradient id="orange-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="card-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.9)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.7)"/>
+    </linearGradient>
+    <linearGradient id="card-bg-2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(249,115,22,0.08)"/>
+      <stop offset="100%" stop-color="rgba(249,115,22,0.03)"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.08)"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Background orbs -->
+  <circle cx="200" cy="150" r="180" fill="rgba(251,146,60,0.06)"/>
+  <circle cx="1000" cy="450" r="160" fill="rgba(234,88,12,0.05)"/>
+  <circle cx="600" cy="300" r="200" fill="rgba(250,204,21,0.04)"/>
+
+  <!-- Title -->
+  <text x="60" y="52" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" fill="#171717">Anaqio AI Fashion Platform</text>
+  <text x="60" y="74" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#737373">Architecture overview — Bun monorepo with AI inference pipeline</text>
+
+  <!-- Layer: Input -->
+  <rect x="60" y="100" width="1080" height="90" rx="12" fill="url(#card-bg)" stroke="#fed7aa" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="60" y="100" width="1080" height="90" rx="12" fill="url(#card-bg-2)"/>
+  <text x="84" y="130" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#ea580c">INPUT LAYER</text>
+  <text x="84" y="152" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#525252">User uploads flat lay product photos or ghost garment images</text>
+
+  <!-- Input icons -->
+  <rect x="880" y="112" width="70" height="24" rx="6" fill="rgba(249,115,22,0.1)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="889" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#ea580c">Flat lay</text>
+  <rect x="960" y="112" width="70" height="24" rx="6" fill="rgba(249,115,22,0.1)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="964" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#ea580c">Ghost</text>
+  <rect x="1040" y="112" width="85" height="24" rx="6" fill="rgba(249,115,22,0.1)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="1044" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#ea580c">Text prompt</text>
+
+  <!-- Arrow down -->
+  <line x1="600" y1="190" x2="600" y2="220" stroke="#fb923c" stroke-width="1.5"/>
+  <polygon points="596,216 600,226 604,216" fill="#fb923c"/>
+
+  <!-- Layer: Pipeline -->
+  <rect x="60" y="226" width="1080" height="170" rx="12" fill="url(#card-bg)" stroke="#fed7aa" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="60" y="226" width="1080" height="170" rx="12" fill="url(#card-bg-2)"/>
+  <text x="84" y="256" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#ea580c">AI PIPELINE</text>
+  <text x="84" y="276" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#525252">Precision-first inference pipeline — Bun.serve, MCP tools, hybrid vector/SQL storage</text>
+
+  <!-- Pipeline steps -->
+  <rect x="82" y="296" width="155" height="80" rx="10" fill="rgba(255,255,255,0.85)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="116" y="324" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#ea580c">01</text>
+  <text x="96" y="348" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252">Garment</text>
+  <text x="96" y="364" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#737373">segmentation</text>
+
+  <line x1="237" y1="336" x2="260" y2="336" stroke="#fb923c" stroke-width="1"/>
+  <polygon points="256,332 266,336 256,340" fill="#fb923c"/>
+
+  <rect x="270" y="296" width="155" height="80" rx="10" fill="rgba(255,255,255,0.85)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="304" y="324" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#ea580c">02</text>
+  <text x="284" y="348" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252">Pose</text>
+  <text x="284" y="364" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#737373">estimation</text>
+
+  <line x1="425" y1="336" x2="448" y2="336" stroke="#fb923c" stroke-width="1"/>
+  <polygon points="444,332 454,336 444,340" fill="#fb923c"/>
+
+  <rect x="458" y="296" width="155" height="80" rx="10" fill="rgba(255,255,255,0.85)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="492" y="324" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#ea580c">03</text>
+  <text x="472" y="348" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252">Texture</text>
+  <text x="472" y="364" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#737373">mapping</text>
+
+  <line x1="613" y1="336" x2="636" y2="336" stroke="#fb923c" stroke-width="1"/>
+  <polygon points="632,332 642,336 632,340" fill="#fb923c"/>
+
+  <rect x="646" y="296" width="155" height="80" rx="10" fill="rgba(255,255,255,0.85)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="680" y="324" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#ea580c">04</text>
+  <text x="660" y="348" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252">Lighting</text>
+  <text x="660" y="364" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#737373">control</text>
+
+  <line x1="801" y1="336" x2="824" y2="336" stroke="#fb923c" stroke-width="1"/>
+  <polygon points="820,332 830,336 820,340" fill="#fb923c"/>
+
+  <rect x="834" y="296" width="155" height="80" rx="10" fill="rgba(255,255,255,0.85)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="868" y="324" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#ea580c">05</text>
+  <text x="848" y="348" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#525252">Render</text>
+  <text x="848" y="364" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#737373">output</text>
+
+  <!-- Arrow down -->
+  <line x1="600" y1="396" x2="600" y2="426" stroke="#fb923c" stroke-width="1.5"/>
+  <polygon points="596,422 600,432 604,422" fill="#fb923c"/>
+
+  <!-- Layer: Infrastructure -->
+  <rect x="60" y="432" width="1080" height="80" rx="12" fill="url(#card-bg)" stroke="#fed7aa" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="60" y="432" width="1080" height="80" rx="12" fill="url(#card-bg-2)"/>
+  <text x="84" y="462" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#ea580c">INFRASTRUCTURE</text>
+  <text x="84" y="482" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#525252">Bun monorepo · Workspaces · bun:sqlite · PostgreSQL · MCP tools · CI/CD (45s builds)</text>
+
+  <!-- Infra tags -->
+  <rect x="700" y="448" width="90" height="24" rx="6" fill="rgba(249,115,22,0.1)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="712" y="464" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#ea580c">Bun.serve</text>
+  <rect x="800" y="448" width="80" height="24" rx="6" fill="rgba(249,115,22,0.1)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="810" y="464" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#ea580c">SQLite</text>
+  <rect x="890" y="448" width="100" height="24" rx="6" fill="rgba(249,115,22,0.1)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="898" y="464" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#ea580c">PostgreSQL</text>
+  <rect x="1000" y="448" width="120" height="24" rx="6" fill="rgba(249,115,22,0.1)" stroke="#fed7aa" stroke-width="1"/>
+  <text x="1006" y="464" font-family="system-ui,-apple-system,sans-serif" font-size="11" font-weight="500" fill="#ea580c">MCP Tools</text>
+
+  <!-- Arrow down -->
+  <line x1="600" y1="512" x2="600" y2="540" stroke="#fb923c" stroke-width="1.5"/>
+  <polygon points="596,536 600,546 604,536" fill="#fb923c"/>
+
+  <!-- Layer: Output -->
+  <rect x="60" y="548" width="1080" height="60" rx="12" fill="url(#orange-grad)" filter="url(#shadow)"/>
+  <text x="600" y="582" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">Photorealistic brand-safe fashion visuals — campaign-ready output</text>
+
+  <!-- Camera icon -->
+  <circle cx="1050" cy="578" r="16" fill="rgba(255,255,255,0.15)"/>
+  <rect x="1040" y="572" width="20" height="14" rx="3" stroke="white" stroke-width="1.5" fill="none"/>
+  <circle cx="1050" cy="579" r="4" stroke="white" stroke-width="1.5" fill="none"/>
+</svg>
