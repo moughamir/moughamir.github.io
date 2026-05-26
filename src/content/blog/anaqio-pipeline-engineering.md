@@ -1,95 +1,154 @@
 ---
-title: "Building a Production AI Image Pipeline: 5 Engineering Lessons from Anaqio"
-description: "Latency budgets, model orchestration, error handling, and the gap between a notebook demo and a production image pipeline. Real metrics from building Anaqio's fashion AI."
+title: "5 Engineering Lessons from Building an AI Fashion Platform"
+description: "Prompt engineering, error handling, state machines, and security boundaries — real learnings from shipping Anaqio's Gemini-based fashion try-on into production."
 publishDate: 2026-05-26
-tags: ["AI", "Engineering", "Architecture", "Bun", "Performance", "Production"]
+tags: ["AI", "Engineering", "Architecture", "Bun", "Gemini", "Production"]
 img: "/assets/agent-memory.svg"
-img_alt: "Dual-memory architecture diagram showing working and episodic memory layers"
+img_alt: "Architecture diagram showing dual-memory layers for AI pipeline state management"
 ---
 
-Everyone's seen the demo: upload a photo, get a generated result, applause. The gap between that demo and a production pipeline that runs reliably at scale, handles edge cases gracefully, and doesn't bankrupt you in GPU costs — that gap is where real engineering happens.
+Everyone's seen the demo: upload a photo, get a generated result, applause. The gap between that demo and a production system that handles auth, validates inputs, secures storage boundaries, and returns meaningful errors when the model refuses a request — that gap is where real engineering happens.
 
-I recently built Anaqio, an AI fashion platform that turns flat lay product photos into photorealistic campaign visuals. The core technical challenge wasn't model accuracy — the models are good enough out of the box. It was orchestrating them into a reliable pipeline. Here are five lessons from that process.
+I recently built Anaqio, an AI fashion platform that turns flat lay product photos into photorealistic campaign visuals. The core technical bet: use Gemini's multimodal vision model as a single-shot fashion try-on engine, rather than assembling a pipeline of specialized models. Here are five lessons from shipping that into production.
 
-## 1. Latency Budgets Change Everything
+## 1. Prompt Engineering Is Production Engineering
 
-In a Jupyter notebook, inference latency doesn't matter. You wait, you get a result, you iterate. In production, that latency propagates: the user's request holds a connection open, the job queue backs up, and if you're not careful, a single slow stage blocks the entire pipeline.
+In a research notebook, a prompt is a one-off experiment. You tweak it, run it, eyeball the result, iterate. In production, that prompt is a contract — it determines output quality, consistency, and failure modes across thousands of diverse inputs.
 
-Anaqio's pipeline processes images through five stages: garment segmentation, pose estimation, texture mapping, lighting control, and render output. I gave each stage a strict latency budget during architecture design:
-
-| Stage | Budget (p50) | Budget (p95) | What happens if exceeded |
-|---|---|---|---|
-| Segmentation | 1.5s | 3s | Return cached mask from similar SKU |
-| Pose estimation | 1s | 2s | Fall back to template body |
-| Texture mapping | 2s | 4s | Skip detail pass, use base projection |
-| Lighting | 800ms | 2s | Apply generic studio preset |
-| Render | 1.2s | 3s | Downscale to 1080p |
-
-These budgets forced engineering decisions that a notebook never would: model quantization (FP16 → INT8), input size limits (cap at 2048px), and parallel pipeline execution for batch jobs. More importantly, every stage has a degradation path — a cheaper, faster alternative when the primary model misses its budget. The user gets a result in every case; it's just sometimes lower quality.
-
-## 2. Orchestration Is Harder Than Inference
-
-The models themselves are the easy part. Most fashion AI models are fine-tuned versions of open-weight architectures (SAM for segmentation, OpenPose variants for pose, ControlNet for rendering). The hard part is making them talk to each other reliably.
-
-I built the pipeline as a state machine with explicit transitions:
+Anaqio's prompt sends two images (garment + model) to `gemini-2.5-flash-preview-image-generation` with a detailed textual description of the task:
 
 ```
-Raw input
-  → [Segmentation] → mask + metadata
-    → [Validation] mask coverage > 90%? Yes → proceed. No → retry with different params.
-      → [Pose] → posed UV map
-        → [Texture] → mapped texture
-          → [Lighting] → lit scene
-            → [Render] → output
+You are given 2 images. Image 1 is the GARMENT. Image 2 is the MODEL.
+Your task is to generate a realistic fashion model photo:
+1. Isolate the Garment: Do not modify the design, shape, texture, or color.
+2. Place on Model: Garment should drape naturally with accurate fabric folds.
+3. Set the Scene: Clean studio background, soft diffused lighting.
+4. Final Aesthetic: High-fashion editorial photography, indistinguishable from a real photograph.
 ```
 
-Each stage writes its output to an in-memory buffer with a known schema. The next stage validates its input schema before processing — garbage in, garbage out is not acceptable in production. If validation fails, the stage re-queues with context up to 3 times, then crashes to a dead-letter queue.
+That's 8 lines that encode months of iteration. Early versions produced outputs where the garment color shifted, or the model's proportions warped, or the background was garish. Each iteration added a constraint — "do not modify the design or color", "maintain the model's facial features and body proportions", "indistinguishable from a real professional photograph."
 
-The state machine itself runs in Bun.serve, with each pipeline instance in an isolated `AsyncLocalStorage` context. This means concurrent pipeline executions don't leak state between each other — a problem that cost me a day of debugging when a texture map from one brand's puff jacket incorrectly wrapped another brand's formal dress.
+The prompt went through ~30 revisions to get here. Each change was tested against a benchmark set of garment types (solid colors, patterns, black-on-dark, sheer fabrics) and model poses (standing, seated, angled).
 
-## 3. Error Handling Is Your API Contract
+**The lesson:** Treat your production prompt like source code. Version it. Test it against a representative dataset. Measure regression — not just "does it look good" but "does it modify the garment color" and "does it preserve the model's identity." If you're not tracking prompt versions in your repo, you're debugging blind.
 
-Users don't care about your model architecture. They care that they uploaded an image and got a result or a clear error. The biggest source of production bugs in AI pipelines is silent degradation: the model returns something that *looks* reasonable but is actually wrong.
+## 2. Generative Error Handling Is Not Optional
 
-The worst case: a segmentation model that silently masked out half the garment because the background was a similar color. The output looked photorealistic — but it was a photo of half a dress. The user would only discover this after downloading and inspecting at full resolution.
+The hardest production bug in any AI system isn't when the model crashes — it's when the model returns something that *looks* reasonable but is wrong. With Gemini, the failure modes are especially subtle.
 
-My fix: stage-level quality gates with concrete metrics.
+The API can return:
+- An image (success)
+- A text response (the model refused the request — "I'm unable to generate this type of image")
+- An image that's technically correct but generationally wrong (garment color shifted, anatomy distorted)
+- An empty response (server-side or content-filter failure)
 
-- **Segmentation gate**: Mask coverage must be ≥ 85% of the expected bounding box. Coverage < 70% triggers a full retry with different preprocessing. Coverage between 70-85% triggers a warning in the response metadata.
-- **Pose gate**: Skeletal confidence scores must average ≥ 0.6. Below that, the pose model likely hallucinated joint positions.
-- **Texture gate**: Color histogram of the output must match the input within a configurable delta (∆E < 12 by default). If the pipeline turned your navy blue sweater into teal, it fails here.
-- **Lighting gate**: Mean luminance must fall within the target scene profile. If the "studio flat" lighting preset somehow outputs a silhouette, the gate catches it.
+The code handles each case explicitly:
 
-These gates turned anecdotally "good" results into reliably inspectable ones. They also generate structured log data that I use to tune model parameters over time.
+```typescript
+// Find the generated image in response parts
+for (const part of parts) {
+  if (part.inlineData?.data) {
+    // Convert base64 to a data URL for downstream upload
+    return { outputUrl: dataUrl, inferenceMs: elapsed }
+  }
+}
 
-## 4. Measure Everything, Especially the Things You Think Are Fine
+// Check for text-only response (likely a refusal)
+for (const part of parts) {
+  if (part.text) throw new Error(part.text)
+}
 
-When you're iterating fast, it's tempting to skip instrumentation. "I'll add metrics later." This is a trap. Without metrics, you're debugging production issues by guessing.
+throw new Error('Gemini did not return an image')
+```
 
-The first version of Anaqio had a basic health check endpoint and request logging. That was it. When a user reported that "sometimes the images look washed out," I had no way to correlate that with model version, input image properties, or server load. I was flying blind.
+The text-based refusals are especially tricky. Gemini might decide the garment is a "restricted item" or refuse to generate "adult content" for a perfectly innocent dress photo — the same input succeeds one minute and fails the next. Catching these refusals and returning a clear error to the user ("The AI declined this request — try uploading the garment from a different angle") turned a confusing failure into a recoverable one.
 
-The second version measures every pipeline stage individually:
+**The lesson:** For every AI API response, enumerate the possible failure modes — empty result, refusal text, malformed data, slow response — and handle each one explicitly. Log the refusal text for prompt iteration. Don't let the model's silence propagate as a loading spinner.
 
-- **Per-stage latency histograms** (p50, p95, p99) — time-sliced by input resolution and model version
-- **Gate pass/fail rates** — which quality gates fire most often, and for which input types
-- **Memory pressure** per pipeline execution — Bun's `process.memoryUsage()` sampled at each stage transition
-- **Cache hit rates** — for the prompt cache and the SKU-level mask cache
-- **Degradation frequency** — how often each stage falls back to its cheaper alternative
+## 3. Simple State Machines Beat Complex Orchestration
 
-With this data, I discovered that the segmentation gate failed ~12% of the time for black garments on dark backgrounds — a straightforward preprocessing fix that would have taken weeks to identify without metrics.
+The generation lifecycle is three states:
 
-## 5. The Cache Is the Product
+```
+pending → processing → completed
+                       failed
+```
 
-Here's the insight that changed the architecture more than any model swap: **in a fashion AI pipeline, the same garment gets processed hundreds of times.** A single SKU with 8 colorways across 3 angles and 2 campaign themes is 48 renders — and 90% of the pipeline work is identical across variants.
+That's it. No DAG, no event sourcing, no workflow engine. A Supabase row with a `status` column.
 
-The cache strategy has three tiers:
+```typescript
+const { data: generation, error: insertError } = await admin
+  .from('generations')
+  .insert({
+    user_id: userId,
+    status: 'pending',
+    garment_path: garmentPath,
+    inference_provider: 'gemini',
+  })
+  .select('id')
+  .single()
+```
 
-1. **SKU-level mask cache** — Store segmentation masks keyed by SKU + angle. The expensive garment segmentation runs once per product, not once per render.
-2. **Pose template cache** — Pre-compute the UV mapping for each of the 40+ supported poses. Pose estimation becomes a lookup instead of a model invocation.
-3. **Prompt cache** — Cache the lighting model's warm-state payload (the scene definition, not the image). Subsequent renders in the same campaign skip the lighting model's cold-start penalty.
+Each transition is a simple database update. If the server crashes during inference, the row stays in `processing` — a periodic sweep script can retry or fail stale entries. If the inference succeeds, the output path and timing are written atomically in the same update.
 
-The result: a repeat render costs ~40% of the original in latency and ~25% in compute. For batch campaigns — which make up most of the product's use case — this is the difference between "fast" and "viable."
+The simplicity is intentional. A complex orchestration layer would have added latency, operational surface area, and failure modes. With the state serialized to Postgres, recovery is trivial: the database is the source of truth, not some in-memory workflow engine.
 
-Most of the value in AI infrastructure isn't in the model — it's in the engineering around it: the latency budgets that force good decisions, the quality gates that prevent silent failures, the state machine that makes concurrency safe, the metrics that reveal hidden problems, and the cache that makes the economics work.
+This also means real-time updates come for free. Supabase's Realtime feature broadcasts row changes to the frontend. The UI subscribes to `generations` table changes, and when the status flips from `processing` to `completed`, the generated image appears without polling.
 
-If you're building a production AI system and these patterns resonate, I bring this engineering foundation to your stack. The pipeline orchestration code, the quality gate framework, and the performance monitoring are portable — the models are the only thing that changes between domains.
+**The lesson:** Serialize state to your database. A boring `status` column with three values handles crash recovery, concurrency, and observability better than any workflow library. You can always add orchestration later when the state machine needs fan-out or retry logic — but start simple.
+
+## 4. Security Boundaries in an AI API
+
+An AI API is still an API, and every security rule applies. But generative AI adds unique attack surfaces.
+
+The request handler validates four things before touching the model:
+
+**Authentication** — The user must be logged in via Supabase session, or the request must include a valid session ID (kiosk mode). No anonymous access.
+
+**Path ownership** — The garment file path must start with the user's ID. No traversing another user's files:
+
+```typescript
+if (!garmentPath.startsWith(`${ownerId}/`) || garmentPath.includes('..')) {
+  return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+}
+```
+
+**URL safety** — Before fetching the garment image, the URL is validated against an allowlist to prevent SSRF attacks. The model image is constructed from a known prefix, not user-supplied paths.
+
+**Provider lock** — The request specifies an AI provider. Currently only `gemini` is supported. Anything else returns a clear 400:
+
+```typescript
+if (aiProvider !== undefined && aiProvider !== 'gemini') {
+  return NextResponse.json({ error: 'Only gemini provider is supported' }, { status: 400 })
+}
+```
+
+These checks seem obvious, but in practice they're easy to skip when rushing to get the model working. The path ownership validation in particular — it exists because early versions didn't have it, and a security review caught the gap.
+
+**The lesson:** Treat AI endpoints with the same threat model as file upload or admin endpoints. Validate ownership of every resource. Prevent SSRF on URLs that the AI will fetch. Lock provider selection to known values. AI doesn't get a security exemption.
+
+## 5. Authenticity Over Overpromise
+
+The AI infrastructure space is full of companies claiming proprietary models, secret sauce, and revolutionary pipelines. The reality is usually more mundane — and that's *fine*.
+
+Anaqio's "AI pipeline" is a single API call to Gemini. Not a five-stage ONNX pipeline with custom quality gates. Not a distributed inference cluster with GPU orchestration. A single HTTP request with two images and a text prompt.
+
+That was the right call for the MVP. A specialized pipeline would have meant:
+- Training or fine-tuning models for each stage
+- Managing GPU infrastructure or paying per-inference markups
+- Debugging inter-stage error propagation
+- Maintaining model versions across five separate components
+
+The single-model approach shipped in weeks what a pipeline would have taken months to build. It handled the core use case — generating brand-consistent fashion visuals — well enough to get paying customers. When the architecture needs to scale, the pipeline design exists in the PRD backlog, ready to be activated with real usage data guiding the tradeoffs.
+
+**The lesson:** Ship the simplest architecture that works. Don't build a five-stage pipeline when one API call does the job. The fancy architecture should be a response to real bottlenecks, not a preemptive optimization. And when you write about it — be honest about what shipped versus what was designed. Your engineering judgment is measured by your tradeoffs, not the complexity of your system.
+
+## What's Next
+
+The platform is live, processing real customer generations. The immediate engineering roadmap focuses on:
+
+- **Output quality consistency** — Building automated quality checks (color histogram comparison, garment boundary detection) to flag bad generations before the user sees them
+- **Parallel fallback providers** — Adding FAL.ai and Replicate as secondary providers so Gemini failures don't block the product
+- **The pipeline architecture** — The multi-stage pipeline design (segmentation → pose → texture → lighting → render) is written up as a product requirement document, ready for implementation when customer volume justifies the complexity
+
+If you're building a production AI system and these patterns resonate, I bring this engineering foundation to your stack. The patterns — prompt versioning, explicit error handling, simple state machines, security-first API design, honest architecture — are portable. The models are the only thing that changes between domains.

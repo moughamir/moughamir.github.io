@@ -12,7 +12,7 @@ I spent six weeks building **Anaqio**, an AI fashion platform, using Bun Workspa
 ### The Stack
 - **Runtime:** Bun
 - **Architecture:** Monorepo (Workspaces)
-- **Shared:** Internal packages for AI logic and database schemas
+- **Shared:** Internal packages for AI orchestration logic and database schemas
 - **DB:** `bun:sqlite` (R&D) to PostgreSQL (Prod)
 
 ### Key Results
