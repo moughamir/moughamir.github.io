@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "workspace": {
+    "name": "moughamir.github.io",
+    "createdAt": 1779804837093,
+    "preset": "starter"
+  },
+  "authorizedRoots": [
+    "/home/m7r/Projects/moughamir.github.io"
+  ],
+  "reload": null
+}

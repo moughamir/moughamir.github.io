@@ -1,6 +1,7 @@
 ---
-import CallToAction from "./CallToAction.astro";
 import Icon from "./Icon.astro";
+
+const encodedEmail = btoa("moughamir@gmail.com");
 ---
 
 <aside>
@@ -13,10 +14,15 @@ import Icon from "./Icon.astro";
       practical technical leadership.
     </p>
   </div>
-  <CallToAction email="moughamir@gmail.com">
+  <a
+    href="javascript:void(0)"
+    data-email={encodedEmail}
+    onclick="location.href='mailto:'+atob(this.dataset.email)"
+    class="cta-btn"
+  >
     Email Mohamed
     <Icon icon="paper-plane-tilt" size="1.2em" />
-  </CallToAction>
+  </a>
 </aside>
 
 <style>
@@ -58,6 +64,31 @@ import Icon from "./Icon.astro";
     color: var(--gray-500);
     font-size: 1.05rem;
     line-height: 1.65;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    place-content: center;
+    align-items: center;
+    gap: 0.65em;
+    min-height: 2.75rem;
+    padding: 0.78rem 1rem;
+    border-radius: 0.55rem;
+    background: var(--gray-0);
+    color: var(--gray-999);
+    font-weight: 500;
+    line-height: 1.1;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: var(--border-shadow);
+    white-space: nowrap;
+    transition: transform var(--theme-transition), box-shadow var(--theme-transition);
+  }
+
+  .cta-btn:focus,
+  .cta-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--card-shadow-strong);
   }
 
   @media (min-width: 50em) {
