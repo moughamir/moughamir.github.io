@@ -221,7 +221,6 @@ const principles = [
     }
   }
 
-  /* ── Bento Grid ── */
   .bento {
     position: relative;
   }
@@ -241,7 +240,7 @@ const principles = [
 
   .bento-grid {
     display: grid;
-    gap: 1rem;
+    gap: 1.5rem;
     grid-template-columns: 1fr;
   }
 
@@ -249,20 +248,45 @@ const principles = [
     position: relative;
     display: flex;
     flex-direction: column;
-    border-radius: 1rem;
+    border-radius: 38px;
     padding: 0;
     overflow: hidden;
     isolation: isolate;
     text-decoration: none;
     color: inherit;
-    border: 1px solid var(--gray-800);
-    background: var(--gray-950);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 0;
+    /* Frosted acrylic material — Apple never uses pure #fff */
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--gray-999) 90%, var(--gray-800)),
+      var(--gray-950)
+    );
+    /* Outer ambient shadow — almost invisible, avoids floating */
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.04),
+      0 2px 4px rgba(0, 0, 0, 0.02);
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .bento-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow:
+      inset 0 2px 8px color-mix(in srgb, var(--gray-999) 70%, transparent),
+      inset 0 -8px 20px rgba(0, 0, 0, 0.03);
   }
 
   .bento-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.06),
+      0 4px 8px rgba(0, 0, 0, 0.03);
   }
 
   .bento-card-bg {
@@ -270,9 +294,12 @@ const principles = [
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.4;
-    background: radial-gradient(ellipse at 20% 30%, rgba(0, 114, 245, 0.06), transparent 60%),
-                radial-gradient(ellipse at 80% 70%, rgba(99, 102, 241, 0.04), transparent 50%);
+    opacity: 0.6;
+    background:
+      radial-gradient(ellipse 60% 30% at 15% 10%, rgba(200, 180, 255, 0.15), transparent 70%),
+      radial-gradient(ellipse 40% 40% at 85% 20%, rgba(180, 230, 255, 0.10), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 50% 90%, rgba(255, 200, 220, 0.08), transparent 60%),
+      radial-gradient(ellipse 30% 50% at 30% 80%, rgba(200, 255, 220, 0.06), transparent 50%);
   }
 
   .bento-card-content {
@@ -282,6 +309,15 @@ const principles = [
     flex-direction: column;
     padding: 1.5rem;
     height: 100%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--gray-999) 70%, transparent) 35%,
+      color-mix(in srgb, var(--gray-999) 90%, transparent) 65%,
+      var(--gray-999) 100%
+    );
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
   }
 
   .bento-icon {
@@ -292,9 +328,14 @@ const principles = [
     height: 2.5rem;
     margin-bottom: 1rem;
     border-radius: 0.75rem;
-    background: var(--gray-900);
+    background: color-mix(in srgb, var(--gray-900) 50%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     color: var(--gray-400);
-    border: 1px solid var(--gray-800);
+    border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--gray-999) 40%, transparent),
+      0 2px 4px rgba(0, 0, 0, 0.03);
   }
 
   .bento-card h3 {
@@ -310,24 +351,52 @@ const principles = [
     line-height: 1.65;
   }
 
-  /* ── Glassmorphic cards ── */
   .bento-glass {
-    background: transparent;
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--gray-999) 50%, transparent),
+      color-mix(in srgb, var(--gray-999) 15%, transparent)
+    );
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.04),
+      0 2px 4px rgba(0, 0, 0, 0.02),
+      inset 0 1px 0 color-mix(in srgb, var(--gray-999) 60%, transparent);
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      backdrop-filter 0.4s ease,
+      border-color 0.3s ease;
   }
 
   .bento-glass .bento-card-bg {
-    opacity: 0.6;
-    background: radial-gradient(ellipse at 30% 20%, rgba(0, 114, 245, 0.08), transparent 60%),
-                radial-gradient(ellipse at 70% 80%, rgba(139, 92, 246, 0.06), transparent 50%);
+    opacity: 0.8;
+    background:
+      radial-gradient(ellipse 50% 40% at 25% 15%, rgba(180, 200, 255, 0.12), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 70% 70%, rgba(255, 200, 230, 0.10), transparent 60%);
   }
 
   .bento-glass:hover {
-    border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border-color: color-mix(in srgb, var(--gray-600) 25%, transparent);
+    backdrop-filter: blur(48px) saturate(200%);
+    -webkit-backdrop-filter: blur(48px) saturate(200%);
+    transform: translateY(-3px);
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.06),
+      0 4px 8px rgba(0, 0, 0, 0.03),
+      inset 0 1px 0 color-mix(in srgb, var(--gray-999) 70%, transparent);
+  }
+
+  .bento-glass .bento-icon {
+    background: color-mix(in srgb, var(--gray-900) 40%, transparent);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid color-mix(in srgb, var(--gray-800) 20%, transparent);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--gray-999) 50%, transparent),
+      0 2px 4px rgba(0, 0, 0, 0.02);
   }
 
   .project-tag {
@@ -345,11 +414,11 @@ const principles = [
     margin-top: auto;
     padding-top: 1rem;
     color: var(--gray-500);
-    transition: transform 0.2s ease, color 0.2s ease;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
   }
 
   .bento-glass:hover .project-arrow {
-    transform: translateX(4px);
+    transform: translateX(5px);
     color: var(--gray-0);
   }
 
@@ -381,7 +450,6 @@ const principles = [
     color: var(--gray-600);
   }
 
-  /* ── Bento background orbs ── */
   .bento::before {
     content: "";
     position: absolute;
@@ -505,7 +573,6 @@ const principles = [
     font-size: 0.75rem;
   }
 
-  /* ── Hero background graphics ── */
   .hero-graphic {
     position: absolute;
     inset: -4rem -4rem auto auto;
@@ -641,7 +708,6 @@ const principles = [
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    /* ── Bento grid: 2 columns with spans ── */
     .bento-grid {
       grid-template-columns: 1fr 1fr;
     }

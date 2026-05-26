@@ -12,6 +12,18 @@ import ArticlePreview from "../components/ArticlePreview.astro";
 const articles = (await getCollection("blog")).sort(
     (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
 );
+
+// Assign bento variants for visual variety:
+// - First article gets "wide" (full width, hero treatment)
+// - Second article gets "tall" (spans 2 rows)
+// - Rest cycle through default and tall
+const bentoVariants = (index: number): "default" | "wide" | "tall" => {
+    if (index === 0) return "wide";
+    if (index === 1) return "tall";
+    // Every 4th article after that gets tall for rhythm
+    if ((index - 1) % 4 === 0) return "tall";
+    return "default";
+};
 ---
 
 <BaseLayout
@@ -25,16 +37,29 @@ const articles = (await getCollection("blog")).sort(
                 tagline="Deep dives on AI agents, Bun/TypeScript architecture, and building for scale."
                 align="start"
             />
-            <ul class="stack gap-8 list">
+            <div class="bento-grid">
                 {
-                    articles.map((article) => (
-                        <li class=" list-none">
-                            <ArticlePreview article={article} />
-                        </li>
+                    articles.map((article, i) => (
+                        <ArticlePreview article={article} variant={bentoVariants(i)} />
                     ))
                 }
-            </ul>
+            </div>
         </main>
         <ContactCTA />
     </div>
 </BaseLayout>
+
+<style>
+    .bento-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 50em) {
+        .bento-grid {
+            gap: 1.5rem;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>

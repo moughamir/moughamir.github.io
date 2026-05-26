@@ -5,11 +5,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import PortfolioPreview from "../components/PortfolioPreview.astro";
 import Hero from "../components/Hero.astro";
-import Grid from "../components/Grid.astro";
 
 const projects = (await getCollection("work")).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
+
+// Assign bento variants: first = wide, second = tall, rest cycle default/tall
+const bentoProjects = projects.map((p, i) => {
+  if (i === 0) return { project: p, variant: "wide" as const };
+  if (i === 1) return { project: p, variant: "tall" as const };
+  return {
+    project: p,
+    variant: (i % 2 === 0 ? "default" : "tall") as "default" | "tall",
+  };
+});
 ---
 
 <BaseLayout
@@ -23,16 +32,31 @@ const projects = (await getCollection("work")).sort(
         tagline="A focused set of project signals: web showcases, developer education concepts, open-source experiments, and practical product engineering."
         align="start"
       />
-      <Grid variant="offset">
+      <div class="bento-grid">
         {
-          projects.map((project) => (
-            <li>
-              <PortfolioPreview project={project} />
-            </li>
+          bentoProjects.map(({ project, variant }) => (
+            <PortfolioPreview project={project} variant={variant} />
           ))
         }
-      </Grid>
+      </div>
     </main>
     <ContactCTA />
   </div>
 </BaseLayout>
+
+<style>
+  .bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  @media (min-width: 50em) {
+    .bento-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

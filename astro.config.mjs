@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 import partytown from "@astrojs/partytown";
 
@@ -11,11 +11,10 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://moughamir.github.io",
   integrations: [
-    tailwind(),
     partytown({
       config: {
         forward: ["dataLayer.push"],
-      }
+      },
     }),
     sitemap({
       changefreq: "daily",
@@ -48,4 +47,7 @@ export default defineConfig({
       },
     }),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

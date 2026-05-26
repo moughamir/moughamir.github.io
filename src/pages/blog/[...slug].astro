@@ -18,14 +18,17 @@ interface Props {
 // Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
 // https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
 export async function getStaticPaths() {
-    const work = await getCollection("blog");
-    return work.map((entry) => ({
+    const blog = await getCollection("blog");
+    return blog.map((entry) => ({
         params: { slug: entry.id },
         props: { entry },
     }));
 }
 
 const { entry } = Astro.props;
+const allArticles = await getCollection("blog");
+const filtered = allArticles.filter((a) => a.id !== entry.id);
+const related = filtered.slice(0, 2);
 const { Content } = await render(entry);
 ---
 
@@ -46,10 +49,47 @@ const { Content } = await render(entry);
                 </div>
             </ArticleHeader>
 
-            <Prose>
-                <Content />
-            </Prose>
+            <div class="prose-wrapper">
+                <Prose>
+                    <Content />
+                </Prose>
+            </div>
         </section>
+
+        {related.length > 0 && (
+            <section class="related-section wrapper">
+                <div class="related-header">
+                    <h2 class="related-title">Continue reading</h2>
+                </div>
+                <div class="related-grid">
+                    {related.map((r) => {
+                        const formattedDate = r.data.publishDate.toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                        });
+                        return (
+                            <a class="related-card" href={`/blog/${r.id}`}>
+                                <div class="related-card-bg" />
+                                <div
+                                    class="related-card-image"
+                                    style={`background-image: url(${r.data.img})`}
+                                />
+                                <div class="related-card-content">
+                                    <time class="related-date">{formattedDate}</time>
+                                    <h3 class="related-card-title">{r.data.title}</h3>
+                                    <p class="related-card-desc">{r.data.description}</p>
+                                    <span class="related-arrow">
+                                        <Icon icon="arrow-right" size="0.8em" />
+                                    </span>
+                                </div>
+                            </a>
+                        );
+                    })}
+                </div>
+            </section>
+        )}
+
         <ContactCTA />
     </main>
 </BaseLayout>
@@ -64,10 +104,206 @@ const { Content } = await render(entry);
         flex-wrap: wrap;
         gap: 0.5rem;
         list-style: none;
-        padding: 0.75rem;
+        padding: 0;
         margin: 0;
-        background-color: var(--gray-900);
-        border: 1px solid var(--gray-800);
-        border-radius: 9999px;
+    }
+
+    .prose-wrapper {
+        max-width: 65ch;
+        margin-inline: auto;
+        padding-inline: 1.25rem;
+    }
+
+    .related-section {
+        margin-top: 4rem;
+        padding-top: 3rem;
+        border-top: 1px solid var(--gray-800);
+    }
+
+    .related-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .related-title {
+        color: var(--gray-0);
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+    }
+
+    .related-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr;
+    }
+
+    .related-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-radius: 28px;
+        overflow: hidden;
+        isolation: isolate;
+        text-decoration: none;
+        color: inherit;
+        border: 0;
+        background: linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--gray-999) 90%, var(--gray-800)),
+            var(--gray-950)
+        );
+        min-height: 14rem;
+        box-shadow:
+            0 8px 24px rgba(0, 0, 0, 0.04),
+            0 2px 4px rgba(0, 0, 0, 0.02);
+        transition:
+            transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .related-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        border-radius: inherit;
+        box-shadow:
+            inset 0 2px 8px color-mix(in srgb, var(--gray-999) 70%, transparent),
+            inset 0 -8px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .related-card:hover {
+        transform: translateY(-3px);
+        box-shadow:
+            0 12px 32px rgba(0, 0, 0, 0.06),
+            0 4px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .related-card-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.5;
+        background:
+            radial-gradient(ellipse 60% 30% at 15% 10%, rgba(200, 180, 255, 0.12), transparent 70%),
+            radial-gradient(ellipse 40% 30% at 80% 80%, rgba(180, 230, 255, 0.08), transparent 60%);
+    }
+
+    .related-card-image {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.08;
+        transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .related-card:hover .related-card-image {
+        opacity: 0.16;
+        transform: scale(1.04);
+    }
+
+    .related-card-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 1.25rem;
+        background: linear-gradient(
+            180deg,
+            transparent 0%,
+            color-mix(in srgb, var(--gray-999) 70%, transparent) 35%,
+            color-mix(in srgb, var(--gray-999) 90%, transparent) 65%,
+            var(--gray-999) 100%
+        );
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+    }
+
+    .related-date {
+        display: inline-flex;
+        align-items: center;
+        align-self: flex-start;
+        color: var(--gray-500);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        padding: 0.25rem 0.55rem;
+        background: color-mix(in srgb, var(--gray-999) 60%, transparent);
+        border-radius: 999px;
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
+        box-shadow:
+            inset 0 1px 0 color-mix(in srgb, var(--gray-999) 60%, transparent),
+            0 2px 6px rgba(0, 0, 0, 0.03);
+        margin-bottom: auto;
+    }
+
+    .related-card-title {
+        color: var(--gray-0);
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.3;
+        margin-bottom: 0.35rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        padding-top: 0.75rem;
+    }
+
+    .related-card-desc {
+        color: var(--gray-500);
+        font-size: 0.82rem;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .related-arrow {
+        display: inline-flex;
+        align-items: center;
+        align-self: flex-end;
+        margin-top: auto;
+        padding-top: 0.75rem;
+        color: var(--gray-500);
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
+    }
+
+    .related-card:hover .related-arrow {
+        transform: translateX(4px);
+        color: var(--gray-0);
+    }
+
+    @media (min-width: 50em) {
+        .prose-wrapper {
+            padding-inline: 2rem;
+        }
+
+        .related-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .related-card {
+            min-height: 16rem;
+            border-radius: 32px;
+        }
+
+        .related-card-content {
+            padding: 1.5rem;
+        }
+
+        .related-card-title {
+            font-size: 1.1rem;
+        }
     }
 </style>
