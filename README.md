@@ -17,9 +17,9 @@ Full-stack web applications and AI-assisted automation — from product concept 
 ## Proof Points
 
 - **10+ years** full-stack development
-- **249+** GitHub repositories demonstrating breadth and experimentation
-- **3** working languages (JavaScript/TypeScript, PHP, Python)
-- **48–72h** rescue sprint availability for urgent delivery
+- **250+** public GitHub repositories across experiments and production apps
+- **3** working languages (Arabic, French, English)
+- **290** commits on the obsidian-mcp-plugin open-source project
 
 ## Sections
 
