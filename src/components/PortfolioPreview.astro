@@ -58,59 +58,7 @@ const formattedDate = data.publishDate.toLocaleDateString("en-US", {
 
 <style>
 	.bento-card {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		border-radius: 38px;
-		overflow: hidden;
-		isolation: isolate;
-		text-decoration: none;
-		color: inherit;
-		border: 0;
-		background: linear-gradient(
-			180deg,
-			color-mix(in srgb, var(--gray-999) 90%, var(--gray-800)),
-			var(--gray-950)
-		);
 		min-height: 18rem;
-		box-shadow:
-			0 8px 24px rgba(0, 0, 0, 0.04),
-			0 2px 4px rgba(0, 0, 0, 0.02);
-		transition:
-			transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-			box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-
-	.bento-card::after {
-		content: "";
-		position: absolute;
-		inset: 0;
-		z-index: 2;
-		pointer-events: none;
-		border-radius: inherit;
-		box-shadow:
-			inset 0 2px 8px color-mix(in srgb, var(--gray-999) 70%, transparent),
-			inset 0 -8px 20px rgba(0, 0, 0, 0.03);
-	}
-
-	.bento-card-bloom {
-		position: absolute;
-		inset: 0;
-		z-index: 0;
-		pointer-events: none;
-		opacity: 0.6;
-    background:
-      radial-gradient(ellipse 60% 30% at 15% 10%, rgba(251, 146, 60, 0.15), transparent 70%),
-      radial-gradient(ellipse 40% 40% at 85% 20%, rgba(249, 115, 22, 0.10), transparent 60%),
-      radial-gradient(ellipse 50% 50% at 50% 90%, rgba(239, 68, 68, 0.08), transparent 60%),
-      radial-gradient(ellipse 30% 50% at 30% 80%, rgba(250, 204, 21, 0.06), transparent 50%);
-	}
-
-	.bento-card:hover {
-		transform: translateY(-3px);
-		box-shadow:
-			0 12px 32px rgba(0, 0, 0, 0.06),
-			0 4px 8px rgba(0, 0, 0, 0.03);
 	}
 
 	.bento-card-image {

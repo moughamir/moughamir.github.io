@@ -4,9 +4,9 @@ import Icon from "../components/Icon.astro";
 
 const proof = [
   { value: "10+", label: "years building for web, product, and business" },
-  { value: "249", label: "public GitHub repositories across experiments and apps" },
+  { value: "250+", label: "public repos on GitHub" },
   { value: "3", label: "working languages: Arabic, French, English" },
-  { value: "48–72h", label: "delivery window for focused rescue sprints" },
+  { value: "290", label: "commits on obsidian-mcp-plugin" },
 ];
 
 const capabilities = [
@@ -58,16 +58,14 @@ const principles = [
           <p class="eyebrow">Bouskoura / Casablanca · Morocco · Remote-ready</p>
           <h1>I build things that ship and scale.</h1>
           <p class="lede">
-            Senior full-stack engineer with 10+ years. I move fast, write clean code, and deliver products—not just features. From React dashboards to PHP rescues to AI-assisted workflows, I get useful work shipped.
+            Senior full-stack and AI product engineer using TypeScript, Bun, React, PHP/Python, and MCP. I ship fast, write clean code, and deliver products — not just features.
           </p>
           <div class="cta-group">
             <a class="btn-primary" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">
               <Icon icon="mail" size="1em" /> Hire me
             </a>
-            <a class="btn-ghost" href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="linkedin-logo" size="1em" /> LinkedIn</a>
             <a class="btn-ghost" href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="github-logo" size="1em" /> GitHub</a>
-            <a class="btn-ghost" href="https://youtube.com/@moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="youtube-logo" size="1em" /> YouTube</a>
-            <a class="btn-ghost" href="https://open.spotify.com/show/7EmRYqAIgMjQroosj2LV95" target="_blank" rel="noopener noreferrer"><Icon icon="rss" size="1em" /> Podcast</a>
+            <a class="btn-ghost" href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="linkedin-logo" size="1em" /> LinkedIn</a>
           </div>
         </div>
         <div class="hero-right">
@@ -97,6 +95,21 @@ const principles = [
           <span>{item.label}</span>
         </article>
       ))}
+    </section>
+
+    <section class="proof-strip" aria-label="Featured work">
+      <a href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer" class="proof-link">
+        <Icon icon="github-logo" size="1em" /> <span>250+ repos on GitHub</span>
+      </a>
+      <a href="/work/obsidian-mcp-plugin/" class="proof-link">
+        <Icon icon="code" size="1em" /> <span>Obsidian MCP Plugin</span>
+      </a>
+      <a href="/work/anaqio-platform/" class="proof-link">
+        <Icon icon="strategy" size="1em" /> <span>Anaqio AI Platform</span>
+      </a>
+      <a href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer" class="proof-link">
+        <Icon icon="linkedin-logo" size="1em" /> <span>LinkedIn</span>
+      </a>
     </section>
 
     <section class="bento">
@@ -174,9 +187,9 @@ const principles = [
 
     <section class="final-cta">
       <p class="small-label">Need a builder who can start now?</p>
-      <h2>Let’s make the next 72 hours useful.</h2>
+      <h2>Let’s make the next sprint useful.</h2>
       <p>
-        Send me the problem, the current link/repo if one exists, and what “fixed” means. I’ll reply with a practical next step.
+        Send me the problem, the current link or repo, and what success should look like. I’ll reply with a practical next step.
       </p>
       <div class="cta-row centered">
         <a class="button primary" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">Send an email</a>
@@ -634,6 +647,39 @@ const principles = [
   .final-cta p:not(.small-label) {
     max-width: 56ch;
     margin-inline: auto;
+  }
+
+  .proof-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: color-mix(in srgb, var(--gray-950) 60%, transparent);
+    border-radius: 38px;
+    border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+  }
+
+  .proof-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    color: var(--gray-500);
+    background: color-mix(in srgb, var(--gray-900) 50%, transparent);
+    border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+  }
+
+  .proof-link:hover {
+    color: var(--gray-0);
+    border-color: color-mix(in srgb, var(--gray-600) 50%, transparent);
+    background: color-mix(in srgb, var(--gray-800) 40%, transparent);
   }
 
   @media (max-width: 47.99rem) {

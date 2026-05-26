@@ -36,7 +36,7 @@ const education = [
   <main id="main-content" class="about wrapper">
     <div class="bento-intro">
       <div class="hover-3d">
-      <div class="bento-intro-card">
+      <div class="bento-card bento-intro-card">
         <div class="bento-card-bloom" />
         <div class="bento-intro-content">
           <p class="label">About</p>
@@ -106,7 +106,7 @@ const education = [
       <div class="bento-signal-grid">
         {experienceSignals.map((signal) => (
           <div class="hover-3d">
-          <article class="bento-signal-card">
+          <article class="bento-card bento-signal-card">
             <div class="bento-card-bloom" />
             <p>{signal}</p>
           </article>
@@ -120,7 +120,7 @@ const education = [
 
     <div class="bento-two-col">
       <div class="hover-3d">
-      <section class="bento-section-card">
+      <section class="bento-card bento-section-card">
         <div class="bento-card-bloom" />
         <div class="bento-section-card-content">
           <p class="label">How I help</p>
@@ -141,7 +141,7 @@ const education = [
       </div>
 
       <div class="hover-3d">
-      <section class="bento-section-card">
+      <section class="bento-card bento-section-card">
         <div class="bento-card-bloom" />
         <div class="bento-section-card-content">
           <p class="label">Work style</p>
@@ -163,7 +163,7 @@ const education = [
     </div>
 
     <div class="hover-3d">
-    <section class="bento-section-card bento-stack-card">
+    <section class="bento-card bento-section-card bento-stack-card">
       <div class="bento-card-bloom" />
       <div class="bento-section-card-content stack-layout">
         <div class="stack-header">
@@ -188,7 +188,7 @@ const education = [
       <div class="bento-edu-grid">
         {education.map((item) => (
           <div class="hover-3d">
-          <article class="bento-edu-card">
+          <article class="bento-card bento-edu-card">
             <div class="bento-card-bloom" />
             <div class="bento-edu-content">
               <h3>{item.school}</h3>
@@ -222,65 +222,6 @@ const education = [
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-  }
-
-  .bento-intro-card,
-  .bento-signal-card,
-  .bento-section-card,
-  .bento-edu-card {
-    position: relative;
-    border-radius: 38px;
-    overflow: hidden;
-    isolation: isolate;
-    background: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--gray-999) 90%, var(--gray-800)),
-      var(--gray-950)
-    );
-    box-shadow:
-      0 8px 24px rgba(0, 0, 0, 0.04),
-      0 2px 4px rgba(0, 0, 0, 0.02);
-    transition:
-      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .bento-intro-card::after,
-  .bento-signal-card::after,
-  .bento-section-card::after,
-  .bento-edu-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    border-radius: inherit;
-    box-shadow:
-      inset 0 2px 8px color-mix(in srgb, var(--gray-999) 70%, transparent),
-      inset 0 -8px 20px rgba(0, 0, 0, 0.03);
-  }
-
-  .bento-intro-card:hover,
-  .bento-signal-card:hover,
-  .bento-section-card:hover,
-  .bento-edu-card:hover {
-    transform: translateY(-3px);
-    box-shadow:
-      0 12px 32px rgba(0, 0, 0, 0.06),
-      0 4px 8px rgba(0, 0, 0, 0.03);
-  }
-
-  .bento-card-bloom {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.6;
-    background:
-      radial-gradient(ellipse 60% 30% at 15% 10%, rgba(251, 146, 60, 0.15), transparent 70%),
-      radial-gradient(ellipse 40% 40% at 85% 20%, rgba(249, 115, 22, 0.10), transparent 60%),
-      radial-gradient(ellipse 50% 50% at 50% 90%, rgba(239, 68, 68, 0.08), transparent 60%),
-      radial-gradient(ellipse 30% 50% at 30% 80%, rgba(250, 204, 21, 0.06), transparent 50%);
   }
 
   .bento-intro {
@@ -562,13 +503,6 @@ const education = [
 
     .bento-edu-grid {
       grid-template-columns: repeat(3, 1fr);
-    }
-
-    .bento-intro-card,
-    .bento-section-card,
-    .bento-signal-card,
-    .bento-edu-card {
-      border-radius: 42px;
     }
 
     .bento-intro-card {

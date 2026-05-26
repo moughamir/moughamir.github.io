@@ -126,9 +126,9 @@ The trade-off was real: Bun's ecosystem is younger. Some ESLint plugins require 
 
 ## What this demonstrates
 
-- **Full-stack AI product engineering.** Not just model integration — the entire system from monorepo setup to deployment pipeline to API design. Chose Gemini over FAL.ai, Replicate, and custom fine-tuning based on image quality benchmarks.
+- **Full-stack AI product engineering.** Not just model integration — the entire system from monorepo setup to deployment pipeline to API design. Evaluated multiple providers (FAL.ai, Replicate, Gemini) and chose Gemini based on output quality and integration simplicity.
 - **Thoughtful runtime selection.** Chose Bun based on measurable constraints (install speed, TypeScript resolution, CI throughput), not hype. Chose Next.js 16 over alternative frameworks for App Router and RSC. Can articulate where each breaks and when alternatives are better.
 - **Architecture that respects business context.** The monorepo design, the Supabase schema isolation, the single-model inference strategy — all chosen to move fast early without painting into a corner.
-- **Real shipping.** This isn't a demo or a tutorial — it's a registered company with a live product, customers, and production infrastructure.
+- **Production deployment.** The platform has a deployed Next.js app with Supabase infrastructure, handling real generation requests through a complete auth + storage + inference pipeline.
 
 *The inference architecture described here represents the current shipped implementation. Earlier concepts for a multi-stage custom pipeline (segmentation, pose estimation, texture mapping, lighting, render) were evaluated in design but deferred in favor of the simpler Gemini-based approach.*
