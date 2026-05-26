@@ -1,3 +1,6 @@
+import type { APIRoute } from 'astro'
+
+const humansTxt = `
 /* TEAM */
 Chef/Developer: Moughamir
 Site: https://moughamir.github.io
@@ -13,3 +16,12 @@ Playwright: https://playwright.dev
 Last update: 2026/05/26
 Standards: HTML5, CSS3
 Software: Astro, Bun, Tailwind CSS
+`;
+
+export const GET: APIRoute = () => {
+  return new Response(humansTxt, {
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8'
+    }
+  });
+};
