@@ -26,16 +26,16 @@ const capabilities = [
 
 const projects = [
   {
-    title: "Obsidian MCP Plugin",
-    type: "AI / Obsidian / Agent-native Development",
-    body: "A high-performance Model Context Protocol (MCP) server providing AI tools with direct, semantic access to an Obsidian vault for agent-native application development. My most popular tool with active community contributions.",
-    href: "https://github.com/moughamir/obsidian-mcp-plugin",
-  },
-  {
     title: "Anaqio AI Fashion Platform",
     type: "Bun Workspaces / AI / Monorepo",
-    body: "Designed and built a full-stack AI fashion platform, demonstrating Bun monorepo architecture, scalable backend, and AI integration for complex product logic.",
-    href: "https://github.com/moughamir/platform",
+    body: "Full-stack AI fashion platform turning flat lay product photos into photorealistic campaign visuals. Bun monorepo, precision-first AI pipeline, MCP tools, and production infrastructure.",
+    href: "/work/anaqio-platform/",
+  },
+  {
+    title: "Obsidian MCP Plugin",
+    type: "AI / MCP / Obsidian / Open Source",
+    body: "A high-performance MCP server giving AI tools direct, graph-aware access to an Obsidian vault. Hybrid SQL/vector search, 50ms tool response, active community adoption.",
+    href: "/work/obsidian-mcp-plugin/",
   },
 ];
 
@@ -67,7 +67,7 @@ const principles = [
             <a class="btn-ghost" href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="linkedin-logo" size="1em" /> LinkedIn</a>
             <a class="btn-ghost" href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="github-logo" size="1em" /> GitHub</a>
             <a class="btn-ghost" href="https://youtube.com/@moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="youtube-logo" size="1em" /> YouTube</a>
-            <a class="btn-ghost" href="/feed.xml"><Icon icon="rss" size="1em" /> Podcast</a>
+            <a class="btn-ghost" href="https://open.spotify.com/show/7EmRYqAIgMjQroosj2LV95" target="_blank" rel="noopener noreferrer"><Icon icon="rss" size="1em" /> Podcast</a>
           </div>
         </div>
         <div class="hero-right">
@@ -108,7 +108,7 @@ const principles = [
       <div class="bento-grid">
         <!-- Tall card: Full-stack -->
         <article class="bento-card bento-tall">
-          <div class="bento-card-bg"></div>
+          <div class="bento-card-bloom"></div>
           <div class="bento-card-content">
             <span class="bento-icon"><Icon icon="code" size="1.1em" /></span>
             <h3>{capabilities[0].title}</h3>
@@ -118,7 +118,7 @@ const principles = [
 
         <!-- Rescue -->
         <article class="bento-card">
-          <div class="bento-card-bg"></div>
+          <div class="bento-card-bloom"></div>
           <div class="bento-card-content">
             <span class="bento-icon"><Icon icon="strategy" size="1.1em" /></span>
             <h3>{capabilities[1].title}</h3>
@@ -128,7 +128,7 @@ const principles = [
 
         <!-- AI Automation -->
         <article class="bento-card">
-          <div class="bento-card-bg"></div>
+          <div class="bento-card-bloom"></div>
           <div class="bento-card-content">
             <span class="bento-icon"><Icon icon="rocket-launch" size="1.1em" /></span>
             <h3>{capabilities[2].title}</h3>
@@ -138,7 +138,7 @@ const principles = [
 
         <!-- Project: Obsidian MCP (glass, full width) -->
         <a class="bento-card bento-wide bento-glass" href={projects[0].href}>
-          <div class="bento-card-bg"></div>
+          <div class="bento-card-bloom"></div>
           <div class="bento-card-content">
             <span class="project-tag">{projects[0].type}</span>
             <h3>{projects[0].title}</h3>
@@ -149,7 +149,7 @@ const principles = [
 
         <!-- Anaqio (glass) -->
         <a class="bento-card bento-glass" href={projects[1].href}>
-          <div class="bento-card-bg"></div>
+          <div class="bento-card-bloom"></div>
           <div class="bento-card-content">
             <span class="project-tag">{projects[1].type}</span>
             <h3>{projects[1].title}</h3>
@@ -160,7 +160,7 @@ const principles = [
 
         <!-- Principles (glass) -->
         <article class="bento-card bento-glass">
-          <div class="bento-card-bg"></div>
+          <div class="bento-card-bloom"></div>
           <div class="bento-card-content">
             <span class="small-label">How I work</span>
             <h3 class="principles-heading">Calm execution under real constraints.</h3>
@@ -244,64 +244,6 @@ const principles = [
     grid-template-columns: 1fr;
   }
 
-  .bento-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border-radius: 38px;
-    padding: 0;
-    overflow: hidden;
-    isolation: isolate;
-    text-decoration: none;
-    color: inherit;
-    border: 0;
-    /* Frosted acrylic material — Apple never uses pure #fff */
-    background: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--gray-999) 90%, var(--gray-800)),
-      var(--gray-950)
-    );
-    /* Outer ambient shadow — almost invisible, avoids floating */
-    box-shadow:
-      0 8px 24px rgba(0, 0, 0, 0.04),
-      0 2px 4px rgba(0, 0, 0, 0.02);
-    transition:
-      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .bento-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    border-radius: inherit;
-    box-shadow:
-      inset 0 2px 8px color-mix(in srgb, var(--gray-999) 70%, transparent),
-      inset 0 -8px 20px rgba(0, 0, 0, 0.03);
-  }
-
-  .bento-card:hover {
-    transform: translateY(-3px);
-    box-shadow:
-      0 12px 32px rgba(0, 0, 0, 0.06),
-      0 4px 8px rgba(0, 0, 0, 0.03);
-  }
-
-  .bento-card-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.6;
-    background:
-      radial-gradient(ellipse 60% 30% at 15% 10%, rgba(200, 180, 255, 0.15), transparent 70%),
-      radial-gradient(ellipse 40% 40% at 85% 20%, rgba(180, 230, 255, 0.10), transparent 60%),
-      radial-gradient(ellipse 50% 50% at 50% 90%, rgba(255, 200, 220, 0.08), transparent 60%),
-      radial-gradient(ellipse 30% 50% at 30% 80%, rgba(200, 255, 220, 0.06), transparent 50%);
-  }
-
   .bento-card-content {
     position: relative;
     z-index: 1;
@@ -374,8 +316,8 @@ const principles = [
   .bento-glass .bento-card-bg {
     opacity: 0.8;
     background:
-      radial-gradient(ellipse 50% 40% at 25% 15%, rgba(180, 200, 255, 0.12), transparent 60%),
-      radial-gradient(ellipse 50% 50% at 70% 70%, rgba(255, 200, 230, 0.10), transparent 60%);
+      radial-gradient(ellipse 50% 40% at 25% 15%, rgba(251, 146, 60, 0.12), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 70% 70%, rgba(250, 204, 21, 0.10), transparent 60%);
   }
 
   .bento-glass:hover {
@@ -457,8 +399,8 @@ const principles = [
     pointer-events: none;
     z-index: -1;
     background:
-      radial-gradient(ellipse 60% 40% at 20% 20%, rgba(0, 114, 245, 0.06), transparent 70%),
-      radial-gradient(ellipse 40% 50% at 85% 60%, rgba(139, 92, 246, 0.04), transparent 70%);
+      radial-gradient(ellipse 60% 40% at 20% 20%, rgba(249, 115, 22, 0.06), transparent 70%),
+      radial-gradient(ellipse 40% 50% at 85% 60%, rgba(234, 88, 12, 0.04), transparent 70%);
   }
 
   .eyebrow {
@@ -605,7 +547,7 @@ const principles = [
     height: 18rem;
     top: -6rem;
     right: -4rem;
-    background: radial-gradient(circle, rgba(0, 114, 245, 0.12), transparent 70%);
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.12), transparent 70%);
   }
 
   .hero-orb-2 {
@@ -613,7 +555,7 @@ const principles = [
     height: 14rem;
     bottom: -4rem;
     right: 2rem;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent 70%);
+    background: radial-gradient(circle, rgba(234, 88, 12, 0.08), transparent 70%);
   }
 
   .hero-left {
