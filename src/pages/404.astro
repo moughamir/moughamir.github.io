@@ -106,8 +106,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   h1 {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     letter-spacing: -0.04em;
-    color: var(--gray-0);
-    font-weight: 600;
   }
 
   .message {
@@ -130,8 +128,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background: color-mix(in srgb, var(--gray-0) 90%, var(--gray-200));
-    color: var(--gray-999);
+    background: var(--button-bg);
+    color: var(--accent-text-over);
     font-weight: 600;
     font-size: 0.95rem;
     text-decoration: none;
@@ -167,9 +165,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .btn-ghost:hover {
-    color: var(--gray-0);
-    border-color: color-mix(in srgb, var(--gray-600) 40%, transparent);
-    background: color-mix(in srgb, var(--gray-800) 40%, transparent);
+    color: var(--link-color);
+    border-color: color-mix(in srgb, var(--accent-regular) 40%, transparent);
+    background: color-mix(in srgb, var(--accent-overlay) 60%, transparent);
   }
 
   @media (min-width: 50em) {
