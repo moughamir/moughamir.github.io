@@ -75,6 +75,7 @@ const isCurrentPage = (href: string) => {
     gap: 0.5rem;
     font-weight: 600;
     letter-spacing: -0.03em;
+    color: var(--accent-regular);
   }
 
   .nav-links,
@@ -104,7 +105,7 @@ const isCurrentPage = (href: string) => {
 
   .link:hover,
   .link[aria-current="page"] {
-    color: var(--gray-0);
+    color: var(--link-color);
     background: var(--gray-950);
     box-shadow: var(--border-shadow);
   }
@@ -115,12 +116,16 @@ const isCurrentPage = (href: string) => {
   }
 
   .social:hover {
-    color: var(--gray-0);
+    color: var(--link-color);
   }
 
   .hire {
-    background: var(--gray-0);
-    color: var(--gray-999);
+    background: var(--button-bg);
+    color: var(--accent-text-over);
+  }
+
+  .hire:hover {
+    background: color-mix(in srgb, var(--button-bg) 80%, black);
   }
 
   @media (min-width: 50em) {

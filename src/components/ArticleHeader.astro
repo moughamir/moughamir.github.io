@@ -27,12 +27,12 @@ const { description, title, subtitle, cover } = Astro.props;
                     Blog
                 </a>
             </div>
-            <h1 class="text-white text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mb-4 max-w-3xl">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mb-4 max-w-3xl">
                 {title}
             </h1>
-            {subtitle && <p class="text-white/70 text-lg md:text-xl mb-3">{subtitle}</p>}
+            {subtitle && <p class="text-white/80 text-lg md:text-xl mb-3">{subtitle}</p>}
             {description && (
-                <p class="text-white/50 text-base max-w-2xl">{description}</p>
+                <p class="text-white/70 text-base max-w-2xl">{description}</p>
             )}
             <slot />
         </div>
