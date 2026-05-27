@@ -10,6 +10,12 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://moughamir.github.io",
+  markdown: {
+    syntaxHighlight: "shiki",
+    shikiConfig: {
+      theme: "github-dark-high-contrast",
+    },
+  },
   integrations: [
     partytown({
       config: {
