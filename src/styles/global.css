@@ -2,6 +2,53 @@
 @plugin "@tailwindcss/typography";
 @plugin "daisyui";
 
+/* DaisyUI theme overrides — maps design tokens to daisyUI component colors */
+:root {
+    --color-primary: #ff6719;
+    --color-primary-content: #171717;
+    --color-secondary: #ff9d66;
+    --color-secondary-content: #171717;
+    --color-accent: #cc5200;
+    --color-accent-content: #ffffff;
+    --color-neutral: #404040;
+    --color-neutral-content: #e5e5e5;
+    --color-base-100: #ffffff;
+    --color-base-200: #f5f5f5;
+    --color-base-300: #ebebeb;
+    --color-base-content: #171717;
+    --color-info: #2563eb;
+    --color-info-content: #ffffff;
+    --color-success: #16a34a;
+    --color-success-content: #ffffff;
+    --color-warning: #ca8a04;
+    --color-warning-content: #ffffff;
+    --color-error: #dc2626;
+    --color-error-content: #ffffff;
+}
+
+:root.theme-dark {
+    --color-primary: #ff6719;
+    --color-primary-content: #ffffff;
+    --color-secondary: #ff9d66;
+    --color-secondary-content: #ffffff;
+    --color-accent: #cc5200;
+    --color-accent-content: #ffffff;
+    --color-neutral: #525252;
+    --color-neutral-content: #a3a3a3;
+    --color-base-100: #080808;
+    --color-base-200: #1f1f1f;
+    --color-base-300: #333333;
+    --color-base-content: #ffffff;
+    --color-info: #3b82f6;
+    --color-info-content: #ffffff;
+    --color-success: #22c55e;
+    --color-success-content: #ffffff;
+    --color-warning: #eab308;
+    --color-warning-content: #ffffff;
+    --color-error: #ef4444;
+    --color-error-content: #ffffff;
+}
+
 :root {
     --gray-0: #171717;
     --gray-50: #262626;
@@ -20,17 +67,18 @@
     --gray-999-basis: 0, 0%, 100%;
     --gray-999_40: rgba(255, 255, 255, 0.78);
 
-    --accent-light: #f97316;
-    --accent-regular: #171717;
-    --accent-dark: #ea580c;
-    --accent-overlay: rgba(0, 0, 0, 0.06);
-    --accent-subtle-overlay: rgba(0, 0, 0, 0.06);
-    --accent-text-over: #ffffff;
-    --link-color: #171717;
+    --accent-light: #ff9d66;
+    --accent-regular: #ff6719;
+    --accent-dark: #cc5200;
+    --accent-overlay: rgba(255, 103, 25, 0.12);
+    --accent-subtle-overlay: rgba(255, 103, 25, 0.06);
+    --accent-text-over: #171717;
+    --link-color: #bf4000;
+    --button-bg: var(--accent-regular);
 
     --gradient-subtle: linear-gradient(180deg, #ffffff, #fafafa);
-    --gradient-accent: linear-gradient(135deg, #f97316, #c2410c);
-    --gradient-accent-orange: linear-gradient(135deg, #f97316, #c2410c);
+    --gradient-accent: linear-gradient(135deg, #ff6719, #cc5200);
+    --gradient-accent-orange: linear-gradient(135deg, #ff6719, #cc5200);
     --gradient-stroke: linear-gradient(180deg, #ebebeb, #d4d4d4);
 
     --border-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
@@ -59,7 +107,7 @@
     --font-body: "Geist", var(--font-system);
     --font-brand: "Geist", var(--font-system);
     --font-mono:
-        "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "JetBrains Mono", "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         monospace;
     --theme-transition: 0.18s ease;
 }
@@ -81,12 +129,17 @@
     --gray-999: #080808;
     --gray-999-basis: 0, 0%, 3%;
     --gray-999_40: rgba(8, 8, 8, 0.78);
-    --accent-regular: #ffffff;
-    --accent-text-over: #171717;
-    --link-color: #ffffff;
+    --accent-light: #ff9d66;
+    --accent-regular: #ff6719;
+    --accent-dark: #cc5200;
+    --accent-overlay: rgba(255, 103, 25, 0.15);
+    --accent-subtle-overlay: rgba(255, 103, 25, 0.08);
+    --accent-text-over: #ffffff;
+    --link-color: #ff6719;
+    --button-bg: var(--accent-dark);
     --gradient-subtle: linear-gradient(180deg, #111111, #080808);
-    --gradient-accent: linear-gradient(135deg, #f97316, #c2410c);
-    --gradient-accent-orange: linear-gradient(135deg, #f97316, #c2410c);
+    --gradient-accent: linear-gradient(135deg, #ff6719, #cc5200);
+    --gradient-accent-orange: linear-gradient(135deg, #ff6719, #cc5200);
     --gradient-stroke: linear-gradient(180deg, #333333, #262626);
     --border-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
     --card-shadow:
@@ -145,8 +198,8 @@
     pointer-events: none;
     opacity: 0.6;
     background:
-        radial-gradient(ellipse 60% 30% at 15% 10%, rgba(251, 146, 60, 0.15), transparent 70%),
-        radial-gradient(ellipse 40% 40% at 85% 20%, rgba(249, 115, 22, 0.10), transparent 60%),
+        radial-gradient(ellipse 60% 30% at 15% 10%, rgba(255, 103, 25, 0.15), transparent 70%),
+        radial-gradient(ellipse 40% 40% at 85% 20%, rgba(255, 103, 25, 0.10), transparent 60%),
         radial-gradient(ellipse 50% 50% at 50% 90%, rgba(239, 68, 68, 0.08), transparent 60%),
         radial-gradient(ellipse 30% 50% at 30% 80%, rgba(250, 204, 21, 0.06), transparent 50%);
 }
@@ -225,8 +278,8 @@ a {
 
 a:focus-visible,
 button:focus-visible {
-    outline: 2px solid #ea580c;
-    outline-offset: 3px;
+    outline: 2px solid var(--link-color);
+    outline-offset: 2px;
 }
 
 h1,
@@ -237,7 +290,7 @@ h5 {
     line-height: 1.1;
     font-family: var(--font-brand);
     font-weight: 600;
-    color: var(--gray-0);
+    color: var(--accent-regular);
 }
 
 h1 {
@@ -258,6 +311,21 @@ h4 {
 
 h5 {
     font-size: var(--text-xl);
+}
+
+pre,
+code {
+    font-variant-ligatures: contextual;
+    font-feature-settings: "calt", "liga", "kern";
+}
+
+pre {
+    border: 1px solid color-mix(in srgb, var(--gray-800) 40%, transparent);
+}
+
+code {
+    font-variant-ligatures: contextual;
+    font-feature-settings: "calt", "liga", "kern";
 }
 
 ::selection {
