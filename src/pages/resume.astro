@@ -1,0 +1,647 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import Icon from "../components/Icon.astro";
+
+const profile = {
+  name: "Mohamed Moughamir",
+  title: "Senior Full-Stack Engineer",
+  phone: "(+212) 629-144-679",
+  email: "moughamir@gmail.com",
+  github: "https://github.com/moughamir",
+  linkedin: "https://linkedin.com/in/moughamir",
+  website: "https://moughamir.github.io",
+  location: "Casablanca, Morocco",
+};
+
+const experience = [
+  {
+    role: "Tech Lead",
+    company: "ANAQIO",
+    location: "Casablanca, Morocco",
+    dates: "2026 – Present",
+    highlights: [
+      "Orchestrating core technology strategy for AI-driven fashion commerce studio",
+      "Engineering with Bun, Next.js, TypeScript, Supabase",
+      "Integrating AI via Vercel AI SDK, Groq, Google Gemini APIs",
+      "Directing technical roadmap for startup accelerator programs and GITEX AFRICA",
+    ],
+  },
+  {
+    role: "Senior Full-Stack Engineer & Architect",
+    company: "HiBR Digital / Spotbills",
+    location: "Marina, Morocco",
+    dates: "Dec 2020 – Present",
+    highlights: [
+      "Architected high-performance web applications with React, Next.js, TypeScript",
+      "Optimized CI/CD pipelines",
+      "Provisioned/secured/scaled cloud infrastructure on GCP and AWS",
+    ],
+  },
+  {
+    role: "IT / Full-Stack Trainer & Pedagogical Lead",
+    company: "YouCode (Simplon)",
+    location: "Youssoufia, Morocco",
+    dates: "Jun 2021 – Dec 2021",
+    highlights: [
+      "Spearheaded FEBE engineering tracks",
+      "Supervised student tracking, curriculum engineering, technical mentorship",
+    ],
+  },
+  {
+    role: "CMS & Full-Stack Developer",
+    company: "Anteco Systems SL (AnyTech365.com)",
+    location: "Casablanca Nearshore, Morocco",
+    dates: "May 2020 – May 2021",
+    highlights: [
+      "Maintained/refactored/optimized high-traffic AnyTech365 infrastructure",
+      "Implemented Git Flow and CI/CD pipelines",
+      "Conducted security audits, authored internal technical wiki",
+    ],
+  },
+  {
+    role: "Senior Frontend Developer",
+    company: "Youmkin (Alphorm.com)",
+    location: "Rabat, Morocco",
+    dates: "May 2018 – Apr 2020",
+    highlights: [
+      "Engineered next-gen web interface with React and Redux",
+      "Developed high-performance custom video player",
+      "Co-authored enterprise Design System (React, JSS, Storybook)",
+      "Built Node.js microservices with PDFkit for invoice automation",
+      "Enforced TDD via Jest",
+    ],
+  },
+  {
+    role: "Founder & Lead Developer",
+    company: "Andiro.IO (AE-Hub)",
+    location: "Incubated by SOS Bidaya",
+    dates: "2018 – 2022",
+    highlights: [
+      "Founded Contrat.ma, automated smart contract/invoicing platform",
+      "React microservices architecture MVP",
+      "Laureate of 1000 Fikra program, AKWA GROUP backing",
+    ],
+  },
+  {
+    role: "Frontend Developer",
+    company: "SRCom (MyAstro.fr)",
+    location: "Casablanca, Morocco",
+    dates: "Sep 2015 – Mar 2018",
+    highlights: [
+      "Engineered canvas-driven promotional landing pages and mini-games",
+      "Built responsive client-side CRM interface with React.js",
+    ],
+  },
+];
+
+// NOTE: "Redux-Saga" renamed to "Saga" to match stack string
+// "PHP (Symfony)" — icon: php
+// "Bun ecosystem" — icon: bun  
+// "HTML5/CSS3" — no combined icon, shows text only
+const skills = {
+  frontend: ["React", "Redux", "Saga", "Flux", "JSS", "Storybook", "HTML5/CSS3", "Sass", "Next.js", "Tailwind CSS"],
+  backend: ["Node.js", "PHP (Symfony)", "Python", "Bun ecosystem"],
+  ai: ["LLM deployment", "Vercel AI SDK", "Groq API", "Google Gemini"],
+  databases: ["PostgreSQL", "MySQL", "MongoDB", "SQLite3", "Redis", "Supabase"],
+  devops: ["Docker", "Podman", "Kubernetes", "Buildah", "AWS", "GCP", "Azure", "CI/CD", "Nginx", "Linux"],
+  methodologies: ["Agile/Scrum", "TDD", "Git Flow", "PARA/Zettelkasten"],
+};
+
+const skillIcons: Record<string, string | undefined> = {
+  React: "react",
+  Redux: "redux",
+  Saga: "redux-saga",
+  Flux: "flux",
+  JSS: "jss",
+  Storybook: "storybook",
+  HTML5: "html5",
+  CSS3: "css3",
+  Sass: "sass",
+  "Next.js": "nextdotjs",
+  "Tailwind CSS": "tailwind-css",
+  "Node.js": "nodedotjs",
+  "PHP (Symfony)": "php",
+  Python: "python",
+  "Bun ecosystem": "bun",
+  PostgreSQL: "postgresql",
+  MySQL: "mysql",
+  MongoDB: "mongodb",
+  SQLite3: "sqlite",
+  Redis: "redis",
+  Supabase: "supabase",
+  Docker: "docker",
+  Podman: "podman",
+  Kubernetes: "kubernetes",
+  AWS: "aws",
+  GCP: "google-cloud",
+  Azure: "microsoft",
+  Nginx: "nginx",
+  Linux: "linux",
+  "Groq API": "groq",
+  "Google Gemini": "google-gemini",
+  "Vercel AI SDK": "vercel",
+  Git: "git",
+};
+
+function SkillTag({ skill }: { skill: string }) {
+  const slug = skillIcons[skill];
+  return (
+    <li>
+      {slug ? (
+        <span class="skill-tag">
+          <img
+            src={`https://thesvg.org/icons/${slug}/mono.svg`}
+            alt=""
+            class="skill-icon"
+            width="16"
+            height="16"
+            loading="lazy"
+          />
+          {skill}
+        </span>
+      ) : (
+        <span class="skill-tag">{skill}</span>
+      )}
+    </li>
+  );
+}
+
+const education = [
+  {
+    school: "Université Hassan II — FSJES Casablanca",
+    detail: "Licence en Gestion d'Entreprise",
+    dates: "2011–2015",
+  },
+  {
+    school: "HarvardX",
+    detail: "CS50: Introduction to Computer Science",
+    dates: "2016–2017",
+  },
+  {
+    school: "MITx",
+    detail: "Algorithms, Python programming, introductory AI",
+    dates: "2017",
+  },
+];
+
+const languages = [
+  { name: "Arabic", level: "Native" },
+  { name: "English", level: "Full professional proficiency / Bilingual" },
+  { name: "French", level: "Full professional proficiency" },
+];
+
+const projects = [
+  {
+    name: "Daktilo",
+    url: "https://daktilo.github.io",
+    description: "Open-source HTML template for Jekyll/WordPress/Ghost/Drupal",
+  },
+  {
+    name: "Made by Moroccan Devs",
+    url: "https://madeByMoroccanDevs.com",
+    description: "Community showcase gallery",
+  },
+  {
+    name: "Yummies",
+    url: "https://yummies.ma",
+    description: "Cross-platform recipe app with menu ordering engine",
+  },
+];
+---
+
+<BaseLayout
+  title="Resume — Mohamed Moughamir"
+  description="Senior Full-Stack Engineer based in Morocco. Experience in React, TypeScript, Node.js, PHP, Python, AI integration, and cloud infrastructure. Available for remote and contract roles."
+>
+  <main id="main-content" class="resume wrapper">
+    <!-- Resume Header -->
+    <section class="bento-section resume-header">
+      <p class="label">Resume</p>
+      <h1>{profile.name}</h1>
+      <p class="resume-title">{profile.title}</p>
+      <div class="resume-contact">
+        <a href={`mailto:${profile.email}`} class="resume-meta">{profile.email}</a>
+        <span class="resume-separator">·</span>
+        <span class="resume-meta">{profile.phone}</span>
+        <span class="resume-separator">·</span>
+        <span class="resume-meta">{profile.location}</span>
+      </div>
+      <div class="resume-cta-group">
+        <a class="btn-primary" href="/resume.pdf" download>
+          <Icon icon="arrow-right" size="1em" /> Download PDF
+        </a>
+        <a class="btn-ghost" href={profile.github} target="_blank" rel="noopener noreferrer">
+          <Icon icon="github-logo" size="1em" /> GitHub
+        </a>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="bento-section">
+      <div class="bento-section-header">
+        <p class="label">Experience</p>
+        <h2>Professional history.</h2>
+      </div>
+      <div class="resume-timeline">
+        {experience.map((job) => (
+          <div class="hover-3d">
+          <article class="bento-card resume-card">
+            <div class="bento-card-bloom" />
+            <div class="resume-card-content">
+              <div class="resume-card-header">
+                <h3>{job.company}</h3>
+                <p class="resume-role">{job.role}</p>
+                <p class="resume-meta">{job.location} &middot; {job.dates}</p>
+              </div>
+              <ul class="resume-bullets">
+                {job.highlights.map((h) => <li>{h}</li>)}
+              </ul>
+            </div>
+          </article>
+          <div></div><div></div><div></div>
+          <div></div><div></div><div></div>
+          <div></div><div></div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="bento-section">
+      <p class="label">Skills</p>
+      <h2>Technologies I work with</h2>
+      <div class="resume-skills">
+        <div class="resume-skill-category">
+          <p class="resume-skill-label">Frontend</p>
+          <ul class="bento-tag-cloud">
+            {skills.frontend.map((skill) => <SkillTag skill={skill} />)}
+          </ul>
+        </div>
+        <div class="resume-skill-category">
+          <p class="resume-skill-label">Backend</p>
+          <ul class="bento-tag-cloud">
+            {skills.backend.map((skill) => <SkillTag skill={skill} />)}
+          </ul>
+        </div>
+        <div class="resume-skill-category">
+          <p class="resume-skill-label">AI & Integration</p>
+          <ul class="bento-tag-cloud">
+            {skills.ai.map((skill) => <SkillTag skill={skill} />)}
+          </ul>
+        </div>
+        <div class="resume-skill-category">
+          <p class="resume-skill-label">Databases</p>
+          <ul class="bento-tag-cloud">
+            {skills.databases.map((skill) => <SkillTag skill={skill} />)}
+          </ul>
+        </div>
+        <div class="resume-skill-category">
+          <p class="resume-skill-label">DevOps</p>
+          <ul class="bento-tag-cloud">
+            {skills.devops.map((skill) => <SkillTag skill={skill} />)}
+          </ul>
+        </div>
+        <div class="resume-skill-category">
+          <p class="resume-skill-label">Methodologies</p>
+          <ul class="bento-tag-cloud">
+            {skills.methodologies.map((skill) => <SkillTag skill={skill} />)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="bento-section">
+      <div class="bento-section-header">
+        <p class="label">Education</p>
+        <h2>Academic background.</h2>
+      </div>
+      <div class="resume-edu-grid">
+        {education.map((edu) => (
+          <div class="hover-3d">
+          <article class="bento-card resume-edu-card">
+            <div class="bento-card-bloom" />
+            <div class="resume-edu-content">
+              <h3>{edu.school}</h3>
+              <p>{edu.detail}</p>
+              <p class="resume-meta">{edu.dates}</p>
+            </div>
+          </article>
+          <div></div><div></div><div></div>
+          <div></div><div></div><div></div>
+          <div></div><div></div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Languages -->
+    <section class="bento-section resume-languages">
+      <p class="label">Languages</p>
+      <div class="resume-languages-list">
+        {languages.map((lang) => (
+          <div class="resume-language-item">
+            <span class="resume-language-name">{lang.name}</span>
+            <span class="resume-meta">{lang.level}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Open Source -->
+    <section class="bento-section resume-projects">
+      <p class="label">Open Source</p>
+      <div class="resume-projects-list">
+        {projects.map((project) => (
+          <a href={project.url} target="_blank" rel="noopener noreferrer" class="resume-project-link">
+            <span>{project.name}</span>
+            <span class="resume-meta">{project.url.replace("https://", "")}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <ContactCTA />
+  </main>
+</BaseLayout>
+
+<style>
+  .resume {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  .resume-header h1 {
+    margin-top: 0.4rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 600;
+    letter-spacing: -0.065em;
+    line-height: 0.98;
+  }
+
+  .resume-title {
+    margin-top: 0.5rem;
+    color: var(--gray-500);
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  .resume-contact {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gray-500);
+    font-size: 0.95rem;
+  }
+
+  .resume-separator {
+    color: var(--gray-700);
+  }
+
+  .resume-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .resume-timeline {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .resume-card {
+    padding: 0;
+  }
+
+  .resume-card-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .resume-card-header h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.25rem;
+  }
+
+  .resume-role {
+    color: var(--gray-500);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .resume-meta {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--gray-500);
+  }
+
+  .resume-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .resume-bullets li {
+    position: relative;
+    padding-left: 1rem;
+    color: var(--gray-400);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .resume-bullets li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent-regular);
+    font-weight: bold;
+  }
+
+  .resume-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .resume-skill-category {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .resume-skill-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .bento-tag-cloud li {
+    font-size: 0.82rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .skill-icon {
+    width: 1rem;
+    height: 1rem;
+    opacity: 0.8;
+  }
+
+  .resume-edu-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .resume-edu-card {
+    padding: 1.5rem;
+  }
+
+  .resume-edu-content h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.25rem;
+  }
+
+  .resume-edu-content p {
+    color: var(--gray-500);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .resume-edu-content p:not(.resume-meta) {
+    margin-bottom: 0.25rem;
+  }
+
+  .resume-languages {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .resume-languages-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .resume-language-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .resume-language-name {
+    color: var(--gray-0);
+    font-weight: 500;
+  }
+
+  .resume-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .resume-projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .resume-project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .resume-project-link:hover {
+    text-decoration: underline;
+  }
+
+  .bento-section-header h2 {
+    max-width: 14ch;
+    margin-top: 0.4rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.065em;
+    line-height: 0.98;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: transform 160ms ease, box-shadow 160ms ease, color 160ms ease;
+  }
+
+  .btn-primary {
+    background: var(--button-bg);
+    color: var(--accent-text-over);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--accent-regular) 40%, transparent);
+  }
+
+  .btn-ghost {
+    color: var(--gray-300);
+    border: 1px solid var(--gray-800);
+  }
+
+  .btn-ghost:hover {
+    color: var(--link-color);
+    border-color: color-mix(in srgb, var(--accent-regular) 50%, transparent);
+  }
+
+  /* DaisyUI 3D hover — style isolation for cards. */
+  .resume .hover-3d {
+    width: 100%;
+  }
+
+  @media (min-width: 50em) {
+    .resume {
+      gap: 4rem;
+    }
+
+    .resume-edu-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
