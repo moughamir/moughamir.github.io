@@ -5,11 +5,11 @@ img: /assets/anaqio-arch.svg
 img_alt: Anaqio platform architecture diagram — input, AI pipeline, infrastructure, and output layers
 description: |
   Designed and built a full-stack AI fashion platform on a Bun monorepo. Turns flat lay product photos into photorealistic campaign visuals through prompt-engineered Gemini vision models.
-tags: ["AI", "Bun", "Monorepo", "Architecture"]
+tags:
   - AI
-  - Architecture
   - Bun
   - Monorepo
+  - Architecture
   - TypeScript
   - Product Design
 ---

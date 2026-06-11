@@ -5,7 +5,10 @@ img: /assets/hatomcity.png
 img_alt: Hatom City token showcase artwork
 description: |
   Designed and built a visual showcase for a blockchain ecosystem, combining brand direction, responsive UI, and front-end delivery.
-tags: ["Product", "Architecture", "Engineering"]
+tags:
+  - Product
+  - Architecture
+  - Engineering
   - Web3
   - Frontend
   - Branding
