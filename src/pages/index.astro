@@ -49,67 +49,33 @@ const principles = [
 
 <BaseLayout
   title="Mohamed Moughamir — Senior Software Engineer"
-  description="Senior full-stack developer in Morocco building practical web products with React, TypeScript, Node.js, PHP, Python, and AI-assisted delivery. Available for contract and full-time work."
+  description="Senior full-stack developer in Morocco building practical web products with React, TypeScript, Node.js, PHP, Python, and AI-assisted delivery."
 >
   <main id="main-content" class="home wrapper">
     <section class="hero-section">
       <div class="hero-container">
-        <div class="hero-left">
-          <p class="eyebrow">Bouskoura / Casablanca · Morocco · Remote-ready</p>
-          <h1>I build things that ship and scale.</h1>
-          <p class="lede">
-            Senior full-stack and AI product engineer using TypeScript, Bun, React, PHP/Python, and MCP. I ship fast, write clean code, and deliver products — not just features.
-          </p>
-          <div class="cta-group">
-            <a class="btn-primary" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">
-              <Icon icon="mail" size="1em" /> Hire me
-            </a>
-            <a class="btn-ghost" href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="github-logo" size="1em" /> GitHub</a>
-            <a class="btn-ghost" href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer"><Icon icon="linkedin-logo" size="1em" /> LinkedIn</a>
-          </div>
-        </div>
-        <div class="hero-right">
-          <div class="hero-graphic" aria-hidden="true">
-            <svg class="hero-code-icon" width="120" height="120" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-              <rect x="32" y="48" width="192" height="160" rx="8.5"/>
-              <path d="m80 96 40 32-40 32"/>
-              <path d="m136 128 40 0"/>
-            </svg>
-            <div class="hero-orb hero-orb-1"></div>
-            <div class="hero-orb hero-orb-2"></div>
-          </div>
-          <div class="availability-badge">
-            <span class="status-dot"></span>
-            <span>Available now</span>
-          </div>
-          <p class="badge-sub">Full-time · Contract · Rescue sprints</p>
-          <p class="badge-detail">React/TypeScript · Node.js · PHP · Python · AI workflows</p>
+        <p class="eyebrow">Bouskoura · Morocco · Remote-ready</p>
+        <h1 class="title">I build things that ship and scale.</h1>
+        <p class="lede">
+          Senior full-stack and AI product engineer using TypeScript, Bun, React, PHP/Python, and MCP. I ship fast, write clean code, and deliver products — not just features.
+        </p>
+        <div class="cta-group">
+          <a class="brutal-btn" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">
+            Hire me
+          </a>
+          <a class="btn-ghost" href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn-ghost" href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
     </section>
 
     <section class="proof-grid" aria-label="Proof points">
       {proof.map((item) => (
-        <article>
+        <article class="proof-card">
           <strong>{item.value}</strong>
           <span>{item.label}</span>
         </article>
       ))}
-    </section>
-
-    <section class="proof-strip" aria-label="Featured work">
-      <a href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer" class="proof-link">
-        <Icon icon="github-logo" size="1em" /> <span>250+ repos on GitHub</span>
-      </a>
-      <a href="/work/obsidian-mcp-plugin/" class="proof-link">
-        <Icon icon="code" size="1em" /> <span>Obsidian MCP Plugin</span>
-      </a>
-      <a href="/work/anaqio-platform/" class="proof-link">
-        <Icon icon="strategy" size="1em" /> <span>Anaqio AI Platform</span>
-      </a>
-      <a href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer" class="proof-link">
-        <Icon icon="linkedin-logo" size="1em" /> <span>LinkedIn</span>
-      </a>
     </section>
 
     <section class="bento">
@@ -119,81 +85,54 @@ const principles = [
       </div>
 
       <div class="bento-grid">
-        <!-- Tall card: Full-stack -->
-        <article class="bento-card bento-tall">
-          <div class="bento-card-bloom"></div>
-          <div class="bento-card-content">
-            <span class="bento-icon"><Icon icon="code" size="1.1em" /></span>
-            <h3>{capabilities[0].title}</h3>
-            <p>{capabilities[0].body}</p>
-          </div>
-        </article>
+        {capabilities.map((cap) => (
+          <article class="brutal-card">
+            <div class="card-content">
+              <h3>{cap.title}</h3>
+              <p>{cap.body}</p>
+            </div>
+          </article>
+        ))}
 
-        <!-- Rescue -->
-        <article class="bento-card">
-          <div class="bento-card-bloom"></div>
-          <div class="bento-card-content">
-            <span class="bento-icon"><Icon icon="strategy" size="1.1em" /></span>
-            <h3>{capabilities[1].title}</h3>
-            <p>{capabilities[1].body}</p>
-          </div>
-        </article>
-
-        <!-- AI Automation -->
-        <article class="bento-card">
-          <div class="bento-card-bloom"></div>
-          <div class="bento-card-content">
-            <span class="bento-icon"><Icon icon="rocket-launch" size="1.1em" /></span>
-            <h3>{capabilities[2].title}</h3>
-            <p>{capabilities[2].body}</p>
-          </div>
-        </article>
-
-        <!-- Project: Obsidian MCP (glass, full width) -->
-        <a class="bento-card bento-wide bento-glass" href={projects[0].href}>
-          <div class="bento-card-bloom"></div>
-          <div class="bento-card-content">
+        <a class="brutal-card brutal-wide" href={projects[0].href}>
+          <div class="card-content">
             <span class="project-tag">{projects[0].type}</span>
             <h3>{projects[0].title}</h3>
             <p>{projects[0].body}</p>
-            <span class="project-arrow"><Icon icon="arrow-right" size="0.9em" /></span>
           </div>
         </a>
 
-        <!-- Anaqio (glass) -->
-        <a class="bento-card bento-glass" href={projects[1].href}>
-          <div class="bento-card-bloom"></div>
-          <div class="bento-card-content">
+        <a class="brutal-card" href={projects[1].href}>
+          <div class="card-content">
             <span class="project-tag">{projects[1].type}</span>
             <h3>{projects[1].title}</h3>
             <p>{projects[1].body}</p>
-            <span class="project-arrow"><Icon icon="arrow-right" size="0.9em" /></span>
           </div>
         </a>
 
-        <!-- Principles (glass) -->
-        <article class="bento-card bento-glass">
-          <div class="bento-card-bloom"></div>
-          <div class="bento-card-content">
+        <article class="brutal-card">
+          <div class="card-content">
             <span class="small-label">How I work</span>
-            <h3 class="principles-heading">Calm execution under real constraints.</h3>
+            <h3>Calm execution under real constraints.</h3>
             <ul class="principle-list">
-              {principles.map((p) => <li><Icon icon="list" size="0.75em" /> {p}</li>)}
+              {principles.map((p) => <li>{p}</li>)}
             </ul>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="final-cta">
-      <p class="small-label">Need a builder who can start now?</p>
-      <h2>Let’s make the next sprint useful.</h2>
-      <p>
-        Send me the problem, the current link or repo, and what success should look like. I’ll reply with a practical next step.
-      </p>
-      <div class="cta-row centered">
-        <a class="btn-primary" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">Send an email</a>
-        <a class="btn-ghost" href="/about/">More about me</a>
+    <section class="final-cta brutal-card">
+      <div class="card-content centered">
+        <p class="small-label">Need a builder who can start now?</p>
+        <h2>Let’s make the next sprint useful.</h2>
+        <p>
+          Send me the problem, the current link or repo, and what success should look like.
+        </p>
+        <div class="cta-row centered">
+          <a class="brutal-btn" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">Send an email</a>
+          <a class="btn-ghost" href="/about/">More about me</a>
+        </div>
       </div>
     </section>
   </main>
@@ -203,523 +142,176 @@ const principles = [
   .home {
     display: flex;
     flex-direction: column;
-    gap: 5rem;
-    padding-bottom: 5rem;
+    gap: 8rem;
+    padding-bottom: 8rem;
   }
 
   .hero-section {
-    position: relative;
-    padding-top: 3rem;
-  }
-
-  .hero-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-
-  @media (min-width: 48rem) {
-    .hero-container {
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 4rem;
-    }
-    .hero-left {
-      max-width: 36rem;
-    }
-    .hero-right {
-      flex-shrink: 0;
-      padding-top: 0.5rem;
-    }
-  }
-
-  .bento {
-    position: relative;
-  }
-
-  .bento-label {
-    margin-bottom: 0.5rem;
-  }
-
-  .bento-label h2 {
-    max-width: 14ch;
-    margin-top: 0.4rem;
-    font-size: clamp(2.25rem, 6vw, 4rem);
-    letter-spacing: -0.065em;
-    line-height: 0.98;
-  }
-
-  .bento-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: 1fr;
-  }
-
-  .bento-card-content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    height: 100%;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      color-mix(in srgb, var(--gray-999) 70%, transparent) 35%,
-      color-mix(in srgb, var(--gray-999) 90%, transparent) 65%,
-      var(--gray-999) 100%
-    );
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-  }
-
-  .bento-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    margin-bottom: 1rem;
-    border-radius: 0.75rem;
-    background: color-mix(in srgb, var(--gray-900) 50%, transparent);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: var(--gray-400);
-    border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, var(--gray-999) 40%, transparent),
-      0 2px 4px rgba(0, 0, 0, 0.03);
-  }
-
-  .bento-card h3 {
-    font-size: 1.25rem;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.5rem;
-  }
-
-  .bento-card p {
-    color: var(--gray-500);
-    font-size: 0.9rem;
-    line-height: 1.65;
-  }
-
-  .bento-glass {
-    background: linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--gray-999) 50%, transparent),
-      color-mix(in srgb, var(--gray-999) 15%, transparent)
-    );
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
-    box-shadow:
-      0 8px 24px rgba(0, 0, 0, 0.04),
-      0 2px 4px rgba(0, 0, 0, 0.02),
-      inset 0 1px 0 color-mix(in srgb, var(--gray-999) 60%, transparent);
-    transition:
-      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      backdrop-filter 0.4s ease,
-      border-color 0.3s ease;
-  }
-
-  .bento-glass .bento-card-bg {
-    opacity: 0.8;
-    background:
-      radial-gradient(ellipse 50% 40% at 25% 15%, rgba(251, 146, 60, 0.12), transparent 60%),
-      radial-gradient(ellipse 50% 50% at 70% 70%, rgba(250, 204, 21, 0.10), transparent 60%);
-  }
-
-  .bento-glass:hover {
-    border-color: color-mix(in srgb, var(--gray-600) 25%, transparent);
-    backdrop-filter: blur(48px) saturate(200%);
-    -webkit-backdrop-filter: blur(48px) saturate(200%);
-    transform: translateY(-3px);
-    box-shadow:
-      0 12px 32px rgba(0, 0, 0, 0.06),
-      0 4px 8px rgba(0, 0, 0, 0.03),
-      inset 0 1px 0 color-mix(in srgb, var(--gray-999) 70%, transparent);
-  }
-
-  .bento-glass .bento-icon {
-    background: color-mix(in srgb, var(--gray-900) 40%, transparent);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid color-mix(in srgb, var(--gray-800) 20%, transparent);
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, var(--gray-999) 50%, transparent),
-      0 2px 4px rgba(0, 0, 0, 0.02);
-  }
-
-  .project-tag {
-    display: inline-block;
-    margin-bottom: 0.6rem;
-    color: var(--gray-500);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.02em;
-  }
-
-  .project-arrow {
-    display: inline-flex;
-    align-items: center;
-    margin-top: auto;
-    padding-top: 1rem;
-    color: var(--gray-500);
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
-  }
-
-  .bento-glass:hover .project-arrow {
-    transform: translateX(5px);
-    color: var(--link-color);
-  }
-
-  .principles-heading {
-    font-size: 1.15rem !important;
-    margin-bottom: 1rem !important;
-  }
-
-  .principle-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    padding: 0;
-    list-style: none;
-  }
-
-  .principle-list li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--gray-400);
-    font-size: 0.9rem;
-    line-height: 1.45;
-  }
-
-  .principle-list li svg {
-    flex-shrink: 0;
-    color: var(--accent-regular);
-    opacity: 0.7;
-  }
-
-  .bento::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    background:
-      radial-gradient(ellipse 60% 40% at 20% 20%, rgba(249, 115, 22, 0.06), transparent 70%),
-      radial-gradient(ellipse 40% 50% at 85% 60%, rgba(234, 88, 12, 0.04), transparent 70%);
+    padding: 6rem 0;
   }
 
   .eyebrow {
-    color: var(--gray-500);
+    color: var(--accent-regular);
     font-family: var(--font-mono);
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
+    font-size: 0.85rem;
+    font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
 
-  .hero-left h1 {
-    font-size: clamp(2.5rem, 7vw, 4.5rem);
-    font-weight: 600;
+  .title {
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 0.9;
+    font-weight: 900;
+    text-transform: uppercase;
     letter-spacing: -0.04em;
-    line-height: 1.05;
+    color: var(--gray-0);
+    max-width: 15ch;
   }
 
   .lede {
-    max-width: 60ch;
-    margin-top: 1.5rem;
-    color: var(--gray-400);
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    line-height: 1.6;
+    max-width: 50ch;
+    margin-top: 2rem;
+    color: var(--gray-200);
+    font-size: 1.25rem;
+    line-height: 1.5;
+    font-weight: 500;
   }
 
   .cta-group {
     display: flex;
     flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 3rem;
     align-items: center;
-    gap: 0.75rem;
-    margin-top: 2rem;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background: var(--button-bg);
-    color: var(--accent-text-over);
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    transition: transform 160ms ease, box-shadow 160ms ease;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--accent-regular) 40%, transparent);
   }
 
   .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.75rem 1rem;
-    color: var(--gray-300);
-    font-weight: 500;
-    font-size: 0.9rem;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    border: 1px solid var(--gray-800);
-    transition: color 160ms ease, border-color 160ms ease;
-  }
-
-  .btn-ghost:hover {
-    color: var(--link-color);
-    border-color: color-mix(in srgb, var(--accent-regular) 50%, transparent);
-  }
-
-  .btn-primary svg,
-  .btn-ghost svg {
-    display: inline;
-  }
-
-  .availability-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--gray-900);
-    border: 1px solid var(--gray-800);
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 500;
     color: var(--gray-0);
-  }
-
-  .status-dot {
-    display: inline-block;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 999px;
-    background: #16a34a;
-    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
-  }
-
-  .badge-sub {
-    margin-top: 0.75rem;
-    color: var(--gray-500);
-    font-size: 0.85rem;
-  }
-
-  .badge-detail {
-    margin-top: 0.35rem;
-    color: var(--gray-600);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-  }
-
-  .hero-graphic {
-    position: absolute;
-    inset: -4rem -4rem auto auto;
-    width: 22rem;
-    height: 22rem;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .hero-code-icon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 14rem;
-    height: 14rem;
-    color: var(--accent-regular);
-    opacity: 0.15;
-    z-index: 1;
-  }
-
-  .hero-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    z-index: 0;
-  }
-
-  .hero-orb-1 {
-    width: 18rem;
-    height: 18rem;
-    top: -6rem;
-    right: -4rem;
-    background: radial-gradient(circle, rgba(249, 115, 22, 0.12), transparent 70%);
-  }
-
-  .hero-orb-2 {
-    width: 14rem;
-    height: 14rem;
-    bottom: -4rem;
-    right: 2rem;
-    background: radial-gradient(circle, rgba(234, 88, 12, 0.08), transparent 70%);
-  }
-
-  .hero-left {
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-right {
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle, var(--gray-800) 1px, transparent 1px);
-    background-size: 32px 32px;
-    opacity: 0.25;
-    pointer-events: none;
-    mask-image: radial-gradient(ellipse 80% 60% at 70% 20%, black, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 70% 20%, black, transparent 70%);
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
   }
 
   .proof-grid {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 
-  .proof-grid article {
-    padding: 1rem;
-  }
-
-  .proof-grid strong {
+  .proof-card strong {
     display: block;
-    color: var(--gray-0);
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    letter-spacing: -0.07em;
+    font-size: 3rem;
+    font-weight: 900;
     line-height: 1;
+    color: var(--gray-0);
   }
 
-  .proof-grid span {
+  .proof-card span {
     display: block;
     margin-top: 0.5rem;
-    color: var(--gray-500);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gray-300);
+    text-transform: uppercase;
   }
 
-  .final-cta h2 {
-    max-width: 14ch;
-    margin-top: 0.4rem;
-    font-size: clamp(2.25rem, 6vw, 4rem);
-    letter-spacing: -0.065em;
-    line-height: 0.98;
+  .bento-label h2 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0.5rem 0 3rem;
   }
 
-  .final-cta p {
-    margin-top: 0.8rem;
-    color: var(--gray-500);
-    line-height: 1.65;
+  .bento-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  .brutal-card {
+    border: 2px solid var(--gray-0);
+    background: var(--gray-999);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+
+  .brutal-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0 0 var(--accent-regular);
+  }
+
+  .card-content {
+    padding: 2.5rem;
+  }
+
+  .card-content.centered {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-regular);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .principle-list {
+    margin-top: 2rem;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .principle-list li {
+    font-weight: 700;
+    color: var(--gray-100);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .principle-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-regular);
+  }
+
+  .small-label {
+    font-family: var(--font-mono);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--gray-400);
   }
 
   .final-cta {
-    padding: clamp(2rem, 7vw, 5rem);
-    text-align: center;
+    margin-top: 4rem;
   }
 
-  .final-cta h2 {
-    max-width: 13ch;
-    margin-inline: auto;
-  }
-
-  .final-cta p:not(.small-label) {
-    max-width: 56ch;
-    margin-inline: auto;
-  }
-
-  .proof-strip {
+  .cta-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    padding: 1rem;
-    background: color-mix(in srgb, var(--gray-950) 60%, transparent);
-    border-radius: 38px;
-    border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
-    backdrop-filter: blur(8px);
-    justify-content: center;
-  }
-
-  .proof-link {
-    display: inline-flex;
+    gap: 2rem;
+    margin-top: 3rem;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    color: var(--gray-500);
-    background: color-mix(in srgb, var(--gray-900) 50%, transparent);
-    border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
   }
 
-  .proof-link:hover {
-    color: var(--gray-0);
-    border-color: color-mix(in srgb, var(--gray-600) 50%, transparent);
-    background: color-mix(in srgb, var(--gray-800) 40%, transparent);
-  }
-
-  @media (max-width: 47.99rem) {
-    .hero-graphic {
-      display: none;
-    }
-    .hero-section::before {
-      display: none;
-    }
-  }
-
-  @media (min-width: 48rem) {
-    .proof-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
+  @media (min-width: 60rem) {
     .bento-grid {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
     }
-
-    .bento-tall {
-      grid-row: span 2;
-    }
-
-    .bento-wide {
-      grid-column: 1 / -1;
-    }
-
-    .bento-card-content {
-      padding: 2rem;
-    }
-
-    .bento-tall .bento-card-content {
-      padding: 2rem;
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .bento-grid {
-      grid-template-columns: 1.1fr 0.9fr;
-    }
-
-    .bento-card-content {
-      padding: 2.5rem;
+    .brutal-wide {
+      grid-column: span 2;
     }
   }
 </style>

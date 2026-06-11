@@ -2,412 +2,142 @@
 @plugin "@tailwindcss/typography";
 @plugin "daisyui";
 
-/* DaisyUI theme overrides — maps design tokens to daisyUI component colors */
+/* =========================================================
+   Typography Architecture
+   Archivo: Headings (Kinetic/Bold)
+   Space Grotesk: Body (Clean/Functional)
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
+
+/* =========================================================
+   60:30:10 Color Architecture (Kinetic Brutalism)
+   60% — Dominant: Background (base-100) 
+   30% — Secondary: Surfaces, cards, nav (base-200/300)
+   10% — Accent: CTAs, highlights (blue-600)
+   ========================================================= */
+
 :root {
-    --color-primary: #ff6719;
-    --color-primary-content: #171717;
-    --color-secondary: #ff9d66;
-    --color-secondary-content: #171717;
-    --color-accent: #cc5200;
-    --color-accent-content: #ffffff;
-    --color-neutral: #404040;
-    --color-neutral-content: #e5e5e5;
-    --color-base-100: #ffffff;
-    --color-base-200: #f5f5f5;
-    --color-base-300: #ebebeb;
-    --color-base-content: #171717;
-    --color-info: #2563eb;
-    --color-info-content: #ffffff;
-    --color-success: #16a34a;
-    --color-success-content: #ffffff;
-    --color-warning: #ca8a04;
-    --color-warning-content: #ffffff;
-    --color-error: #dc2626;
-    --color-error-content: #ffffff;
+  --color-primary: #18181b;
+  --color-primary-content: #ffffff;
+  --color-secondary: #3f3f46;
+  --color-secondary-content: #ffffff;
+  --color-accent: #2563eb;
+  --color-accent-content: #ffffff;
+  --color-neutral: #18181b;
+  --color-neutral-content: #ffffff;
+  --color-base-100: #fafafa;
+  --color-base-200: #f4f4f5;
+  --color-base-300: #e4e4e7;
+  --color-base-content: #09090b;
+  --color-info: #2563eb;
+  --color-success: #16a34a;
+  --color-warning: #ca8a04;
+  --color-error: #dc2626;
+
+  /* Legacy & Internal Tokens */
+  --gray-0: #09090b;      /* Foreground / Deepest Text */
+  --gray-50: #18181b;     /* Primary / Heavy Text */
+  --gray-100: #27272a;
+  --gray-200: #3f3f46;    /* Secondary Text */
+  --gray-300: #52525b;    /* Body Text (Contrast Fix) */
+  --gray-400: #71717a;    /* Muted Text */
+  --gray-500: #a1a1aa;
+  --gray-600: #d4d4d8;
+  --gray-700: #e4e4e7;    /* Borders */
+  --gray-800: #f4f4f5;    /* Surfaces */
+  --gray-900: #fafafa;    /* Background */
+  --gray-999: #ffffff;
+
+  --accent-regular: #2563eb;
+  --accent-dark: #1e40af;
+  --link-color: #2563eb;
+  
+  --font-body: "Space Grotesk", sans-serif;
+  --font-brand: "Archivo", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --theme-transition: 0.15s ease;
 }
 
 :root.theme-dark {
-    --color-primary: #ff6719;
-    --color-primary-content: #ffffff;
-    --color-secondary: #ff9d66;
-    --color-secondary-content: #ffffff;
-    --color-accent: #cc5200;
-    --color-accent-content: #ffffff;
-    --color-neutral: #525252;
-    --color-neutral-content: #a3a3a3;
-    --color-base-100: #080808;
-    --color-base-200: #1f1f1f;
-    --color-base-300: #333333;
-    --color-base-content: #ffffff;
-    --color-info: #3b82f6;
-    --color-info-content: #ffffff;
-    --color-success: #22c55e;
-    --color-success-content: #ffffff;
-    --color-warning: #eab308;
-    --color-warning-content: #ffffff;
-    --color-error: #ef4444;
-    --color-error-content: #ffffff;
+  --color-base-100: #09090b;
+  --color-base-200: #18181b;
+  --color-base-300: #27272a;
+  --color-base-content: #fafafa;
+  
+  --gray-0: #fafafa;
+  --gray-50: #f4f4f5;
+  --gray-100: #e4e4e7;
+  --gray-200: #d4d4d8;
+  --gray-300: #a1a1aa;
+  --gray-400: #71717a;
+  --gray-600: #3f3f46;
+  --gray-700: #27272a;
+  --gray-800: #18181b;
+  --gray-900: #09090b;
+  --gray-999: #000000;
+
+  --accent-regular: #3b82f6;
+  --accent-dark: #2563eb;
 }
 
-:root {
-    --gray-0: #171717;
-    --gray-50: #262626;
-    --gray-100: #333333;
-    --gray-200: #404040;
-    --gray-300: #525252;
-    --gray-400: #666666;
-    --gray-500: #737373;
-    --gray-600: #a3a3a3;
-    --gray-700: #d4d4d4;
-    --gray-800: #e5e5e5;
-    --gray-850: #ebebeb;
-    --gray-900: #f5f5f5;
-    --gray-950: #fafafa;
-    --gray-999: #ffffff;
-    --gray-999-basis: 0, 0%, 100%;
-    --gray-999_40: rgba(255, 255, 255, 0.78);
+/* =========================================================
+   Core Layout & Spacing
+   ========================================================= */
 
-    --accent-light: #ff9d66;
-    --accent-regular: #ff6719;
-    --accent-dark: #cc5200;
-    --accent-overlay: rgba(255, 103, 25, 0.12);
-    --accent-subtle-overlay: rgba(255, 103, 25, 0.06);
-    --accent-text-over: #171717;
-    --link-color: #bf4000;
-    --button-bg: var(--accent-regular);
-
-    --gradient-subtle: linear-gradient(180deg, #ffffff, #fafafa);
-    --gradient-accent: linear-gradient(135deg, #ff6719, #cc5200);
-    --gradient-accent-orange: linear-gradient(135deg, #ff6719, #cc5200);
-    --gradient-stroke: linear-gradient(180deg, #ebebeb, #d4d4d4);
-
-    --border-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
-    --card-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.04),
-        0 8px 8px -8px rgba(0, 0, 0, 0.04), inset 0 0 0 1px #fafafa;
-    --card-shadow-strong:
-        0 0 0 1px rgba(0, 0, 0, 0.12), 0 8px 22px rgba(0, 0, 0, 0.08),
-        inset 0 0 0 1px #fafafa;
-    --shadow-sm: var(--border-shadow);
-    --shadow-md: var(--card-shadow);
-    --shadow-lg: var(--card-shadow-strong);
-
-    --text-sm: 0.875rem;
-    --text-base: 1rem;
-    --text-md: 1.125rem;
-    --text-lg: 1.25rem;
-    --text-xl: 1.625rem;
-    --text-2xl: 2.125rem;
-    --text-3xl: 2.625rem;
-    --text-4xl: 3.5rem;
-    --text-5xl: 4.5rem;
-
-    --font-system:
-        system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --font-body: "Geist", var(--font-system);
-    --font-brand: "Geist", var(--font-system);
-    --font-mono:
-        "JetBrains Mono", "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        monospace;
-    --theme-transition: 0.18s ease;
-}
-
-:root.theme-dark {
-    --gray-0: #ffffff;
-    --gray-50: #f5f5f5;
-    --gray-100: #e5e5e5;
-    --gray-200: #d4d4d4;
-    --gray-300: #a3a3a3;
-    --gray-400: #8a8a8a;
-    --gray-500: #737373;
-    --gray-600: #525252;
-    --gray-700: #404040;
-    --gray-800: #333333;
-    --gray-850: #262626;
-    --gray-900: #1f1f1f;
-    --gray-950: #121212;
-    --gray-999: #080808;
-    --gray-999-basis: 0, 0%, 3%;
-    --gray-999_40: rgba(8, 8, 8, 0.78);
-    --accent-light: #ff9d66;
-    --accent-regular: #ff6719;
-    --accent-dark: #cc5200;
-    --accent-overlay: rgba(255, 103, 25, 0.15);
-    --accent-subtle-overlay: rgba(255, 103, 25, 0.08);
-    --accent-text-over: #ffffff;
-    --link-color: #ff6719;
-    --button-bg: var(--accent-dark);
-    --gradient-subtle: linear-gradient(180deg, #111111, #080808);
-    --gradient-accent: linear-gradient(135deg, #ff6719, #cc5200);
-    --gradient-accent-orange: linear-gradient(135deg, #ff6719, #cc5200);
-    --gradient-stroke: linear-gradient(180deg, #333333, #262626);
-    --border-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
-    --card-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.12), 0 2px 2px rgba(0, 0, 0, 0.28);
-    --card-shadow-strong:
-        0 0 0 1px rgba(255, 255, 255, 0.18), 0 12px 28px rgba(0, 0, 0, 0.4);
-}
-
-/* Bento Card Material System */
-.bento-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border-radius: 38px;
-    overflow: hidden;
-    isolation: isolate;
-    text-decoration: none;
-    color: inherit;
-    border: 0;
-    background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--gray-999) 90%, var(--gray-800)),
-        var(--gray-950)
-    );
-    box-shadow:
-        0 8px 24px rgba(0, 0, 0, 0.04),
-        0 2px 4px rgba(0, 0, 0, 0.02);
-    transition:
-        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.bento-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    border-radius: inherit;
-    box-shadow:
-        inset 0 2px 8px color-mix(in srgb, var(--gray-999) 70%, transparent),
-        inset 0 -8px 20px rgba(0, 0, 0, 0.03);
-}
-
-.bento-card:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 12px 32px rgba(0, 0, 0, 0.06),
-        0 4px 8px rgba(0, 0, 0, 0.03);
-}
-
-.bento-card-bloom {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.6;
-    background:
-        radial-gradient(ellipse 60% 30% at 15% 10%, rgba(255, 103, 25, 0.15), transparent 70%),
-        radial-gradient(ellipse 40% 40% at 85% 20%, rgba(255, 103, 25, 0.10), transparent 60%),
-        radial-gradient(ellipse 50% 50% at 50% 90%, rgba(239, 68, 68, 0.08), transparent 60%),
-        radial-gradient(ellipse 30% 50% at 30% 80%, rgba(250, 204, 21, 0.06), transparent 50%);
-}
-
-.bento-glass {
-    background: linear-gradient(
-        135deg,
-        color-mix(in srgb, var(--gray-999) 50%, transparent),
-        color-mix(in srgb, var(--gray-999) 15%, transparent)
-    );
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
-    box-shadow:
-        0 8px 24px rgba(0, 0, 0, 0.04),
-        0 2px 4px rgba(0, 0, 0, 0.02),
-        inset 0 1px 0 color-mix(in srgb, var(--gray-999) 60%, transparent);
-}
-
-@media (min-width: 52rem) {
-    .bento-card {
-        border-radius: 42px;
-    }
-}
-
-/* DaisyUI hover-3d uses empty grid cells with z-index: 1 for tilt-direction
-   detection. These cells sit above the clickable <a> tag and intercept clicks
-   on 8 of 9 grid cells, making cards largely unclickable. This fix makes the
-   hover-detection cells click-through while preserving the visual hover effect
-   (scale, shadow, glow). Direction-aware tilt is sacrificed for functional links. */
-.hover-3d > div:empty {
-    pointer-events: none;
-}
-
-html,
-body {
-    min-height: 100%;
-    overflow-x: hidden;
-}
-
-html {
-    color-scheme: light;
-    scroll-behavior: smooth;
-}
-
-html.theme-dark {
-    color-scheme: dark;
+html, body {
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {
-    background-color: var(--gray-999);
-    color: var(--gray-400);
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings:
-        "liga" 1,
-        "kern" 1;
-    line-height: 1.5;
+  background-color: var(--color-base-100);
+  color: var(--gray-300); /* Contrast safe: #52525b on #fafafa */
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-*,
-*::after,
-*::before {
-    box-sizing: border-box;
-    margin: 0;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-a {
-    color: var(--link-color);
-}
-
-a:focus-visible,
-button:focus-visible {
-    outline: 2px solid var(--link-color);
-    outline-offset: 2px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-    line-height: 1.1;
-    font-family: var(--font-brand);
-    font-weight: 600;
-    color: var(--accent-regular);
-}
-
-h1 {
-    font-size: var(--text-5xl);
-}
-
-h2 {
-    font-size: var(--text-4xl);
-}
-
-h3 {
-    font-size: var(--text-3xl);
-}
-
-h4 {
-    font-size: var(--text-2xl);
-}
-
-h5 {
-    font-size: var(--text-xl);
-}
-
-pre,
-code {
-    font-variant-ligatures: contextual;
-    font-feature-settings: "calt", "liga", "kern";
-}
-
-pre {
-    border: 1px solid color-mix(in srgb, var(--gray-800) 40%, transparent);
-}
-
-code {
-    font-variant-ligatures: contextual;
-    font-feature-settings: "calt", "liga", "kern";
-}
-
-::selection {
-    background: var(--gray-0);
-    color: var(--gray-999);
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-brand);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--gray-0);
 }
 
 .wrapper {
-    width: 100%;
-    max-width: 76rem;
-    margin-inline: auto;
-    padding-inline: 1.25rem;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
 }
 
-.stack {
-    display: flex;
-    flex-direction: column;
+/* Kinetic Brutalism UI Components */
+.brutal-card {
+  border: 2px solid var(--gray-0);
+  border-radius: 0;
+  background: var(--gray-999);
+  transition: transform 0.1s, box-shadow 0.1s;
 }
 
-.gap-2 {
-    gap: 0.5rem;
-}
-.gap-4 {
-    gap: 1rem;
-}
-.gap-8 {
-    gap: 2rem;
-}
-.gap-10 {
-    gap: 2.5rem;
-}
-.gap-15 {
-    gap: 3.75rem;
-}
-.gap-20 {
-    gap: 5rem;
-}
-.gap-30 {
-    gap: 7.5rem;
-}
-.gap-48 {
-    gap: 12rem;
+.brutal-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 4px 4px 0 0 var(--gray-0);
 }
 
-@media (min-width: 50em) {
-    .wrapper {
-        padding-inline: 2rem;
-    }
-    .lg\:gap-2 {
-        gap: 0.5rem;
-    }
-    .lg\:gap-4 {
-        gap: 1rem;
-    }
-    .lg\:gap-8 {
-        gap: 2rem;
-    }
-    .lg\:gap-10 {
-        gap: 2.5rem;
-    }
-    .lg\:gap-15 {
-        gap: 3.75rem;
-    }
-    .lg\:gap-20 {
-        gap: 5rem;
-    }
-    .lg\:gap-30 {
-        gap: 7.5rem;
-    }
-    .lg\:gap-48 {
-        gap: 12rem;
-    }
+.brutal-btn {
+  display: inline-flex;
+  padding: 0.75rem 1.5rem;
+  background: var(--gray-0);
+  color: var(--gray-999);
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.brutal-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 0 var(--accent-regular);
 }

@@ -1,0 +1,79 @@
+---
+interface Props {
+  techA: string;
+  techB: string;
+  points: { feature: string; techA_val: string; techB_val: string }[];
+}
+
+const { techA, techB, points } = Astro.props;
+---
+
+<div class="table-wrapper">
+  <table class="brutal-table">
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>{techA}</th>
+        <th>{techB}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {points.map((p) => (
+        <tr>
+          <td class="feature">{p.feature}</td>
+          <td>{p.techA_val}</td>
+          <td>{p.techB_val}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .brutal-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid var(--gray-0);
+    background: var(--gray-999);
+    font-family: var(--font-body);
+  }
+
+  th, td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border: 1px solid var(--gray-0);
+  }
+
+  th {
+    background: var(--gray-0);
+    color: var(--gray-999);
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: var(--font-brand);
+    letter-spacing: 0.05em;
+  }
+
+  tr:nth-child(even) {
+    background: var(--color-base-200);
+  }
+
+  .feature {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: var(--gray-100);
+    background: var(--gray-900);
+  }
+
+  @media (max-width: 50em) {
+    th, td {
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+</style>

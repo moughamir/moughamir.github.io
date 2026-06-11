@@ -21,34 +21,36 @@ const { align = "center", tagline, title } = Astro.props;
   .hero {
     font-size: var(--text-lg);
     text-align: center;
-  }
-
-  .title,
-  .tagline {
-    max-width: 37ch;
-    margin-inline: auto;
+    padding: 4rem 0;
   }
 
   .title {
-    font-size: var(--text-3xl);
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    color: var(--gray-0);
+    margin-bottom: 1.5rem;
+  }
+
+  .tagline {
+    font-size: var(--text-lg);
+    color: var(--gray-200);
+    max-width: 50ch;
+    margin-inline: auto;
+    font-weight: 500;
   }
 
   @media (min-width: 50em) {
     .hero {
-      font-size: var(--text-xl);
-    }
-
-    .start {
       text-align: start;
+      padding: 6rem 0;
     }
 
     .start .title,
     .start .tagline {
       margin-inline: unset;
-    }
-
-    .title {
-      font-size: var(--text-5xl);
     }
   }
 </style>

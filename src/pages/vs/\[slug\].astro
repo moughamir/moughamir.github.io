@@ -1,0 +1,134 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import ComparisonTable from "../../components/pSEO/ComparisonTable.astro";
+import pseoData from "../../data/pseo.json";
+
+export async function getStaticPaths() {
+  return pseoData.comparisons.map((c) => ({
+    params: { slug: c.id },
+    props: { data: c },
+  }));
+}
+
+const { data } = Astro.props;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": data.comparisonPoints.map((p) => ({
+    "@type": "Question",
+    "name": `What is the difference between ${data.techA} and ${data.techB} in terms of ${p.feature}?`,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": `${data.techA} has ${p.techA_val}, while ${data.techB} has ${p.techB_val}.`
+    }
+  }))
+};
+
+const techArticleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": data.title,
+  "description": data.description,
+  "author": {
+    "@type": "Person",
+    "name": "Mohamed Moughamir"
+  },
+  "keywords": data.tags.join(", ")
+};
+---
+
+<BaseLayout title={data.title} description={data.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(techArticleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  
+  <main id="main-content" class="wrapper stack gap-15">
+    <Hero
+      title={`${data.techA} VS ${data.techB}`}
+      tagline={data.description}
+      align="start"
+    />
+
+    <section class="stack gap-8">
+      <h2 class="section-title">Technical Breakdown</h2>
+      <ComparisonTable 
+        techA={data.techA} 
+        techB={data.techB} 
+        points={data.comparisonPoints} 
+      />
+    </section>
+
+    <section class="brutal-card verdict-card">
+      <div class="card-content">
+        <p class="label">The Verdict</p>
+        <p class="verdict-text">{data.verdict}</p>
+      </div>
+    </section>
+
+    <section class="stack gap-4">
+      <h2 class="section-title">Related Topics</h2>
+      <div class="tag-cloud">
+        {data.tags.map((t) => (
+          <li><a href={`/topics/${t.toLowerCase()}/`}>{t}</a></li>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .section-title {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    border-bottom: 2px solid var(--gray-0);
+    padding-bottom: 0.5rem;
+  }
+
+  .verdict-card {
+    background: var(--gray-0);
+    color: var(--gray-999);
+  }
+
+  .verdict-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .label {
+    color: var(--accent-regular);
+    font-family: var(--font-mono);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .tag-cloud li a {
+    display: block;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--gray-0);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gray-0);
+  }
+
+  .tag-cloud li a:hover {
+    background: var(--gray-0);
+    color: var(--gray-999);
+  }
+</style>

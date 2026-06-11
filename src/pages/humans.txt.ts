@@ -13,7 +13,7 @@ Tailwind CSS: https://tailwindcss.com
 Playwright: https://playwright.dev
 
 /* SITE */
-Last update: 2026/05/26
+Last update: 2026/06/11
 Standards: HTML5, CSS3
 Software: Astro, Bun, Tailwind CSS
 `;

@@ -48,6 +48,9 @@ export default defineConfig({
         } else if (item.url.includes("/work/")) {
           item.changefreq = "monthly";
           item.priority = 0.6;
+        } else if (item.url.includes("/vs/") || item.url.includes("/blueprints/")) {
+          item.changefreq = "weekly";
+          item.priority = 0.9;
         }
         return item;
       },

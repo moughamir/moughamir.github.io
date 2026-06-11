@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import pseoData from "../../data/pseo.json";
+
+const blogEntries = await getCollection("blog");
+const workEntries = await getCollection("work");
+
+const allTags = new Set();
+[...blogEntries, ...workEntries].forEach((entry) => {
+    entry.data.tags?.forEach((tag) => allTags.add(tag));
+});
+
+// Add pSEO tags
+pseoData.comparisons.forEach(c => c.tags.forEach(t => allTags.add(t)));
+pseoData.blueprints.forEach(b => b.tags.forEach(t => allTags.add(t)));
+
+const sortedTags = Array.from(allTags).sort();
+---
+
+<BaseLayout
+    title="Topics | Mohamed Moughamir"
+    description="Explore projects and articles by topic: AI, Bun, TypeScript, Architecture, and more."
+>
+    <main id="main-content" class="wrapper stack gap-8">
+        <Hero
+            title="Topics"
+            tagline="Explore projects and articles by technical cluster."
+            align="start"
+        />
+        <div class="topics-grid">
+            {sortedTags.map((tag) => (
+                <a href={`/topics/${tag.toLowerCase()}/`} class="brutal-card tag-card">
+                    <div class="card-content">
+                        <h3>{tag}</h3>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </main>
+</BaseLayout>
+
+<style>
+    .topics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .tag-card {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .tag-card h3 {
+        margin: 0;
+        font-size: 1.25rem;
+    }
+</style>

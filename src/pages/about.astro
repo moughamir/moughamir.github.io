@@ -35,481 +35,261 @@ const education = [
 
 <BaseLayout
   title="About Mohamed Moughamir — Full-Stack Developer"
-  description="Senior Software Engineer based in Morocco, expert in React, TypeScript, Bun, and agentic AI workflows. 10+ years experience building high-conversion, scalable web products."
+  description="Senior Software Engineer based in Morocco, expert in React, TypeScript, Bun, and agentic AI workflows."
 >
-  <main id="main-content" class="about wrapper">
-    <div class="bento-intro">
-      <div class="hover-3d">
-      <div class="bento-card bento-intro-card">
-        <div class="bento-card-bloom" />
-        <div class="bento-intro-content">
+  <main id="main-content" class="about wrapper stack gap-20">
+    <section class="intro-section">
+      <div class="brutal-card intro-card">
+        <div class="card-content">
           <p class="label">About</p>
-          <h1>Senior Software Engineer: Product-Minded & Founder-Driven.</h1>
-          <p>
+          <h1 class="title">Senior Software Engineer: Product-Minded & Founder-Driven.</h1>
+          <p class="lede">
             I'm Mohamed Moughamir, a Senior Full-Stack Engineer based in Casablanca, Morocco. With over 10 years of experience, I blend product intuition with engineering precision to ship resilient, user-focused digital tools.
           </p>
-          <p>
-            My expertise spans React, TypeScript, Bun, Node.js, and AI-assisted engineering. From refactoring complex enterprise monoliths to launching startup MVPs, I turn digital friction into seamless, high-converting product experiences. Currently open to remote Senior/Lead engineering roles in the EMEA region.
+          <p class="lede">
+            My expertise spans React, TypeScript, Bun, Node.js, and AI-assisted engineering. Currently open to remote Senior/Lead engineering roles in the EMEA region.
           </p>
         </div>
       </div>
-      <div></div><div></div><div></div>
-      <div></div><div></div><div></div>
-      <div></div><div></div>
-      </div>
-
-      <div class="hover-3d">
-      <div class="bento-connect-card">
-        <div class="bento-intro-content">
-          <div class="profile-photo" aria-label="Mohamed Moughamir profile photo" role="img">
+      
+      <div class="brutal-card portrait-card">
+        <div class="card-content centered">
+          <div class="profile-photo">
             <img
               src="/assets/portrait.png"
               alt="Mohamed Moughamir — Senior Software Engineer"
-              width="96"
-              height="96"
+              width="120"
+              height="140"
               loading="lazy"
             />
           </div>
-          <p class="label">Connect</p>
-          <div class="social-links" aria-label="Connect with me">
-            <a href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-btn">
-              <svg width="18" height="18" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"><g stroke-linecap="round" stroke-linejoin="round"><path fill="none" stroke-width="14.7" d="M55.7 167.2c13.9 1 21.3 13.1 22.2 14.6 4.2 7.2 10.4 9.6 18.3 7.1l1.1-3.4a60.3 60.3 0 0 1-25.8-11.9c-12-10.1-18-25.6-18-46.3"/><path fill="none" stroke-width="16" d="M61.4 205.1a24.5 24.5 0 0 1-3-6.1c-3.2-7.9-7.1-10.6-7.8-11.1l-1-.6c-2.4-1.6-9.5-6.5-7.2-13.9 1.4-4.5 6-7.2 12.3-7.2h.8c4 .3 7.6 1.5 10.7 3.2-9.1-10.1-13.6-24.3-13.6-42.3 0-11.3 3.5-21.7 10.1-30.4A46.7 46.7 0 0 1 65 67.3a8.3 8.3 0 0 1 5-4.7c2.8-.9 13.3-2.7 33.2 9.9a105 105 0 0 1 50.5 0c19.9-12.6 30.4-10.8 33.2-9.9 2.3.7 4.1 2.4 5 4.7 5 12.7 4 23.2 2.6 29.4 6.7 8.7 10 18.9 10 30.4 0 42.6-25.8 54.7-43.6 58.7 1.4 4.1 2.2 8.8 2.2 13.7l-.1 23.4v2.3"/><path fill="none" stroke-width="16" d="M160.9 185.7c1.4 4.1 2.2 8.8 2.2 13.7l-.1 23.4v2.3A98.6 98.6 0 1 0 61.4 205c-1.4-2.1-11.3-17.5-11.8-17.8-2.4-1.6-9.5-6.5-7.2-13.9 1.4-4.5 6-7.2 12.3-7.2h.8c4 .3 7.6 1.5 10.7 3.2-9.1-10.1-13.6-24.3-13.6-42.3 0-11.3 3.5-21.7 10.1-30.4A46.4 46.4 0 0 1 65 67.3a8.3 8.3 0 0 1 5-4.7c2.8-.9 13.3-2.7 33.2 9.9a105 105 0 0 1 50.5 0c19.9-12.6 30.4-10.8 33.2-9.9 2.3.7 4.1 2.4 5 4.7 5 12.7 4 23.2 2.6 29.4 6.7 8.7 10 18.9 10 30.4.1 42.6-25.8 54.7-43.6 58.6z"/><path fill="none" stroke-width="18.7" d="m170.1 203.3 17.3-12 17.2-18.7 9.5-26.6v-27.9l-9.5-27.5" /><path fill="none" stroke-width="22.7" d="m92.1 57.3 23.3-4.6 18.7-1.4 29.3 5.4m-110 32.6-8 16-4 21.4.6 20.3 3.4 13" /><path fill="none" stroke-width="13.3" d="M28.8 133a100 100 0 0 0 66.9 94.4v-8.7c-22.4 1.8-33-11.5-35.6-19.8-3.4-8.6-7.8-11.4-8.5-11.8"/></g></svg>
-              <span>GitHub</span>
-            </a>
-            <a href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-btn linkedin">
-              <svg width="18" height="18" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"><rect width="184" height="184" x="36" y="36" fill="none" stroke-width="16" rx="8"/><path d="M120 112v64m-32-64v64m32-36a28 28 0 0 1 56 0v36"/><circle cx="88" cy="80" r="12" stroke="none"/></svg>
-              <span>LinkedIn</span>
-              <span class="verified-tag">Verified</span>
-            </a>
-            <a href="https://youtube.com/@moughamir" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="social-btn">
-              <svg width="18" height="18" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"><path d="m160 128-48-32v64l48-32z"/><path d="M24 128c0 30 3 47 5 56a16 16 0 0 0 10 11c34 13 89 13 89 13s56 0 89-13a16 16 0 0 0 10-11c2-9 5-26 5-56s-3-47-5-56a16 16 0 0 0-10-11c-33-13-89-13-89-13s-55 0-89 13a16 16 0 0 0-10 11c-2 9-5 26-5 56Z"/></svg>
-              <span>YouTube</span>
-            </a>
-            <a href="https://open.spotify.com/show/7EmRYqAIgMjQroosj2LV95" target="_blank" rel="noopener noreferrer" aria-label="Podcast" class="social-btn">
-              <svg width="18" height="18" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"><path d="M128 176a48 48 0 1 0-48-48 48 48 0 0 0 48 48Z"/><path d="M128 32C75 32 32 75 32 128s43 96 96 96 96-43 96-96S181 32 128 32Zm0 160a64 64 0 1 1 64-64 64.1 64.1 0 0 1-64 64Z"/></svg>
-              <span>Podcast</span>
-            </a>
-            <a href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)" aria-label="Email" class="social-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-              <span>Email</span>
-            </a>
+          <p class="label">Status</p>
+          <div class="status-badge">
+            <span class="dot"></span>
+            Available Now
           </div>
         </div>
       </div>
-      <div></div><div></div><div></div>
-      <div></div><div></div><div></div>
-      <div></div><div></div>
-      </div>
-    </div>
+    </section>
 
-    <section class="bento-section">
-      <div class="bento-section-header">
-        <p class="label">Signals</p>
-        <h2>Experience that spans products, startups, and agencies.</h2>
-      </div>
-      <div class="bento-signal-grid">
+    <section class="signals-section stack gap-8">
+      <h2 class="section-title">Signals</h2>
+      <div class="signals-grid">
         {experienceSignals.map((signal) => (
-          <div class="hover-3d">
-          <article class="bento-card bento-signal-card">
-            <div class="bento-card-bloom" />
-            <p>{signal}</p>
+          <article class="brutal-card signal-card">
+            <div class="card-content">
+              <p>{signal}</p>
+            </div>
           </article>
-          <div></div><div></div><div></div>
-          <div></div><div></div><div></div>
-          <div></div><div></div>
-          </div>
         ))}
       </div>
     </section>
 
-    <div class="bento-two-col">
-      <div class="hover-3d">
-      <section class="bento-card bento-section-card">
-        <div class="bento-card-bloom" />
-        <div class="bento-section-card-content">
+    <section class="capabilities-section grid-2-col">
+      <div class="brutal-card">
+        <div class="card-content">
           <p class="label">How I help</p>
-          <h2>I turn unclear digital problems into shipped next steps.</h2>
+          <h3>I turn unclear digital problems into shipped next steps.</h3>
           <div class="copy-stack">
             <p>
-              I can design and build a landing page, repair a broken website, modernize a PHP/WordPress stack, ship React/TypeScript product features, wire APIs, automate a workflow, or help a small team make technical decisions without overcomplicating the system.
-            </p>
-            <p>
-              I'm not only interested in code that compiles. I care about whether the page converts, whether the handoff is understandable, whether the system can be maintained, and whether the work creates business value quickly.
+              I can design and build a landing page, repair a broken website, modernize a PHP/WordPress stack, ship React/TypeScript product features, or automate a workflow without overcomplicating the system.
             </p>
           </div>
         </div>
-      </section>
-      <div></div><div></div><div></div>
-      <div></div><div></div><div></div>
-      <div></div><div></div>
       </div>
 
-      <div class="hover-3d">
-      <section class="bento-card bento-section-card">
-        <div class="bento-card-bloom" />
-        <div class="bento-section-card-content">
+      <div class="brutal-card">
+        <div class="card-content">
           <p class="label">Work style</p>
-          <h2>Calm, direct, useful.</h2>
+          <h3>Calm, direct, useful.</h3>
           <div class="copy-stack">
             <p>
               I like small, sharp execution loops: understand the constraint, identify the highest-leverage fix, ship something visible, then iterate with evidence.
             </p>
-            <p>
-              That makes me useful for startups, agencies, founders, and teams that need someone who can cross boundaries: design, frontend, backend, content, automation, and product judgment.
-            </p>
           </div>
         </div>
-      </section>
-      <div></div><div></div><div></div>
-      <div></div><div></div><div></div>
-      <div></div><div></div>
-      </div>
-    </div>
-
-    <div class="hover-3d">
-    <section class="bento-card bento-section-card bento-stack-card">
-      <div class="bento-card-bloom" />
-      <div class="bento-section-card-content stack-layout">
-        <div class="stack-header">
-          <p class="label">Stack</p>
-          <h2>Broad web range, with a practical full-stack core.</h2>
-        </div>
-        <ul class="bento-tag-cloud">
-          {stack.map((item) => <li>{item}</li>)}
-        </ul>
       </div>
     </section>
-    <div></div><div></div><div></div>
-    <div></div><div></div><div></div>
-    <div></div><div></div>
-    </div>
 
-    <section class="bento-section">
-      <div class="bento-section-header">
-        <p class="label">Education</p>
-        <h2>Business foundation, computer science self-study, continuous practice.</h2>
+    <section class="stack-section">
+      <div class="brutal-card">
+        <div class="card-content">
+          <p class="label">The Stack</p>
+          <h2 class="section-title">Broad web range, practical full-stack core.</h2>
+          <ul class="tag-cloud">
+            {stack.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
       </div>
-      <div class="bento-edu-grid">
+    </section>
+
+    <section class="edu-section stack gap-8">
+      <h2 class="section-title">Education</h2>
+      <div class="edu-grid">
         {education.map((item) => (
-          <div class="hover-3d">
-          <article class="bento-card bento-edu-card">
-            <div class="bento-card-bloom" />
-            <div class="bento-edu-content">
+          <article class="brutal-card">
+            <div class="card-content">
               <h3>{item.school}</h3>
               <p>{item.detail}</p>
             </div>
           </article>
-          <div></div><div></div><div></div>
-          <div></div><div></div><div></div>
-          <div></div><div></div>
-          </div>
         ))}
       </div>
     </section>
   </main>
-
   <ContactCTA />
 </BaseLayout>
 
 <style>
   .about {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    padding-bottom: 5rem;
+    padding: 6rem 0;
+  }
+
+  .intro-section {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
   }
 
   .label {
-    color: var(--gray-500);
+    color: var(--accent-regular);
     font-family: var(--font-mono);
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
+    font-size: 0.85rem;
+    font-weight: 700;
     text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
   }
 
-  .bento-intro {
-    display: grid;
-    gap: 1rem;
+  .title {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    line-height: 0.95;
+    margin-bottom: 2rem;
   }
 
-  .bento-intro-card {
-    padding: 2rem;
-  }
-
-  .bento-intro-content {
-    position: relative;
-    z-index: 1;
-  }
-
-  .bento-connect-card {
-    min-height: auto;
-    position: relative;
-    border-radius: 1.25rem;
-    padding: 2rem;
-    background: color-mix(in srgb, var(--gray-950) 80%, var(--gray-900));
-    border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
-    box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.03),
-      0 1px 2px rgba(0, 0, 0, 0.02);
-  }
-
-  .bento-connect-card .bento-intro-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .profile-photo img {
-    width: 80px;
-    height: 96px;
-    object-fit: cover;
+  .lede {
+    font-size: 1.2rem;
+    color: var(--gray-300);
+    max-width: 60ch;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    line-height: 1.5;
   }
 
   .profile-photo {
-    width: 80px;
-    height: 96px;
-    background-color: var(--gray-900);
-    border: 1px solid color-mix(in srgb, var(--gray-800) 40%, transparent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 120px;
+    height: 140px;
+    background: var(--gray-100);
+    border: 2px solid var(--gray-0);
     margin-bottom: 1.5rem;
     overflow: hidden;
-    box-shadow:
-      0 4px 12px rgba(0, 0, 0, 0.04),
-      inset 0 1px 0 color-mix(in srgb, var(--gray-999) 30%, transparent);
   }
 
-  .bento-intro-content h1 {
-    max-width: 14ch;
-    margin-top: 0.5rem;
-    font-size: clamp(2.5rem, 7vw, 4.5rem);
-    font-weight: 600;
-    letter-spacing: -0.065em;
-    line-height: 0.92;
+  .profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
   }
 
-  .bento-intro-content p {
-    max-width: 68ch;
-    margin-top: 1.25rem;
-    color: var(--gray-500);
-    font-size: 1.1rem;
-    line-height: 1.7;
-  }
-
-  .social-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
     gap: 0.5rem;
-    margin-top: 1rem;
-  }
-
-  .social-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.45rem 0.75rem;
-    border-radius: 999px;
-    color: var(--gray-500);
-    background: color-mix(in srgb, var(--gray-900) 60%, transparent);
-    border: 1px solid color-mix(in srgb, var(--gray-800) 40%, transparent);
-    font-size: 0.82rem;
-    font-weight: 500;
-    text-decoration: none;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow:
-      inset 0 1px 0 color-mix(in srgb, var(--gray-999) 40%, transparent),
-      0 2px 4px rgba(0, 0, 0, 0.02);
-    transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
-  }
-
-  .social-btn:hover {
-    color: var(--link-color);
-    border-color: color-mix(in srgb, var(--accent-regular) 40%, transparent);
-    background: color-mix(in srgb, var(--accent-overlay) 60%, transparent);
-  }
-
-  .verified-tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.1rem 0.4rem;
-    margin-left: 0.2rem;
-    border-radius: 999px;
-    background: var(--accent-light);
-    color: var(--gray-999);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-
-  .bento-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .bento-section-header h2 {
-    max-width: 14ch;
-    margin-top: 0.4rem;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 600;
-    letter-spacing: -0.065em;
-    line-height: 0.98;
-  }
-
-  .bento-signal-grid {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .bento-signal-card {
-    padding: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
     color: var(--gray-0);
-    font-size: 1rem;
-    line-height: 1.6;
-    font-weight: 500;
   }
 
-  .bento-signal-card p {
-    position: relative;
-    z-index: 1;
+  .dot {
+    width: 10px;
+    height: 10px;
+    background: #16a34a;
+    border-radius: 0;
+    border: 1px solid var(--gray-0);
   }
 
-  .bento-two-col {
+  .section-title {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    margin-bottom: 2rem;
+  }
+
+  .signals-grid {
     display: grid;
-    gap: 1rem;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 
-  .bento-section-card {
-    padding: 0;
-  }
-
-  .bento-section-card-content {
-    position: relative;
-    z-index: 1;
-    padding: 2rem;
-  }
-
-  .bento-section-card-content h2 {
-    max-width: 14ch;
-    margin-top: 0.4rem;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  .signal-card {
     font-weight: 600;
-    letter-spacing: -0.065em;
-    line-height: 0.98;
+    color: var(--gray-100);
+    line-height: 1.5;
+  }
+
+  .grid-2-col {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
   }
 
   .copy-stack p {
-    max-width: 64ch;
-    margin-top: 1.25rem;
-    color: var(--gray-500);
-    font-size: 1.1rem;
-    line-height: 1.7;
+    color: var(--gray-300);
+    font-weight: 500;
+    line-height: 1.6;
   }
 
-  .copy-stack p:first-child {
-    margin-top: 0;
-  }
-
-  .bento-stack-card .stack-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .stack-header h2 {
-    max-width: 14ch;
-    margin-top: 0.4rem;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 600;
-    letter-spacing: -0.065em;
-    line-height: 0.98;
-  }
-
-  .bento-tag-cloud {
+  .tag-cloud {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
-    padding: 0;
+    gap: 0.75rem;
     list-style: none;
+    padding: 0;
+    margin-top: 2rem;
   }
 
-  .bento-tag-cloud li {
-    border-radius: 999px;
-    padding: 0.5rem 0.75rem;
-    color: var(--gray-0);
-    background: color-mix(in srgb, var(--gray-900) 60%, transparent);
+  .tag-cloud li {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--gray-0);
     font-family: var(--font-mono);
-    font-size: 0.86rem;
-    border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: var(--gray-999);
   }
 
-  .bento-edu-grid {
+  .edu-grid {
     display: grid;
-    gap: 1rem;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 
-  .bento-edu-card {
-    padding: 1.5rem;
+  .edu-grid h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
   }
 
-  .bento-edu-content {
-    position: relative;
-    z-index: 1;
+  .edu-grid p {
+    color: var(--gray-300);
+    font-weight: 500;
   }
 
-  .bento-edu-content h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: -0.03em;
+  .centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
-  .bento-edu-content p {
-    margin-top: 0.4rem;
-    color: var(--gray-500);
-    font-size: 0.95rem;
-  }
-
-  /* DaisyUI 3D hover — style isolation for cards. */
-  .about .hover-3d {
-    width: 100%;
-  }
-
-  @media (min-width: 52rem) {
-    .bento-intro {
-      grid-template-columns: 2fr 1fr;
+  @media (min-width: 60rem) {
+    .intro-section {
+      grid-template-columns: 1fr 300px;
     }
-
-    .bento-connect-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .bento-signal-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .bento-two-col {
+    .grid-2-col {
       grid-template-columns: 1fr 1fr;
-    }
-
-    .bento-edu-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .bento-intro-card {
-      padding: 2.5rem;
-    }
-
-    .bento-section-card-content {
-      padding: 2.5rem;
     }
   }
 </style>

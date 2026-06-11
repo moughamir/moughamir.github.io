@@ -1,0 +1,54 @@
+{
+  "comparisons": [
+    {
+      "id": "rag-vs-cag",
+      "techA": "RAG",
+      "techB": "CAG",
+      "title": "RAG vs CAG: Choosing the Right AI Architecture for 2026",
+      "description": "A technical comparison of Retrieval-Augmented Generation (RAG) vs Cache-Augmented Generation (CAG) for personal and enterprise knowledge bases.",
+      "comparisonPoints": [
+        { "feature": "Latency", "techA_val": "500ms - 2s", "techB_val": "< 50ms" },
+        { "feature": "Cost", "techA_val": "Variable (Vector DB + Inference)", "techB_val": "90% Cheaper (Prompt Caching)" },
+        { "feature": "Context Window", "techA_val": "Limited (Chunked)", "techB_val": "Large (Full-context)" },
+        { "feature": "Reasoning Quality", "techA_val": "Fragmented", "techB_val": "Superior (Narrative Flow)" }
+      ],
+      "verdict": "Use CAG for static datasets under 1M tokens (Obsidian vaults, Docs). Use RAG for massive, frequently changing dynamic data.",
+      "tags": ["AI", "Architecture", "RAG", "CAG"]
+    },
+    {
+      "id": "bun-vs-node",
+      "techA": "Bun",
+      "techB": "Node.js",
+      "title": "Bun vs Node.js for Next.js Monorepos",
+      "description": "Analyzing runtime performance, build speeds, and developer experience for multi-app monorepos in 2026.",
+      "comparisonPoints": [
+        { "feature": "Install Speed", "techA_val": "Seconds (Native)", "techB_val": "Minutes (npm/pnpm)" },
+        { "feature": "Runtime", "techA_val": "Zig-powered / Fast", "techB_val": "Stable / Legacy" },
+        { "feature": "Package Manager", "techA_val": "Built-in", "techB_val": "External (pnpm/yarn)" },
+        { "feature": "Memory Usage", "techA_val": "Low (Optimized)", "techB_val": "Higher" }
+      ],
+      "verdict": "Bun is the clear winner for new Next.js monorepos due to its 10x faster CI and unified workspace management.",
+      "tags": ["Bun", "Monorepo", "Performance", "TypeScript"]
+    }
+  ],
+  "blueprints": [
+    {
+      "id": "mcp-agentic-architecture",
+      "title": "Next.js + MCP Architecture for Agentic AI Tools",
+      "description": "A battle-tested blueprint for building AI agents that interact with local and cloud data via the Model Context Protocol.",
+      "stack": ["Next.js", "MCP", "TypeScript", "Bun", "Groq"],
+      "problem": "AI agents lack real-time access to fragmented tool states and local file systems.",
+      "solution": "Implementing a stateless MCP server bridge that allows LLMs to 'walk' data graphs instead of relying on static chunks.",
+      "tags": ["AI", "Architecture", "MCP"]
+    },
+    {
+      "id": "zero-drift-types",
+      "title": "React + Zod: Zero-Drift Type Architecture",
+      "description": "How to synchronize types from the database to the frontend with 100% safety using shared Zod schemas.",
+      "stack": ["React", "Zod", "TypeScript", "Supabase"],
+      "problem": "Mismatched types between API and Frontend cause 40% of production runtime errors.",
+      "solution": "Centralizing schema definitions in a shared monorepo package, using Zod for both runtime validation and TypeScript inference.",
+      "tags": ["TypeScript", "Architecture", "Engineering"]
+    }
+  ]
+}

@@ -27,28 +27,25 @@ const { title, description } = Astro.props;
 
 <style>
   .backgrounds {
-    min-height: 100%;
-    isolation: isolate;
-    background:
-      radial-gradient(circle at 15% 0%, rgba(249, 115, 22, 0.05), transparent 24rem),
-      linear-gradient(180deg, var(--gray-999), var(--gray-950) 100%);
+    min-height: 100vh;
+    background: var(--color-base-100);
   }
 
   .skip-link {
     position: fixed;
     top: -100%;
-    left: 0.5rem;
+    left: 0;
     z-index: 9999;
-    padding: 0.5rem 1rem;
+    padding: 1rem 2rem;
     background: var(--gray-0);
     color: var(--gray-999);
-    font-weight: 600;
+    font-weight: 800;
+    text-transform: uppercase;
     text-decoration: none;
-    border-radius: 0.45rem;
-    transition: top 160ms ease;
+    transition: top 0.1s;
   }
 
   .skip-link:focus {
-    top: 0.5rem;
+    top: 0;
   }
 </style>

@@ -12,9 +12,9 @@ Senior Software Engineer based in Bouskoura, Casablanca, Morocco. 10+ years of e
 I build things that ship and scale. Senior full-stack engineer with 10+ years, focused on React, TypeScript, Node.js, PHP, Python, and AI-assisted workflows. Available for contract, full-time, and rescue sprints.
 
 Key sections:
-- Proof points: 10+ years, 249 GitHub repos, 3 languages (Arabic/French/English), 48-72h delivery
-- Capabilities: Full-stack product delivery, rescue and modernization, AI-assisted automation
-- Selected projects: Obsidian MCP Plugin (AI/Obsidian), Anaqio AI Fashion Platform (Bun monorepo)
+- Proof points: 10+ years, 250+ GitHub repos, 3 languages (Arabic/French/English)
+- Capabilities: Full-stack product delivery, rescue and modernization, AI automation
+- Selected projects: Obsidian MCP Plugin (AI), Anaqio AI Platform (Bun monorepo)
 - Work principles: Calm execution, small useful versions first, business constraints as inputs
 
 ### About (/about/)

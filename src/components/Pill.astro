@@ -1,1 +1,16 @@
-<span class="badge badge-outline text-xs font-normal tracking-wide"><slot /></span>
+<span class="brutal-pill"><slot /></span>
+
+<style>
+	.brutal-pill {
+		display: inline-flex;
+		padding: 0.2rem 0.6rem;
+		border: 1px solid var(--gray-0);
+		background: transparent;
+		color: var(--gray-0);
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+</style>

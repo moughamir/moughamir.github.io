@@ -1,0 +1,256 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Icon from "../components/Icon.astro";
+
+const encodedEmail = btoa("moughamir@gmail.com");
+
+const services = [
+  {
+    title: "Full-Stack Product Delivery",
+    desc: "From zero to production. Next.js, Bun, Supabase, and AI pipelines. I don't just write code; I ship products that work.",
+    price: "Custom Project"
+  },
+  {
+    title: "Rescue Sprints",
+    desc: "Stabilize broken websites, clean up technical debt, and repair failing forms/auth systems in high-intensity 48-72h bursts.",
+    price: "Flat Fee"
+  },
+  {
+    title: "AI-Native Automation",
+    desc: "Integrating LLMs, MCP servers, and agentic workflows into your business processes for maximum leverage.",
+    price: "Custom Project"
+  }
+];
+
+const reasons = [
+  "10+ Years Building Web Products",
+  "AI-First Workflow (Bun, MCP, Gemini)",
+  "EMEA Timezone / Remote Ready",
+  "High-Signal Communication",
+  "Zero-Fluff, Result-Oriented"
+];
+---
+
+<BaseLayout
+  title="Hire Mohamed Moughamir — Senior Full-Stack Engineer"
+  description="Stop searching. Hire a Senior Full-Stack and AI Product Engineer for EMEA remote, contract, or full-time roles."
+>
+  <main id="main-content" class="hire-page wrapper stack gap-20">
+    <header class="aggressive-hero">
+      <p class="eyebrow">Availability: Open for Q3 2026</p>
+      <h1 class="title">STOP SEARCHING. <br/>HIRE A BUILDER.</h1>
+      <p class="lede">
+        Senior Full-Stack Engineer with 10+ years of high-intensity experience. I build, rescue, and scale digital products.
+      </p>
+      <div class="cta-group">
+        <a 
+          href="javascript:void(0)" 
+          data-email={encodedEmail} 
+          onclick="location.href='mailto:'+atob(this.dataset.email)+'?subject=Technical Audit Inquiry'"
+          class="brutal-btn hero-cta"
+        >
+          START WITH A 15-MIN AUDIT
+        </a>
+      </div>
+    </header>
+
+    <section class="reasons-strip">
+      <ul class="reason-list">
+        {reasons.map((r) => (
+          <li><Icon icon="strategy" size="1.2em" /> {r}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="services-grid">
+      <h2 class="section-title">HOW I HELP</h2>
+      <div class="grid">
+        {services.map((s) => (
+          <article class="brutal-card service-card">
+            <div class="card-content">
+              <p class="price-tag">{s.price}</p>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="brutal-card final-offer">
+      <div class="card-content centered">
+        <p class="label">Direct Access</p>
+        <h2>NO RECRUITER TAX.</h2>
+        <p class="final-text">
+          I respond to technical inquiries within 4 hours. Send me your problem, repo link, or brief.
+        </p>
+        <div class="cta-row">
+          <a 
+            href="javascript:void(0)" 
+            data-email={encodedEmail} 
+            onclick="location.href='mailto:'+atob(this.dataset.email)"
+            class="brutal-btn"
+          >
+            SEND AN EMAIL
+          </a>
+          <a href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer" class="ghost-link">
+            LINKEDIN
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .hire-page {
+    padding: 8rem 0;
+  }
+
+  .aggressive-hero {
+    text-align: center;
+  }
+
+  .eyebrow {
+    color: var(--accent-regular);
+    font-family: var(--font-mono);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-size: clamp(3rem, 12vw, 8rem);
+    line-height: 0.85;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    margin-bottom: 2.5rem;
+  }
+
+  .lede {
+    font-size: 1.5rem;
+    color: var(--gray-200);
+    max-width: 45ch;
+    margin-inline: auto;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .hero-cta {
+    font-size: 1.25rem;
+    padding: 1.5rem 3rem;
+    margin-top: 3rem;
+  }
+
+  .reasons-strip {
+    background: var(--gray-0);
+    color: var(--gray-999);
+    padding: 3rem;
+    margin: 0 -1.5rem;
+  }
+
+  .reason-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .reason-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .service-card h3 {
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .service-card p {
+    font-weight: 500;
+    color: var(--gray-300);
+    line-height: 1.5;
+  }
+
+  .price-tag {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: var(--accent-regular);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .final-offer {
+    background: var(--gray-0);
+    color: var(--gray-999);
+    margin-top: 4rem;
+  }
+
+  .final-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    max-width: 40ch;
+  }
+
+  .centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .ghost-link {
+    color: var(--gray-999);
+    font-weight: 900;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .label {
+    color: var(--accent-regular);
+    font-family: var(--font-mono);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 60rem) {
+    .reasons-strip {
+      margin: 0;
+    }
+  }
+</style>

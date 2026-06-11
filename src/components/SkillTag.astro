@@ -1,0 +1,27 @@
+---
+export interface Props {
+  skill: string;
+  icons: Record<string, string>;
+}
+
+const { skill, icons } = Astro.props;
+const slug = icons[skill];
+---
+
+<li>
+  {slug ? (
+    <span class="skill-tag">
+      <img
+        src={`https://thesvg.org/icons/${slug}/mono.svg`}
+        alt={`${skill} icon`}
+        class:list={["skill-icon"]}
+        width="16"
+        height="16"
+        loading="lazy"
+      />
+      {skill}
+    </span>
+  ) : (
+    <span class="skill-tag">{skill}</span>
+  )}
+</li>

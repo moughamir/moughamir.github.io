@@ -1,0 +1,133 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import pseoData from "../../data/pseo.json";
+
+export async function getStaticPaths() {
+  return pseoData.blueprints.map((b) => ({
+    params: { slug: b.id },
+    props: { data: b },
+  }));
+}
+
+const { data } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": `Architecture Blueprint: ${data.title}`,
+  "description": data.description,
+  "author": {
+    "@type": "Person",
+    "name": "Mohamed Moughamir"
+  },
+  "keywords": data.tags.join(", ")
+};
+---
+
+<BaseLayout title={data.title} description={data.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  
+  <main id="main-content" class="wrapper stack gap-15">
+    <Hero
+      title={data.title}
+      tagline={data.description}
+      align="start"
+    />
+
+    <section class="grid-2-col">
+      <div class="brutal-card problem-card">
+        <div class="card-content">
+          <p class="label">The Problem</p>
+          <p class="card-text">{data.problem}</p>
+        </div>
+      </div>
+      <div class="brutal-card solution-card">
+        <div class="card-content">
+          <p class="label">The Solution</p>
+          <p class="card-text">{data.solution}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stack gap-8">
+      <h2 class="section-title">The Stack</h2>
+      <ul class="tag-cloud">
+        {data.stack.map((s) => <li>{s}</li>)}
+      </ul>
+    </section>
+
+    <section class="stack gap-4">
+      <h2 class="section-title">Related Topics</h2>
+      <div class="tag-cloud">
+        {data.tags.map((t) => (
+          <li><a href={`/topics/${t.toLowerCase()}/`}>{t}</a></li>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .section-title {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    border-bottom: 2px solid var(--gray-0);
+    padding-bottom: 0.5rem;
+  }
+
+  .grid-2-col {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  .label {
+    color: var(--accent-regular);
+    font-family: var(--font-mono);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .card-text {
+    font-weight: 600;
+    color: var(--gray-100);
+    line-height: 1.4;
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .tag-cloud li {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--gray-0);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: var(--gray-999);
+  }
+
+  .tag-cloud li a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tag-cloud li a:hover {
+    color: var(--accent-regular);
+  }
+
+  @media (min-width: 50em) {
+    .grid-2-col {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@astrojs/partytown": "^2.1.7",
-    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/sitemap": "3.7.3",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/vite": "^4",
-    "astro": "6.3.4",
+    "astro": "6.4.4",
     "daisyui": "^5.5.20",
     "defu": "^6.1.7",
     "mdast-util-to-hast": "^13.2.1",

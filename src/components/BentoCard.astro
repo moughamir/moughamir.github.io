@@ -1,0 +1,72 @@
+---
+interface Props {
+    href?: string;
+    variant?: "standard" | "tall" | "wide" | "glass";
+    icon?: string;
+    iconSize?: "sm" | "md" | "lg" | "xl";
+    title?: string;
+    children?: Astro.Slot;
+    class?: string;
+}
+
+const {
+    href,
+    variant = "standard",
+    icon,
+    iconSize = "md",
+    title,
+    class: className = "",
+} = Astro.props;
+
+const Tag = href ? "a" : "article";
+const classes = [
+    "bento-card",
+    variant !== "standard" ? `bento-${variant}` : "",
+    className,
+]
+    .filter(Boolean)
+    .join(" ");
+---
+
+<Tag
+    class={classes}
+    {...(href ? { href } : {})}
+>
+    <div class="bento-card-bloom" aria-hidden="true" />
+    <div class="bento-card-content">
+        {icon && (
+            <span
+                class={[
+                    "bento-icon",
+                    `icon-3d`,
+                    `icon-3d-${iconSize}`,
+                ].join(" ")}
+                aria-hidden="true"
+            >
+                <Icon icon={icon} size="1.1em" />
+            </span>
+        )}
+        {title && <h3>{title}</h3>}
+        <slot />
+    </div>
+</Tag>
+
+<style>
+    .bento-card {
+        grid-column: span 1;
+    }
+
+    .bento-tall {
+        grid-row: span 2;
+    }
+
+    .bento-wide {
+        grid-column: 1 / -1;
+    }
+
+    @media (min-width: 64rem) {
+        .bento-wide-companion {
+            grid-column: span 1;
+        }
+    }
+</style>
