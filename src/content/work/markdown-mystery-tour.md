@@ -5,7 +5,10 @@ img: /assets/stock-1.jpg
 img_alt: Abstract blue and pink liquid texture
 description: |
   An educational concept for teaching Markdown through a narrative, game-like learning flow.
-tags: ["SaaS", "Education", "TypeScript"]
+tags:
+  - SaaS
+  - Education
+  - TypeScript
   - Learning Design
   - Frontend
   - UX

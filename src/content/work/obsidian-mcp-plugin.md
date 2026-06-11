@@ -5,13 +5,13 @@ img: /assets/agent-memory.svg
 img_alt: MCP server architecture and dual-memory system for AI agents
 description: |
   A high-performance Model Context Protocol (MCP) server giving AI tools direct, graph-aware access to an Obsidian vault. Hybrid SQL/vector search with 50ms tool response.
-tags: ["AI", "MCP", "Obsidian", "Open Source"]
+tags:
   - AI
   - MCP
   - Obsidian
+  - Open Source
   - TypeScript
   - Architecture
-  - Open Source
 ---
 
 ## Context
