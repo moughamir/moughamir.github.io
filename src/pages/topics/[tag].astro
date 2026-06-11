@@ -1,0 +1,171 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import PortfolioPreview from "../../components/PortfolioPreview.astro";
+import ArticlePreview from "../../components/ArticlePreview.astro";
+import pseoData from "../../data/pseo.json";
+
+export async function getStaticPaths() {
+    const blogEntries = await getCollection("blog");
+    const workEntries = await getCollection("work");
+    
+    const allTags = new Set();
+    [...blogEntries, ...workEntries].forEach((entry) => {
+        entry.data.tags?.forEach((tag) => allTags.add(tag.toLowerCase()));
+    });
+    
+    // Add pSEO tags
+    pseoData.comparisons.forEach(c => c.tags.forEach(t => allTags.add(t.toLowerCase())));
+    pseoData.blueprints.forEach(b => b.tags.forEach(t => allTags.add(t.toLowerCase())));
+
+    return Array.from(allTags).map((tag) => ({
+        params: { tag },
+        props: { tagName: tag },
+    }));
+}
+
+const { tag } = Astro.params;
+const blogEntries = await getCollection("blog", ({ data }) => 
+    data.tags?.some(t => t.toLowerCase() === tag)
+);
+const workEntries = await getCollection("work", ({ data }) => 
+    data.tags?.some(t => t.toLowerCase() === tag)
+);
+
+// Fetch pSEO items
+const comparisons = pseoData.comparisons.filter(c => c.tags.some(t => t.toLowerCase() === tag));
+const blueprints = pseoData.blueprints.filter(b => b.tags.some(t => t.toLowerCase() === tag));
+---
+
+<BaseLayout
+    title={`${tag.toUpperCase()} | Topics`}
+    description={`Explore projects, articles, and architectural blueprints related to ${tag}.`}
+>
+    <main id="main-content" class="wrapper stack gap-8">
+        <nav class="breadcrumb">
+            <a href="/topics/">← All Topics</a>
+        </nav>
+        <Hero
+            title={tag}
+            tagline={`Technical resources and projects centered on ${tag}.`}
+            align="start"
+        />
+        
+        {blueprints.length > 0 && (
+            <section class="stack gap-4">
+                <h2 class="section-title">Blueprints</h2>
+                <div class="pseo-list">
+                    {blueprints.map((b) => (
+                        <a href={`/blueprints/${b.id}/`} class="brutal-card pseo-card">
+                            <div class="card-content">
+                                <h3>{b.title}</h3>
+                                <p>{b.description}</p>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </section>
+        )}
+
+        {comparisons.length > 0 && (
+            <section class="stack gap-4">
+                <h2 class="section-title">Technical Comparisons</h2>
+                <div class="pseo-list">
+                    {comparisons.map((c) => (
+                        <a href={`/vs/${c.id}/`} class="brutal-card pseo-card">
+                            <div class="card-content">
+                                <h3>{c.techA} VS {c.techB}</h3>
+                                <p>{c.description}</p>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </section>
+        )}
+
+        {workEntries.length > 0 && (
+            <section class="stack gap-4">
+                <h2 class="section-title">Selected Work</h2>
+                <div class="bento-grid">
+                    {workEntries.map((project) => (
+                        <PortfolioPreview project={project} />
+                    ))}
+                </div>
+            </section>
+        )}
+
+        {blogEntries.length > 0 && (
+            <section class="stack gap-4">
+                <h2 class="section-title">Related Articles</h2>
+                <div class="bento-grid">
+                    {blogEntries.map((article) => (
+                        <ArticlePreview article={article} />
+                    ))}
+                </div>
+            </section>
+        )}
+    </main>
+</BaseLayout>
+
+<style>
+    .section-title {
+        font-size: 1.5rem;
+        border-bottom: 2px solid var(--gray-0);
+        padding-bottom: 0.5rem;
+        margin-top: 2rem;
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+
+    .breadcrumb {
+        margin-bottom: -1rem;
+    }
+
+    .breadcrumb a {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--accent-regular);
+        text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+
+    .pseo-list {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: 1fr;
+    }
+
+    .pseo-card {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .pseo-card h3 {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+    }
+
+    .pseo-card p {
+        color: var(--gray-300);
+        font-weight: 500;
+    }
+
+    .bento-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 50em) {
+        .bento-grid, .pseo-list {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>
