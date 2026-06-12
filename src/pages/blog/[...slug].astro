@@ -48,6 +48,7 @@ const { Content } = await render(entry);
         <!-- Paper card content -->
         <div class="paper-stack">
             <div class="paper-card">
+                <div class="margin-line"></div>
                 <div class="paper-card-body">
                     <Prose>
                         <Content />
@@ -109,37 +110,119 @@ const { Content } = await render(entry);
         max-width: 65ch;
         margin-inline: auto;
         position: relative;
-        border-radius: 1.25rem;
-        overflow: hidden;
         isolation: isolate;
-        background: linear-gradient(
-            180deg,
-            color-mix(in srgb, var(--gray-999) 97%, var(--gray-800)),
-            var(--gray-950)
-        );
+        /* Paper stock: warm off-white */
+        background: #fcf8f0;
+        /* Physical paper shadow: thicker at bottom = paper stack effect */
         box-shadow:
-            0 8px 28px rgba(0, 0, 0, 0.06),
-            0 2px 8px rgba(0, 0, 0, 0.04),
-            0 0 0 1px color-mix(in srgb, var(--gray-800) 25%, transparent);
-        transition: box-shadow 0.3s ease;
+            0 1px 2px rgba(0, 0, 0, 0.04),
+            0 4px 8px rgba(0, 0, 0, 0.03),
+            0 12px 24px rgba(0, 0, 0, 0.04),
+            0 1px 0 0 color-mix(in srgb, #e8e0d0 60%, transparent);
+        transition:
+            transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
+    /* Paper grain texture overlay */
+    .paper-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.35;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 200px 200px;
+        background-repeat: repeat;
+        mix-blend-mode: multiply;
+    }
+
+    /* Ruled lines: subtle notebook ruling */
     .paper-card::after {
         content: "";
         position: absolute;
         inset: 0;
-        z-index: 2;
+        z-index: 1;
         pointer-events: none;
-        border-radius: inherit;
-        box-shadow:
-            inset 0 1px 0 color-mix(in srgb, var(--gray-999) 70%, transparent),
-            inset 0 -1px 0 color-mix(in srgb, var(--gray-800) 15%, transparent);
+        background-image: repeating-linear-gradient(
+            to bottom,
+            transparent,
+            transparent 27px,
+            color-mix(in srgb, #d0c8b8 25%, transparent) 27px,
+            color-mix(in srgb, #d0c8b8 25%, transparent) 28px
+        );
+        background-position: 0 1.75rem;
+    }
+
+    /* Red margin line (notebook style) */
+    .paper-card .margin-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: calc(1.5rem + 1.75rem);
+        z-index: 2;
+        width: 1px;
+        pointer-events: none;
+        background: linear-gradient(
+            to bottom,
+            color-mix(in srgb, #f87171 30%, transparent) 0%,
+            color-mix(in srgb, #f87171 20%, transparent) 100%
+        );
+    }
+
+    @media (min-width: 50em) {
+        .paper-card .margin-line {
+            left: calc(2.5rem + 1.75rem);
+        }
     }
 
     .paper-card-body {
         position: relative;
-        z-index: 1;
+        z-index: 3;
         padding: 1.75rem 1.5rem 3rem;
+    }
+
+    /* Softer prose colors on warm paper */
+    .paper-card-body :global(p) {
+        line-height: 1.85;
+    }
+
+    .paper-card-body :global(ul),
+    .paper-card-body :global(ol) {
+        line-height: 1.85;
+    }
+
+    .paper-card-body :global(li) {
+        line-height: 1.85;
+    }
+
+    /* ── Dark mode: darker paper stock ─────────────────────── */
+    :global(.theme-dark) .paper-card {
+        background: #1a1816;
+        box-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.2),
+            0 4px 8px rgba(0, 0, 0, 0.3),
+            0 12px 24px rgba(0, 0, 0, 0.4),
+            0 1px 0 0 color-mix(in srgb, #2a2824 60%, transparent);
+    }
+
+    :global(.theme-dark) .paper-card::after {
+        background-image: repeating-linear-gradient(
+            to bottom,
+            transparent,
+            transparent 27px,
+            color-mix(in srgb, #3a3834 25%, transparent) 27px,
+            color-mix(in srgb, #3a3834 25%, transparent) 28px
+        );
+    }
+
+    :global(.theme-dark) .paper-card .margin-line {
+        background: linear-gradient(
+            to bottom,
+            color-mix(in srgb, #ef4444 15%, transparent) 0%,
+            color-mix(in srgb, #ef4444 10%, transparent) 100%
+        );
     }
 
     /* ── Related ───────────────────────────────────────────── */
