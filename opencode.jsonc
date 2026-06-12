@@ -3,5 +3,6 @@
   "default_agent": "openwork",
   "plugin": [
     "opencode-chrome-devtools"
-  ]
+  ],
+  "snapshot": false
 }

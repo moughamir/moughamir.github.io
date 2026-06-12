@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
+import ContactCTA from "../components/ContactCTA.astro";
 
 const proof = [
   { value: "10+", label: "years building for web, product, and business" },
@@ -122,19 +123,7 @@ const principles = [
       </div>
     </section>
 
-    <section class="final-cta brutal-card">
-      <div class="card-content centered">
-        <p class="small-label">Need a builder who can start now?</p>
-        <h2>Let’s make the next sprint useful.</h2>
-        <p>
-          Send me the problem, the current link or repo, and what success should look like.
-        </p>
-        <div class="cta-row centered">
-          <a class="brutal-btn" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">Send an email</a>
-          <a class="btn-ghost" href="/about/">More about me</a>
-        </div>
-      </div>
-    </section>
+    <ContactCTA />
   </main>
 </BaseLayout>
 
@@ -160,8 +149,8 @@ const principles = [
   }
 
   .title {
-    font-size: clamp(3rem, 10vw, 6rem);
-    line-height: 0.9;
+    font-size: clamp(2.5rem, 9vw, 5.5rem);
+    line-height: 1.1;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -0.04em;
@@ -293,17 +282,6 @@ const principles = [
     text-transform: uppercase;
     font-size: 0.8rem;
     color: var(--gray-400);
-  }
-
-  .final-cta {
-    margin-top: 4rem;
-  }
-
-  .cta-row {
-    display: flex;
-    gap: 2rem;
-    margin-top: 3rem;
-    align-items: center;
   }
 
   @media (min-width: 60rem) {

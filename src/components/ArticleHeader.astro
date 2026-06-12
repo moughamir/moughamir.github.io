@@ -3,38 +3,57 @@ import Icon from "./Icon.astro";
 
 interface Props {
     title: string;
-    subtitle?: string;
     description?: string;
-    cover?: string;
 }
 
-const { description, title, subtitle, cover } = Astro.props;
+const { description, title } = Astro.props;
 ---
 
-<header class="article-hero">
-    <div
-        class="hero min-h-[45vh] md:min-h-[55vh] relative overflow-hidden"
-        style={cover ? `background-image: url(${cover});` : ''}
-    >
-        <div class="hero-overlay bg-gradient-to-b from-black/60 via-black/45 to-black/75"></div>
-        <div class="hero-content relative z-10 flex-col items-start text-left py-16 md:py-24 w-full max-w-4xl mx-auto">
-            <div class="mb-6 self-start">
-                <a
-                    href="/blog/"
-                    class="text-white/60 hover:text-white inline-flex items-center gap-1.5 text-sm font-medium transition-colors no-underline"
-                >
-                    <Icon icon="arrow-left" size="0.75em" />
-                    Blog
-                </a>
-            </div>
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mb-4 max-w-3xl">
-                {title}
-            </h1>
-            {subtitle && <p class="text-white/80 text-lg md:text-xl mb-3">{subtitle}</p>}
-            {description && (
-                <p class="text-white/70 text-base max-w-2xl">{description}</p>
-            )}
-            <slot />
-        </div>
+<header class="article-header wrapper">
+    <nav class="breadcrumb">
+        <a href="/blog/">← All Articles</a>
+    </nav>
+    <div class="header-content">
+        <h1 class="title">{title}</h1>
+        {description && (
+            <p class="lede">{description}</p>
+        )}
     </div>
 </header>
+
+<style>
+    .article-header {
+        padding: 6rem 0 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        border-bottom: 2px solid var(--gray-0);
+    }
+
+    .breadcrumb a {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--accent-regular);
+        text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+
+    .title {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+    }
+
+    .lede {
+        font-size: 1.25rem;
+        color: var(--gray-300);
+        max-width: 50ch;
+        font-weight: 500;
+        line-height: 1.5;
+    }
+</style>

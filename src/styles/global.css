@@ -1,27 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "daisyui";
 
 /* =========================================================
-   Typography Architecture
-   Archivo: Headings (Kinetic/Bold)
-   Space Grotesk: Body (Clean/Functional)
-   ========================================================= */
-@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
-
-/* =========================================================
-   60:30:10 Color Architecture (Kinetic Brutalism)
-   60% — Dominant: Background (base-100) 
-   30% — Secondary: Surfaces, cards, nav (base-200/300)
-   10% — Accent: CTAs, highlights (blue-600)
+   60:30:10 Color Architecture (Orange Kinetic Brutalism)
    ========================================================= */
 
 :root {
-  --color-primary: #18181b;
+  --color-primary: #ff6719;
   --color-primary-content: #ffffff;
-  --color-secondary: #3f3f46;
-  --color-secondary-content: #ffffff;
-  --color-accent: #2563eb;
+  --color-secondary: #ff9d66;
+  --color-secondary-content: #18181b;
+  --color-accent: #ff6719;
   --color-accent-content: #ffffff;
   --color-neutral: #18181b;
   --color-neutral-content: #ffffff;
@@ -35,22 +26,22 @@
   --color-error: #dc2626;
 
   /* Legacy & Internal Tokens */
-  --gray-0: #09090b;      /* Foreground / Deepest Text */
-  --gray-50: #18181b;     /* Primary / Heavy Text */
+  --gray-0: #09090b;      /* Foreground */
+  --gray-50: #18181b;
   --gray-100: #27272a;
-  --gray-200: #3f3f46;    /* Secondary Text */
-  --gray-300: #52525b;    /* Body Text (Contrast Fix) */
-  --gray-400: #71717a;    /* Muted Text */
+  --gray-200: #3f3f46;
+  --gray-300: #52525b;    /* Body Text */
+  --gray-400: #71717a;
   --gray-500: #a1a1aa;
   --gray-600: #d4d4d8;
-  --gray-700: #e4e4e7;    /* Borders */
-  --gray-800: #f4f4f5;    /* Surfaces */
-  --gray-900: #fafafa;    /* Background */
+  --gray-700: #e4e4e7;
+  --gray-800: #f4f4f5;
+  --gray-900: #fafafa;
   --gray-999: #ffffff;
 
-  --accent-regular: #2563eb;
-  --accent-dark: #1e40af;
-  --link-color: #2563eb;
+  --accent-regular: #ff6719;
+  --accent-dark: #cc5200;
+  --link-color: #ff6719;
   
   --font-body: "Space Grotesk", sans-serif;
   --font-brand: "Archivo", sans-serif;
@@ -77,22 +68,28 @@
   --gray-900: #09090b;
   --gray-999: #000000;
 
-  --accent-regular: #3b82f6;
-  --accent-dark: #2563eb;
+  --accent-regular: #ff6719;
+  --accent-dark: #cc5200;
 }
 
 /* =========================================================
-   Core Layout & Spacing
+   Core Resets & Layout
    ========================================================= */
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 html, body {
-  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
 body {
   background-color: var(--color-base-100);
-  color: var(--gray-300); /* Contrast safe: #52525b on #fafafa */
+  color: var(--gray-300);
   font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -104,25 +101,67 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   letter-spacing: -0.02em;
   color: var(--gray-0);
+  margin: 0;
+}
+
+h1 { font-size: clamp(2.25rem, 8vw, 3rem); line-height: 1.0; }
+h2 { font-size: clamp(1.75rem, 6vw, 2.25rem); line-height: 1.05; }
+h3 { font-size: clamp(1.5rem, 4vw, 1.75rem); line-height: 1.1; }
+h4 { font-size: clamp(1.125rem, 3vw, 1.25rem); line-height: 1.15; }
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
 }
 
 .wrapper {
+  width: 100%;
   max-width: 80rem;
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
 
-/* Kinetic Brutalism UI Components */
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Spacing Scale (Aligned with Guidelines) */
+.gap-xs { gap: 4px; }
+.gap-sm { gap: 8px; }
+.gap-md { gap: 16px; }
+.gap-lg { gap: 24px; }
+.gap-xl { gap: 32px; }
+.gap-2xl { gap: 48px; }
+.gap-3xl { gap: 64px; }
+
+/* Kinetic Brutalism Components */
 .brutal-card {
   border: 2px solid var(--gray-0);
   border-radius: 0;
   background: var(--gray-999);
   transition: transform 0.1s, box-shadow 0.1s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .brutal-card:hover {
   transform: translate(-4px, -4px);
   box-shadow: 4px 4px 0 0 var(--gray-0);
+}
+
+:root.theme-dark .brutal-card:hover {
+  box-shadow: 4px 4px 0 0 var(--accent-regular);
+}
+
+.card-content {
+  padding: 1.5rem; /* 24px per guideline */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .brutal-btn {
@@ -134,10 +173,24 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  transition: transform 0.1s;
+  transition: transform 0.1s, box-shadow 0.1s;
+  text-decoration: none;
+  font-family: var(--font-brand);
+  font-size: 0.9rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .brutal-btn:hover {
   transform: translate(-2px, -2px);
   box-shadow: 4px 4px 0 0 var(--accent-regular);
+}
+
+@media (min-width: 50em) {
+  .lg\:gap-2 { gap: 0.5rem; }
+  .lg\:gap-4 { gap: 1rem; }
+  .lg\:gap-8 { gap: 2rem; }
+  .lg\:gap-10 { gap: 2.5rem; }
+  .lg\:gap-20 { gap: 5rem; }
 }
