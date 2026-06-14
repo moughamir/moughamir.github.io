@@ -4,24 +4,23 @@ import Icon from "../components/Icon.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 
 const proof = [
-  { value: "10+", label: "years building for web, product, and business" },
-  { value: "250+", label: "public repos on GitHub" },
+  { value: "10+", label: "years shipping web products" },
+  { value: "3", label: "products shipped from idea to production" },
   { value: "3", label: "working languages: Arabic, French, English" },
-  { value: "290", label: "commits on obsidian-mcp-plugin" },
 ];
 
 const capabilities = [
   {
     title: "Full-stack product delivery",
-    body: "React, TypeScript, Node.js, PHP, Python, databases, APIs, and pragmatic deployment choices. I can move from idea to shipped web product without losing the business context.",
+    body: "React, TypeScript, Node.js, PHP, Python — databases, APIs, and deployment. I go from idea to shipped product without losing sight of what the business actually needs.",
   },
   {
     title: "Rescue and modernization",
-    body: "Stabilize broken websites, improve mobile UX, repair forms, clean WordPress/PHP stacks, and turn unclear codebases into something maintainable.",
+    body: "Broken websites, bad mobile UX, failing forms, tangled WordPress/PHP stacks. I stabilize what's falling apart and make it maintainable.",
   },
   {
     title: "AI-assisted automation",
-    body: "Small internal tools, lead capture flows, reporting dashboards, scraping, email/WhatsApp workflows, and agent-assisted development loops.",
+    body: "Internal tools, lead capture flows, dashboards, scraping, email/WhatsApp workflows. I use AI to remove repetitive work — not to replace thinking.",
   },
 ];
 
@@ -29,43 +28,40 @@ const projects = [
   {
     title: "Anaqio AI Fashion Platform",
     type: "Bun Workspaces / AI / Monorepo",
-    body: "Full-stack AI fashion platform turning flat lay product photos into photorealistic campaign visuals. Bun monorepo, precision-first AI pipeline, MCP tools, and production infrastructure.",
+    body: "Turns flat-lay product photos into photorealistic campaign visuals. Bun monorepo, AI pipeline, MCP tools — the whole thing runs in production.",
     href: "/work/anaqio-platform/",
   },
   {
     title: "Obsidian MCP Plugin",
     type: "AI / MCP / Obsidian / Open Source",
-    body: "A high-performance MCP server giving AI tools direct, graph-aware access to an Obsidian vault. Hybrid SQL/vector search, 50ms tool response, active community adoption.",
+    body: "Lets AI tools talk directly to an Obsidian vault. Hybrid SQL/vector search, 50ms response times, and a growing community using it daily.",
     href: "/work/obsidian-mcp-plugin/",
   },
 ];
 
 const principles = [
-  "Ship the smallest useful version first.",
-  "Make the interface obvious before making it clever.",
-  "Treat business constraints as engineering inputs.",
-  "Use AI as leverage, not as a substitute for judgment.",
+  "Ship the smallest useful thing first.",
+  "Make the interface obvious, then make it clever.",
+  "Business constraints are engineering inputs.",
+  "AI is leverage, not a substitute for judgment.",
 ];
 ---
 
 <BaseLayout
   title="Mohamed Moughamir — Senior Software Engineer"
-  description="Senior full-stack developer in Morocco building practical web products with React, TypeScript, Node.js, PHP, Python, and AI-assisted delivery."
+  description="Senior full-stack developer in Morocco building web products with React, TypeScript, Node.js, PHP, Python, and AI."
 >
   <main id="main-content" class="home wrapper">
     <section class="hero-section">
       <div class="hero-container">
         <p class="eyebrow">Bouskoura · Morocco · Remote-ready</p>
-        <h1 class="title">I build things that ship and scale.</h1>
+        <h1 class="title">I take products from idea to production.</h1>
         <p class="lede">
-          Senior full-stack and AI product engineer using TypeScript, Bun, React, PHP/Python, and MCP. I ship fast, write clean code, and deliver products — not just features.
+          Senior full-stack engineer. I own the whole product — frontend, backend, infrastructure, AI integration. Not just the code that ships, but the product that works.
         </p>
         <div class="cta-group">
-          <a class="brutal-btn" href="javascript:void(0)" data-email="bW91Z2hhbWlyQGdtYWlsLmNvbQ==" onclick="location.href='mailto:'+atob(this.dataset.email)">
-            Hire me
-          </a>
+          <a class="brutal-btn" href="/hire/">Let's talk</a>
           <a class="btn-ghost" href="https://github.com/moughamir" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a class="btn-ghost" href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
     </section>
@@ -82,7 +78,7 @@ const principles = [
     <section class="bento">
       <div class="bento-label">
         <span class="small-label">What I do</span>
-        <h2>Useful work, shipped fast.</h2>
+        <h2>What I do.</h2>
       </div>
 
       <div class="bento-grid">
@@ -114,7 +110,7 @@ const principles = [
         <article class="brutal-card">
           <div class="card-content">
             <span class="small-label">How I work</span>
-            <h3>Calm execution under real constraints.</h3>
+            <h3>How I work.</h3>
             <ul class="principle-list">
               {principles.map((p) => <li>{p}</li>)}
             </ul>
@@ -141,8 +137,8 @@ const principles = [
 
   .eyebrow {
     color: var(--accent-regular);
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 1rem;
@@ -151,9 +147,9 @@ const principles = [
   .title {
     font-size: clamp(2.5rem, 9vw, 5.5rem);
     line-height: 1.1;
-    font-weight: 900;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.02em;
     color: var(--gray-0);
     max-width: 15ch;
   }
@@ -179,8 +175,14 @@ const principles = [
     color: var(--gray-0);
     font-weight: 800;
     text-transform: uppercase;
-    text-decoration: underline;
+    text-decoration: none;
     text-underline-offset: 0.3em;
+    transition: color 0.1s;
+  }
+
+  .btn-ghost:hover {
+    color: var(--accent-regular);
+    text-decoration: underline;
   }
 
   .proof-grid {
@@ -192,7 +194,7 @@ const principles = [
   .proof-card strong {
     display: block;
     font-size: 3rem;
-    font-weight: 900;
+    font-weight: 800;
     line-height: 1;
     color: var(--gray-0);
   }
@@ -244,8 +246,8 @@ const principles = [
   }
 
   .project-tag {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--accent-regular);
     text-transform: uppercase;
@@ -277,7 +279,7 @@ const principles = [
   }
 
   .small-label {
-    font-family: var(--font-mono);
+    font-family: var(--font-body);
     font-weight: 800;
     text-transform: uppercase;
     font-size: 0.8rem;

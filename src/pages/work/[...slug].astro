@@ -89,8 +89,7 @@ const related = allProjects
 </BaseLayout>
 
 <style>
-    .tag-link { text-decoration: none; transition: opacity 0.2s; } 
-    .tag-link:hover { opacity: 0.7; }
+    .tag-link { text-decoration: none; } 
   header {
     padding-bottom: 2.5rem;
     border-bottom: 1px solid var(--gray-800);
@@ -128,18 +127,11 @@ const related = allProjects
     margin-top: 1rem;
   }
 
-  .content :global(h1),
-  .content :global(h2),
-  .content :global(h3),
-  .content :global(h4),
-  .content :global(h5) {
-    margin: 1.5rem 0;
-  }
-
-  .content :global(img) {
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-sm);
-    background: var(--gradient-subtle);
+  .content :global(pre),
+  .content :global(code) {
+    border-radius: 0;
+    box-shadow: none;
+    background: var(--gray-900);
     border: 1px solid var(--gray-800);
   }
 

@@ -214,7 +214,7 @@ const pillars = [
     }
 
     .thesis-quote {
-        border-left: 3px solid var(--accent-regular);
+        border-left: 2px solid var(--accent-regular);
         padding-left: 1.5rem;
         margin: 0;
     }
@@ -258,20 +258,22 @@ const pillars = [
         color: var(--gray-0);
         font-weight: 800;
         text-transform: uppercase;
-        text-decoration: underline;
+        text-decoration: none;
         text-underline-offset: 0.3em;
         font-family: var(--font-brand);
         font-size: 0.9rem;
+        transition: color 0.1s;
     }
 
     .ghost-link:hover {
         color: var(--accent-regular);
+        text-decoration: underline;
     }
 
     .section-title {
         font-size: 2rem;
         text-transform: uppercase;
-        letter-spacing: -0.04em;
+        letter-spacing: -0.02em;
     }
 
     .topics-grid {
@@ -283,19 +285,25 @@ const pillars = [
     .tag-chip {
         display: inline-block;
         padding: 0.4rem 0.8rem;
-        border: 1px solid var(--gray-0);
-        font-family: var(--font-mono);
-        font-size: 0.8rem;
-        font-weight: 700;
+        border: 2px solid var(--gray-0);
+        font-family: var(--font-body);
+        font-size: 0.875rem;
+        font-weight: 500;
         text-transform: uppercase;
         text-decoration: none;
         color: var(--gray-0);
         background: var(--gray-999);
-        transition: background 0.1s, color 0.1s;
+        transition: transform 0.1s, box-shadow 0.1s, background 0.1s, color 0.1s;
     }
 
     .tag-chip:hover {
-        background: var(--gray-0);
-        color: var(--gray-999);
+        background: var(--accent-regular);
+        color: var(--color-primary-content);
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0 0 var(--gray-0);
+    }
+
+    :root.theme-dark .tag-chip:hover {
+        box-shadow: 4px 4px 0 0 var(--accent-dark);
     }
 </style>

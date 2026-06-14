@@ -4,10 +4,10 @@ import Icon from "./Icon.astro";
 
 <aside class="brutal-card contact-cta">
   <div class="card-content">
-    <p class="label">Available for useful work</p>
-    <h2 class="cta-title">NEED A SENIOR BUILDER WHO CAN START FAST?</h2>
+    <p class="label">Available for work</p>
+    <h2 class="cta-title">Need someone who owns the whole product?</h2>
     <p class="cta-lede">
-      I help with full-stack product work, rescue sprints, AI automation, and practical technical leadership.
+      Full-time, contract, or rescue sprint — I take ownership from idea to production. Let's figure out what makes sense.
     </p>
     <div class="cta-row">
       <a href="/hire/" class="brutal-btn">
@@ -28,7 +28,7 @@ import Icon from "./Icon.astro";
   .cta-title {
     font-size: clamp(2rem, 6vw, 4.5rem);
     line-height: 1.1;
-    font-weight: 900;
+    font-weight: 800;
     margin-bottom: 1.5rem;
     color: var(--gray-999);
   }
@@ -51,13 +51,19 @@ import Icon from "./Icon.astro";
     color: var(--gray-999);
     font-weight: 800;
     text-transform: uppercase;
-    text-decoration: underline;
+    text-decoration: none;
     text-underline-offset: 0.3em;
+    transition: color 0.1s;
+  }
+
+  .ghost-link:hover {
+    color: var(--accent-regular);
+    text-decoration: underline;
   }
 
   .label {
     color: var(--accent-regular);
-    font-family: var(--font-mono);
+    font-family: var(--font-body);
     font-weight: 800;
     text-transform: uppercase;
     margin-bottom: 1rem;

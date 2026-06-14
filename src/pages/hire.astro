@@ -7,50 +7,50 @@ const encodedEmail = btoa("moughamir@gmail.com");
 
 const services = [
   {
-    title: "Full-Stack Product Delivery",
-    desc: "From zero to production. Next.js, Bun, Supabase, and AI pipelines. I don't just write code; I ship products that work.",
-    price: "Custom Project"
+    title: "Full-Time Role",
+    desc: "Senior or lead engineer who owns the product end-to-end. I don't wait for tickets — I find the problems and ship the fixes.",
+    price: "EMEA Remote"
   },
   {
-    title: "Rescue Sprints",
-    desc: "Stabilize broken websites, clean up technical debt, and repair failing forms/auth systems in high-intensity 48-72h bursts.",
+    title: "Contract Project",
+    desc: "From zero to production or from broken to stable. I take ownership of the product, not just the tasks.",
+    price: "3-6 Month Engagement"
+  },
+  {
+    title: "Rescue Sprint",
+    desc: "Technical debt piling up? Site falling apart? I stabilize, clean up, and get things working again in 48-72h focused bursts.",
     price: "Flat Fee"
-  },
-  {
-    title: "AI-Native Automation",
-    desc: "Integrating LLMs, MCP servers, and agentic workflows into your business processes for maximum leverage.",
-    price: "Custom Project"
   }
 ];
 
 const reasons = [
-  "10+ Years Building Web Products",
+  "10+ Years Shipping Web Products",
   "AI-First Workflow (Bun, MCP, Gemini)",
   "EMEA Timezone / Remote Ready",
-  "High-Signal Communication",
-  "Zero-Fluff, Result-Oriented"
+  "Clear Communication, No Runaround",
+  "I Solve Problems, Then Move On"
 ];
 ---
 
 <BaseLayout
   title="Hire Mohamed Moughamir — Senior Full-Stack Engineer"
-  description="Stop searching. Hire a Senior Full-Stack and AI Product Engineer for EMEA remote, contract, or full-time roles."
+  description="Senior Full-Stack and AI Engineer for EMEA remote, contract, or full-time roles."
 >
   <main id="main-content" class="hire-page wrapper stack gap-20">
     <header class="aggressive-hero">
       <p class="eyebrow">Availability: Open for Q3 2026</p>
-      <h1 class="title">STOP SEARCHING. <br/>HIRE A BUILDER.</h1>
+      <h1 class="title">Your next product needs<br/>an owner, not just a coder.</h1>
       <p class="lede">
-        Senior Full-Stack Engineer with 10+ years of high-intensity experience. I build, rescue, and scale digital products.
+        I take products from idea to production — frontend, backend, infrastructure, AI. 10+ years of full-stack ownership across startups and product teams.
       </p>
       <div class="cta-group">
         <a 
           href="javascript:void(0)" 
           data-email={encodedEmail} 
-          onclick="location.href='mailto:'+atob(this.dataset.email)+'?subject=Technical Audit Inquiry'"
+          onclick="location.href='mailto:'+atob(this.dataset.email)+'?subject=Engineering+Opportunity&body=Hi+Mohamed,+I+found+you+via+your+portfolio.'"
           class="brutal-btn hero-cta"
         >
-          START WITH A 15-MIN AUDIT
+          LET'S TALK
         </a>
       </div>
     </header>
@@ -81,15 +81,15 @@ const reasons = [
     <section class="brutal-card final-offer">
       <div class="card-content centered">
         <p class="label">Direct Access</p>
-        <h2>NO RECRUITER TAX.</h2>
+        <h2>WORK DIRECTLY WITH ME.</h2>
         <p class="final-text">
-          I respond to technical inquiries within 4 hours. Send me your problem, repo link, or brief.
+          No middlemen. Send me your problem, repo link, or brief — I usually respond within a few hours.
         </p>
         <div class="cta-row">
           <a 
             href="javascript:void(0)" 
             data-email={encodedEmail} 
-            onclick="location.href='mailto:'+atob(this.dataset.email)"
+            onclick="location.href='mailto:'+atob(this.dataset.email)+'?src=hire'"
             class="brutal-btn"
           >
             SEND AN EMAIL
@@ -123,7 +123,7 @@ const reasons = [
   .title {
     font-size: clamp(2.5rem, 10vw, 6.5rem);
     line-height: 1.05;
-    font-weight: 900;
+    font-weight: 800;
     letter-spacing: -0.05em;
     margin-bottom: 2.5rem;
   }
@@ -199,7 +199,7 @@ const reasons = [
   .price-tag {
     font-family: var(--font-mono);
     font-size: 0.8rem;
-    font-weight: 900;
+    font-weight: 800;
     color: var(--accent-regular);
     text-transform: uppercase;
     margin-bottom: 1rem;
@@ -234,7 +234,7 @@ const reasons = [
 
   .ghost-link {
     color: var(--gray-999);
-    font-weight: 900;
+    font-weight: 800;
     text-transform: uppercase;
     text-decoration: underline;
     text-underline-offset: 0.3em;

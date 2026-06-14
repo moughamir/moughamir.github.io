@@ -81,7 +81,7 @@ const videoSchema = {
 <meta name="llms-txt" content="/llms.txt" />
 <meta name="author" content={author} />
 <meta name="theme-color" content="#ff6719" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#171717" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
 <link rel="canonical" href={canonicalUrl} />
 
 <!-- RSS Autodiscovery -->
@@ -162,5 +162,49 @@ const videoSchema = {
     dataLayer.push(arguments);
   }
   gtag("js", new Date());
-  gtag("config", "G-BJ31WCMYT9");
+  gtag("config", "G-BJ31WCMYT9", { send_page_view: true });
+
+  // Scroll depth tracking
+  const scrollThresholds = [25, 50, 75, 100];
+  const fired = new Set();
+  function checkScroll() {
+    const pct = Math.round(
+      (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
+    );
+    scrollThresholds.forEach((t) => {
+      if (pct >= t && !fired.has(t)) {
+        fired.add(t);
+        gtag("event", "scroll_depth", { threshold: t, page_path: location.pathname });
+      }
+    });
+  }
+  window.addEventListener("scroll", checkScroll, { passive: true });
+
+  // Reading time tracking (fires at 30s intervals)
+  let seconds = 0;
+  setInterval(() => {
+    seconds += 30;
+    gtag("event", "reading_time", { seconds, page_path: location.pathname });
+  }, 30000);
+
+  // Outbound click tracking
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
+    const href = a.href;
+    if (href && !href.startsWith(location.origin) && !href.startsWith("mailto:")) {
+      gtag("event", "outbound_click", { url: href, page_path: location.pathname });
+    }
+  });
+
+  // CTA click tracking
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
+    if (a.href?.startsWith("mailto:")) {
+      gtag("event", "cta_email_click", { page_path: location.pathname, label: a.textContent.trim() });
+    } else if (a.classList.contains("hire") || a.href?.includes("/hire")) {
+      gtag("event", "cta_hire_click", { page_path: location.pathname, label: a.textContent.trim() });
+    }
+  });
 </script>

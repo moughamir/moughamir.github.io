@@ -3,14 +3,28 @@
 <style>
 	.brutal-pill {
 		display: inline-flex;
-		padding: 0.2rem 0.6rem;
-		border: 1px solid var(--gray-0);
-		background: transparent;
-		color: var(--gray-0);
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		font-weight: 700;
+		padding: 0.25rem 0.75rem;
+		border: 2px solid var(--gray-0);
+		background: var(--gray-0);
+		color: var(--gray-999);
+		font-family: var(--font-body);
+		font-size: 0.875rem;
+		font-weight: 500;
 		text-transform: uppercase;
 		white-space: nowrap;
+		transition: transform 0.1s, box-shadow 0.1s, background 0.1s, color 0.1s;
+	}
+
+	:global(.tag-link:hover) .brutal-pill,
+	.brutal-pill:hover {
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+		transform: translate(-2px, -2px);
+		box-shadow: 4px 4px 0 0 var(--gray-0);
+	}
+
+	:root.theme-dark :global(.tag-link:hover) .brutal-pill,
+	:root.theme-dark .brutal-pill:hover {
+		box-shadow: 4px 4px 0 0 var(--accent-dark);
 	}
 </style>
