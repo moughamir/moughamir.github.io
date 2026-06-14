@@ -54,29 +54,30 @@
 }
 
 :root.theme-dark {
-  --color-base-100: #09090b;
-  --color-base-200: #18181b;
-  --color-base-300: #27272a;
-  --color-base-content: #fafafa;
-  
-  --gray-0: #fafafa;
-  --gray-50: #f4f4f5;
-  --gray-100: #e4e4e7;
-  --gray-200: #d4d4d8;
-  --gray-300: #a1a1aa;
-  --gray-400: #71717a;
-  --gray-600: #3f3f46;
-  --gray-700: #27272a;
-  --gray-800: #18181b;
-  --gray-900: #09090b;
-  --gray-999: #000000;
+  /* Substack-matched palette */
+  --color-base-100: #171717;
+  --color-base-200: #252525;
+  --color-base-300: #363636;
+  --color-base-content: #ffffff;
+
+  --gray-0: #ffffff;
+  --gray-50: #e5e5e5;
+  --gray-100: #b6b6b6;
+  --gray-200: #a2a2a2;
+  --gray-300: #a2a2a2;
+  --gray-400: #7a7a7a;
+  --gray-600: #585858;
+  --gray-700: #363636;
+  --gray-800: #252525;
+  --gray-900: #171717;
+  --gray-999: #252525;
 
   --accent-regular: #ff6719;
-  --accent-dark: #cc5200;
+  --accent-dark: #ff5600;
   --accent-overlay: #ff6719;
   --accent-text-over: #ffffff;
 
-  --gray-850: #f4f4f5;
+  --gray-850: #2e2e2e;
 }
 
 /* =========================================================
