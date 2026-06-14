@@ -1,36 +1,94 @@
-# Mohamed Moughamir — Senior Full-Stack Developer
+# Mohamed — Systems Builder (AI, SaaS, Developer Infrastructure)
 
-Portfolio of Mohamed Moughamir — 10+ years shipping web products across JavaScript, TypeScript, PHP, Python, React, and Node.js.
+Building production-grade systems at the intersection of **AI tooling, full-stack SaaS, and developer infrastructure**.
 
-**Live site**: [moughamir.github.io](https://moughamir.github.io)
+I design and ship systems that move from prototype to production architecture.
 
-## What I Build
+---
 
-Full-stack web applications and AI-assisted automation — from product concept through deployment. Focused on practical delivery, clean architecture, and maintainable code.
+## Current Focus
 
-**Stack highlights**:
-- Frontend: Astro, React, TypeScript, Tailwind CSS
-- Backend: Node.js, PHP, Python
-- AI/LLM: Prompt engineering, agentic workflows, MCP integrations
-- DevOps: Vercel, GitHub Actions, CI/CD
+- AI tool-augmented systems (MCP, agents, context layers)
+- Full-stack SaaS architecture (Next.js + Supabase + API-first design)
+- Developer infrastructure and automation tooling
+- Secure system design and backend engineering
 
-## Proof Points
+---
 
-- **10+ years** full-stack development
-- **250+** public GitHub repositories across experiments and production apps
-- **3** working languages (Arabic, French, English)
-- **290** commits on the obsidian-mcp-plugin open-source project
+## Flagship Systems
 
-## Sections
+### AI Context & MCP Systems
+Model Context Protocol-based tooling for structured AI workflows and knowledge access.
 
-- [About](https://moughamir.github.io/about/) — Background, approach, and context
-- [Work](https://moughamir.github.io/work/) — Selected projects and case studies
-- [Blog](https://moughamir.github.io/blog/) — Technical writing and reflections
+- Obsidian MCP server for knowledge graph integration
+- Context-aware tooling for AI-assisted development
+- Research to execution pipelines for builders
+
+Deep engineering notes: https://moughamir.substack.com
+
+---
+
+### SaaS Architecture (Production Systems)
+Full-stack SaaS foundations with modern architecture patterns.
+
+- Next.js frontend systems
+- Supabase backend design
+- API-first multi-tenant architecture
+- Scalable deployment strategies
+
+System design breakdowns: https://moughamir.substack.com
+
+---
+
+### Developer Tools & Automation
+Internal tooling and automation systems for builders.
+
+- Discord bots and workflow automation
+- CLI and backend utilities
+- System orchestration experiments
+
+Engineering logs: https://moughamir.substack.com
+
+---
+
+## Writing & Engineering Notes
+
+I document system design decisions, architecture tradeoffs, production failures and lessons, and AI infrastructure patterns.
+
+Subscribe: https://moughamir.substack.com
+
+---
+
+## Philosophy
+
+- Systems over features
+- Architecture over frameworks
+- Shipping over theory
+- Real-world constraints define good engineering
+
+---
+
+## Selected Work
+
+- Obsidian MCP integration system
+- ANAQIO AI Fashion Platform (Bun monorepo)
+- LegalTech SaaS architecture
+- Cephalon Sigma (Discord automation)
+
+More at https://moughamir.github.io/work/
+
+---
 
 ## Connect
 
-- **GitHub**: [github.com/moughamir](https://github.com/moughamir)
-- **LinkedIn**: [linkedin.com/in/moughamir](https://linkedin.com/in/moughamir)
-- **Email**: moughamir@gmail.com
+- Substack: https://moughamir.substack.com
+- Portfolio: https://moughamir.github.io
+- LinkedIn: https://linkedin.com/in/moughamir
 
-Open to freelance contracts, consulting, and full-time senior/lead roles.
+---
+
+## How I Work
+
+I build in public. Every system becomes a documented architecture. Every repo becomes a case study. Every decision becomes a technical note.
+
+This GitHub is the execution layer. The writing lives on Substack.

@@ -12,49 +12,287 @@ const allTags = new Set();
     entry.data.tags?.forEach((tag) => allTags.add(tag));
 });
 
-// Add pSEO tags
 pseoData.comparisons.forEach(c => c.tags.forEach(t => allTags.add(t)));
 pseoData.blueprints.forEach(b => b.tags.forEach(t => allTags.add(t)));
 
 const sortedTags = Array.from(allTags).sort();
+
+const pillars = [
+    {
+        label: "AI Engineering",
+        title: "AI Engineering & Production Workflows",
+        description: "Moving past the wrapper hype to build reliable, production-grade AI infrastructure.",
+        points: [
+            "Deterministic output strategies for grounding LLMs",
+            "Agentic orchestration that doesn't waste compute",
+            "Cost and energy efficient architectures",
+        ],
+    },
+    {
+        label: "MCP & Knowledge",
+        title: "Model Context Protocol & Knowledge Systems",
+        description: "Bridging the gap between runtime environments and local cognitive architecture.",
+        points: [
+            "Obsidian MCP for knowledge graph integration",
+            "Contextual framing for better AI decisions",
+            "Structured context to reduce token waste",
+        ],
+    },
+    {
+        label: "Open Source",
+        title: "Open Source & Pragmatic Tooling",
+        description: "Minimalist, high-performance utilities built for security, speed, and zero bloat.",
+        points: [
+            "Rust and minimal daemons for speed",
+            "Distroless containers and hardened CI/CD",
+            "Event-driven tools from source",
+        ],
+    },
+    {
+        label: "Shipping",
+        title: "Startup Execution & Real-World Shipping",
+        description: "Taking ideas from scrappy MVP to functional systems without drowning in technical debt.",
+        points: [
+            "Velocity over perfection — ship value on day one",
+            "Legacy rescues: stabilize broken systems profitably",
+            "Tactical scope narrowing for real constraints",
+        ],
+    },
+];
 ---
 
 <BaseLayout
     title="Topics | Mohamed Moughamir"
-    description="Explore projects and articles by topic: AI, Bun, TypeScript, Architecture, and more."
+    description="What I build and what I write about: AI systems, MCP, open source tooling, and production SaaS architecture."
 >
     <main id="main-content" class="wrapper stack gap-8">
         <Hero
-            title="Topics"
-            tagline="Explore projects and articles by technical cluster."
+            title="What I Build. What I Write About."
+            tagline="Engineering notes on AI systems, developer tooling, and production SaaS architecture."
             align="start"
         />
-        <div class="topics-grid">
-            {sortedTags.map((tag) => (
-                <a href={`/topics/${tag.toLowerCase()}/`} class="brutal-card tag-card">
-                    <div class="card-content">
-                        <h3>{tag}</h3>
-                    </div>
-                </a>
-            ))}
-        </div>
+
+        <section class="substack-banner brutal-card">
+            <div class="card-content">
+                <p class="label">Engineering Notes</p>
+                <p class="banner-text">
+                    I document the exact engineering principles, architectural patterns, and execution strategies used to ship production systems. No growth hacks, no marketing noise. Just raw builder logs.
+                </p>
+                <div class="banner-row">
+                    <a href="https://moughamir.substack.com" class="brutal-btn" target="_blank" rel="noopener noreferrer">
+                        READ ON SUBSTACK
+                    </a>
+                    <a href="https://github.com/moughamir" class="ghost-link" target="_blank" rel="noopener noreferrer">
+                        GITHUB
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="pillars-section stack gap-8">
+            <h2 class="section-title">Core Domains</h2>
+            <div class="pillars-grid">
+                {pillars.map((pillar) => (
+                    <article class="brutal-card pillar-card">
+                        <div class="card-content">
+                            <p class="label">{pillar.label}</p>
+                            <h3>{pillar.title}</h3>
+                            <p class="pillar-desc">{pillar.description}</p>
+                            <ul class="pillar-points">
+                                {pillar.points.map((point) => (
+                                    <li>{point}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </section>
+
+        <section class="thesis-section">
+            <div class="brutal-card thesis-card">
+                <div class="card-content">
+                    <p class="thesis-text">
+                        Outcomes over frameworks. Value over complexity. Judgment over code volume.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tags-section stack gap-4">
+            <h2 class="section-title">Browse by Tag</h2>
+            <div class="topics-grid">
+                {sortedTags.map((tag) => (
+                    <a href={`/topics/${tag.toLowerCase()}/`} class="tag-chip">
+                        {tag}
+                    </a>
+                ))}
+            </div>
+        </section>
+
+        <section class="cta-section brutal-card">
+            <div class="card-content">
+                <p class="label">Join the publication</p>
+                <p class="cta-text">
+                    If this approach to engineering resonates with you, subscribe for weekly breakdowns of real production systems.
+                </p>
+                <div class="banner-row">
+                    <a href="https://moughamir.substack.com" class="brutal-btn" target="_blank" rel="noopener noreferrer">
+                        SUBSCRIBE
+                    </a>
+                    <a href="https://github.com/moughamir" class="ghost-link" target="_blank" rel="noopener noreferrer">
+                        EXPLORE THE CODE
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 </BaseLayout>
 
 <style>
-    .topics-grid {
+    .substack-banner {
+        background: var(--gray-0);
+        color: var(--gray-999);
+    }
+
+    .banner-text {
+        font-size: 1.15rem;
+        font-weight: 500;
+        color: var(--gray-300);
+        max-width: 60ch;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .banner-row {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .ghost-link {
+        color: var(--gray-999);
+        font-weight: 800;
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-underline-offset: 0.3em;
+    }
+
+    .label {
+        color: var(--accent-regular);
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: -0.04em;
+    }
+
+    .pillars-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
-    .tag-card {
-        text-decoration: none;
-        color: inherit;
+    .pillar-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
     }
 
-    .tag-card h3 {
+    .pillar-desc {
+        color: var(--gray-300);
+        font-weight: 500;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .pillar-points {
+        list-style: none;
+        padding: 0;
         margin: 0;
-        font-size: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .pillar-points li {
+        color: var(--gray-400);
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding-left: 1rem;
+        position: relative;
+    }
+
+    .pillar-points li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: var(--accent-regular);
+    }
+
+    .thesis-card {
+        background: var(--color-base-200);
+    }
+
+    .thesis-text {
+        font-family: var(--font-brand);
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 1.3;
+        color: var(--gray-0);
+        margin: 0;
+    }
+
+    .topics-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .tag-chip {
+        display: inline-block;
+        padding: 0.4rem 0.8rem;
+        border: 1px solid var(--gray-0);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--gray-0);
+        background: var(--gray-999);
+        transition: background 0.1s, color 0.1s;
+    }
+
+    .tag-chip:hover {
+        background: var(--gray-0);
+        color: var(--gray-999);
+    }
+
+    .cta-section {
+        background: var(--color-base-200);
+    }
+
+    .cta-text {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--gray-300);
+        max-width: 50ch;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 50em) {
+        .pillars-grid {
+            grid-template-columns: 1fr 1fr;
+        }
     }
 </style>

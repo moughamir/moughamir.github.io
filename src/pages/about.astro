@@ -136,6 +136,19 @@ const education = [
         ))}
       </div>
     </section>
+
+    <section class="substack-section brutal-card">
+      <div class="card-content">
+        <p class="label">Engineering Notes</p>
+        <h2 class="section-title">I write about building real systems.</h2>
+        <p class="substack-lede">
+          System design decisions, architecture tradeoffs, production failures, and AI infrastructure patterns — published weekly on Substack.
+        </p>
+        <a href="https://moughamir.substack.com" class="brutal-btn" target="_blank" rel="noopener noreferrer">
+          READ ON SUBSTACK
+        </a>
+      </div>
+    </section>
   </main>
   <ContactCTA />
 </BaseLayout>
@@ -282,6 +295,19 @@ const education = [
     align-items: center;
     justify-content: center;
     text-align: center;
+  }
+
+  .substack-section {
+    background: var(--color-base-200);
+  }
+
+  .substack-lede {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--gray-300);
+    max-width: 50ch;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
   }
 
   @media (min-width: 60rem) {

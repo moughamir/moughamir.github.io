@@ -37,6 +37,17 @@ const bentoVariants = (index: number): "default" | "wide" | "tall" => {
                 tagline="Deep dives on AI agents, Bun/TypeScript architecture, and building for scale."
                 align="start"
             />
+            <section class="substack-banner brutal-card">
+                <div class="card-content">
+                    <p class="banner-label">Also on Substack</p>
+                    <p class="banner-text">
+                        I publish weekly deep dives on AI systems, SaaS architecture, and production engineering.
+                    </p>
+                    <a href="https://moughamir.substack.com" class="brutal-btn" target="_blank" rel="noopener noreferrer">
+                        SUBSCRIBE ON SUBSTACK
+                    </a>
+                </div>
+            </section>
             <div class="bento-grid">
                 {
                     articles.map((article, i) => (
@@ -54,6 +65,26 @@ const bentoVariants = (index: number): "default" | "wide" | "tall" => {
         display: grid;
         gap: 1.5rem;
         grid-template-columns: 1fr;
+    }
+
+    .substack-banner {
+        background: var(--color-base-200);
+    }
+
+    .banner-label {
+        color: var(--accent-regular);
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+    }
+
+    .banner-text {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--gray-300);
+        margin-bottom: 1rem;
     }
 
     @media (min-width: 50em) {
