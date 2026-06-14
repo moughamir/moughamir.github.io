@@ -26,7 +26,7 @@ const schema = {
 ---
 
 <BaseLayout title={data.title} description={data.description}>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')} />
   
   <main id="main-content" class="wrapper stack gap-15">
     <Hero

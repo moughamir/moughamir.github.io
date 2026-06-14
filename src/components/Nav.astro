@@ -1,26 +1,10 @@
 ---
 import Icon from "./Icon.astro";
 import ThemeToggle from "./ThemeToggle.astro";
-import type { iconPaths } from "./IconPaths";
 
 const textLinks: { label: string; href: string }[] = [
-  { label: "Work", href: "/work/" },
-  { label: "Topics", href: "/topics/" },
-  { label: "Hire", href: "/hire/" },
-  { label: "About", href: "/about/" },
-  { label: "Resume", href: "/resume/" },
   { label: "Blog", href: "/blog/" },
-];
-
-const iconLinks: {
-  label: string;
-  href: string;
-  icon: keyof typeof iconPaths;
-  encoded?: string;
-}[] = [
-  { label: "GitHub", href: "https://github.com/moughamir", icon: "github-logo" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/moughamir", icon: "linkedin-logo" },
-  { label: "Email", href: "javascript:void(0)", icon: "mail", encoded: "bW91Z2hhbWlyQGdtYWlsLmNvbQ==" },
+  { label: "About", href: "/about/" },
 ];
 
 const isCurrentPage = (href: string) => {
@@ -47,10 +31,6 @@ const isCurrentPage = (href: string) => {
     </div>
 
     <div class="nav-actions">
-      {iconLinks.map(({ href, icon, label, encoded }) => {
-        const extra = encoded ? { "data-email": encoded, onclick: "location.href='mailto:'+atob(this.dataset.email)" } : {};
-        return <a href={href} class="social" aria-label={label} {...extra}><Icon icon={icon} size="1.1em" /></a>;
-      })}
       <ThemeToggle />
       <a class="hire" href="/hire/">Hire me</a>
     </div>
@@ -121,16 +101,6 @@ const isCurrentPage = (href: string) => {
     color: var(--accent-regular);
   }
 
-  .social {
-    color: var(--gray-100);
-    transition: transform 0.1s;
-  }
-
-  .social:hover {
-    transform: translateY(-2px);
-    color: var(--accent-regular);
-  }
-
   .hire {
     display: inline-flex;
     padding: 0.5rem 1.25rem;
@@ -155,7 +125,7 @@ const isCurrentPage = (href: string) => {
       text-align: center;
       padding: 1rem;
     }
-    
+
     .nav-center {
       flex-direction: column;
       gap: 1rem;

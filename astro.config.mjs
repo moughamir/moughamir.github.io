@@ -1,19 +1,18 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-
 import tailwindcss from "@tailwindcss/vite";
-
 import partytown from "@astrojs/partytown";
+import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 
-import sitemap from "@astrojs/sitemap";
-
-// https://astro.build/config
 export default defineConfig({
   site: "https://moughamir.github.io",
   markdown: {
     syntaxHighlight: "shiki",
     shikiConfig: {
-      theme: "github-dark-high-contrast",
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
     },
   },
   integrations: [
@@ -36,20 +35,23 @@ export default defineConfig({
       filter: (page) => page !== undefined,
       serialize: (item) => {
         if (item.url === "https://moughamir.github.io/") {
-          item.changefreq = "daily";
-          item.lastmod = new Date();
+          item.changefreq = ChangeFreqEnum.DAILY;
+          item.lastmod = new Date().toISOString();
           item.priority = 1.0;
         } else if (item.url.includes("/about/")) {
-          item.changefreq = "monthly";
+          item.changefreq = ChangeFreqEnum.MONTHLY;
           item.priority = 0.8;
         } else if (item.url.includes("/blog/")) {
-          item.changefreq = "weekly";
+          item.changefreq = ChangeFreqEnum.WEEKLY;
           item.priority = 0.7;
         } else if (item.url.includes("/work/")) {
-          item.changefreq = "monthly";
+          item.changefreq = ChangeFreqEnum.MONTHLY;
           item.priority = 0.6;
-        } else if (item.url.includes("/vs/") || item.url.includes("/blueprints/")) {
-          item.changefreq = "weekly";
+        } else if (
+          item.url.includes("/vs/") ||
+          item.url.includes("/blueprints/")
+        ) {
+          item.changefreq = ChangeFreqEnum.MONTHLY;
           item.priority = 0.9;
         }
         return item;

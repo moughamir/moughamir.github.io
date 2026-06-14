@@ -41,8 +41,8 @@ const techArticleSchema = {
 ---
 
 <BaseLayout title={data.title} description={data.description}>
-  <script type="application/ld+json" set:html={JSON.stringify(techArticleSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(techArticleSchema).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')} />
   
   <main id="main-content" class="wrapper stack gap-15">
     <Hero

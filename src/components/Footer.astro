@@ -2,27 +2,60 @@
 import Icon from "./Icon.astro";
 const currentYear = new Date().getFullYear();
 
+const footerLinks = [
+  { label: "Work", href: "/work/" },
+  { label: "Topics", href: "/topics/" },
+  { label: "Resume", href: "/resume/" },
+  { label: "Hire", href: "/hire/" },
+];
+
 const socialLinks = [
   { label: "GitHub", href: "https://github.com/moughamir", icon: "github-logo" },
   { label: "LinkedIn", href: "https://linkedin.com/in/moughamir", icon: "linkedin-logo" },
   { label: "YouTube", href: "https://youtube.com/@moughamir", icon: "youtube-logo" },
   { label: "Podcast", href: "https://open.spotify.com/show/7EmRYqAIgMjQroosj2LV95", icon: "rss" },
-  { label: "Email", href: "javascript:void(0)", icon: "mail", encoded: "bW91Z2hhbWlyQGdtYWlsLmNvbQ==" },
+  { label: "Email", href: "mailto:moughamir@gmail.com", icon: "mail" },
 ];
 ---
 
 <footer>
-  <div class="social-row" aria-label="Social links">
-    {socialLinks.map(({ href, icon, label, encoded }) => {
-      const extra = encoded ? { "data-email": encoded, onclick: "location.href='mailto:'+atob(this.dataset.email)" } : {};
-      return <a href={href} class="social-link" aria-label={label} target="_blank" rel="noopener noreferrer" {...extra}>
-        <Icon icon={icon} size="1.25rem" />
-      </a>;
-    })}
+  <div class="footer-grid">
+    <div class="footer-col">
+      <p class="footer-heading">Navigation</p>
+      <ul class="footer-links">
+        {footerLinks.map(({ label, href }) => (
+          <li><a href={href}>{label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-heading">Connect</p>
+      <ul class="footer-links">
+        {socialLinks.map(({ label, href, icon }) => (
+          <li>
+            <a href={href} target="_blank" rel="noopener noreferrer">
+              <Icon icon={icon} size="1em" /> {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <p class="footer-heading">About</p>
+      <p class="footer-bio">
+        Senior full-stack engineer based in Morocco. 10+ years shipping web products with React, TypeScript, Node.js, PHP, and Python.
+      </p>
+      <p class="footer-availability">
+        Available for remote EMEA work — contract, full-time, rescue sprints.
+      </p>
+    </div>
   </div>
-  <div class="footer-text">
-    <p>Designed and built in Bouskoura with <a href="https://astro.build/">Astro</a>. Deployed on GitHub Pages.</p>
-    <p>&copy; {currentYear} Mohamed Moughamir — Available for remote EMEA work</p>
+
+  <div class="footer-bottom">
+    <p>&copy; {currentYear} Mohamed Moughamir</p>
+    <p class="footer-tech">Built with Astro. Deployed on GitHub Pages.</p>
   </div>
 </footer>
 
@@ -31,60 +64,93 @@ const socialLinks = [
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    padding: 4rem 0;
+    padding: 4rem 0 2rem;
     margin-top: 5rem;
     border-top: 2px solid var(--gray-0);
     font-family: var(--font-body);
   }
 
-  .social-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
-  .social-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .footer-heading {
+    font-family: var(--font-brand);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: -0.02em;
     color: var(--gray-0);
-    text-decoration: none;
-    transition: transform 0.1s, color 0.1s;
+    margin: 0 0 1rem 0;
   }
 
-  .social-link:hover {
-    color: var(--accent-regular);
-    transform: translateY(-4px);
-  }
-
-  .footer-text {
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    font-weight: 500;
+    gap: 0.5rem;
   }
 
-  .footer-text p {
-    color: var(--gray-200);
+  .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--gray-300);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.1s;
+  }
+
+  .footer-links a:hover {
+    color: var(--accent-regular);
+  }
+
+  .footer-bio {
+    color: var(--gray-300);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .footer-availability {
+    color: var(--gray-400);
+    font-size: 0.85rem;
     margin: 0;
   }
 
-  a {
-    color: var(--gray-0);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-    font-weight: 700;
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gray-700);
   }
 
-  a:hover {
-    color: var(--accent-regular);
+  .footer-bottom p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--gray-400);
+  }
+
+  .footer-tech {
+    font-size: 0.75rem !important;
+    color: var(--gray-500) !important;
   }
 
   @media (min-width: 50em) {
-    footer {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr 1.5fr;
+      gap: 3rem;
+    }
+
+    .footer-bottom {
       flex-direction: row;
       justify-content: space-between;
-      align-items: flex-start;
     }
   }
 </style>
