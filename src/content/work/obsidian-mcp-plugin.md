@@ -24,6 +24,8 @@ I built an MCP (Model Context Protocol) server that gives AI agents structured, 
 
 The server has three main layers:
 
+→ [Next.js + MCP Architecture for Agentic AI Tools](/blueprints/mcp-agentic-architecture)
+
 ### Transport
 
 Dual-mode protocol support:

@@ -8,6 +8,7 @@ import ArticleHeader from "../../components/ArticleHeader.astro";
 import Icon from "../../components/Icon.astro";
 import Pill from "../../components/Pill.astro";
 import { render } from "astro:content";
+import GraphExplorer from "../../components/GraphExplorer.astro";
 import Prose from "../../components/Prose.astro";
 
 interface Props {
@@ -41,7 +42,11 @@ const { Content } = await render(entry);
             subtitle={entry.data.subtitle}
         >
             <div class="flex flex-wrap gap-2 mt-6">
-                {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
+                {entry.data.tags.map((t) => (
+                    <a href={`/topics/${t.toLowerCase()}`} class="tag-link">
+                        <Pill>{t}</Pill>
+                    </a>
+                ))}
             </div>
         </ArticleHeader>
 
@@ -50,9 +55,11 @@ const { Content } = await render(entry);
             <div class="paper-card">
                 <div class="margin-line"></div>
                 <div class="paper-card-body">
+                    
                     <Prose>
                         <Content />
                     </Prose>
+                    <GraphExplorer currentId={entry.id} tags={entry.data.tags} type="blog" />
                 </div>
             </div>
         </div>
@@ -96,6 +103,8 @@ const { Content } = await render(entry);
 </BaseLayout>
 
 <style>
+    .tag-link { text-decoration: none; transition: opacity 0.2s; } 
+    .tag-link:hover { opacity: 0.7; }
     /* ── Paper Stack ───────────────────────────────────────── */
     .paper-stack {
         max-width: 76rem;

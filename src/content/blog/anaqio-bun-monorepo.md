@@ -27,4 +27,7 @@ Node-based monorepos are slow. I built **Anaqio** (AI Fashion) using Bun Workspa
 ### VERDICT
 Use Bun for greenfield multi-app monorepos. Spend less time waiting for builds. Spend more time shipping value.
 
+→ [Bun vs Node.js for Next.js Monorepos](/vs/bun-vs-node)
+→ [React + Zod: Zero-Drift Type Architecture](/blueprints/zero-drift-types)
+
 I know where Bun breaks. I know where it shines. Let's build.

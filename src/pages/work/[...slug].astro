@@ -8,6 +8,7 @@ import Hero from "../../components/Hero.astro";
 import Icon from "../../components/Icon.astro";
 import Pill from "../../components/Pill.astro";
 import PortfolioPreview from "../../components/PortfolioPreview.astro";
+import GraphExplorer from "../../components/GraphExplorer.astro";
 import { render } from "astro:content";
 
 interface Props {
@@ -43,7 +44,11 @@ const related = allProjects
           <Hero title={entry.data.title} align="start">
             <div class="details">
               <div class="tags">
-                {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
+                {entry.data.tags.map((t) => (
+                    <a href={`/topics/${t.toLowerCase()}`} class="tag-link">
+                        <Pill>{t}</Pill>
+                    </a>
+                ))}
               </div>
               <p class="description">{entry.data.description}</p>
             </div>
@@ -58,7 +63,9 @@ const related = allProjects
             )
           }
           <div class="content">
+            
             <Content />
+            <GraphExplorer currentId={entry.id} tags={entry.data.tags} type="work" />
           </div>
         </div>
       </main>
@@ -82,6 +89,8 @@ const related = allProjects
 </BaseLayout>
 
 <style>
+    .tag-link { text-decoration: none; transition: opacity 0.2s; } 
+    .tag-link:hover { opacity: 0.7; }
   header {
     padding-bottom: 2.5rem;
     border-bottom: 1px solid var(--gray-800);

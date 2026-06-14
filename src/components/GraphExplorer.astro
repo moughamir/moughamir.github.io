@@ -1,0 +1,218 @@
+---
+import { getCollection } from 'astro:content';
+import Icon from './Icon.astro';
+
+interface Props {
+  currentId: string;
+  tags: string[];
+  type: 'blog' | 'work';
+}
+
+const { currentId, tags, type } = Astro.props;
+
+// Fetch all potential nodes
+const allBlog = await getCollection('blog');
+const allWork = await getCollection('work');
+
+// Define manual high-value edges (Semantic Graph)
+const manualEdges: Record<string, string[]> = {
+  // AI / Agentic KM Cluster
+  'agent-native-mcp-obsidian': ['obsidian-mcp-plugin', 'agentic-knowledge-management', 'death-of-rag-cag-future'],
+  'agentic-knowledge-management': ['agent-native-mcp-obsidian', 'obsidian-mcp-plugin'],
+  'obsidian-mcp-plugin': ['agent-native-mcp-obsidian', 'agentic-knowledge-management'],
+  'death-of-rag-cag-future': ['agent-native-mcp-obsidian'],
+
+  // Bun / Engineering Cluster
+  'anaqio-platform': ['anaqio-bun-monorepo', 'anaqio-pipeline-engineering'],
+  'anaqio-bun-monorepo': ['anaqio-platform', 'anaqio-pipeline-engineering'],
+  'anaqio-pipeline-engineering': ['anaqio-platform', 'anaqio-bun-monorepo'],
+  
+  // Architecture / SaaS
+  'wasp-can-it-replace-my-stack': ['anaqio-platform', 'anaqio-bun-monorepo'],
+};
+
+// Calculate scores for other nodes based on tags (Vector-ish search)
+const nodes = [...allBlog.map(b => ({ ...b, collection: 'blog' })), ...allWork.map(w => ({ ...w, collection: 'work' }))]
+  .filter(node => node.id !== currentId)
+  .map(node => {
+    let score = 0;
+    
+    // 1. Manual edge boost (High weight)
+    if (manualEdges[currentId]?.includes(node.id)) score += 10;
+    
+    // 2. Shared tags (Medium weight)
+    const sharedTags = node.data.tags.filter(t => tags.includes(t));
+    score += sharedTags.length * 2;
+    
+    // 3. Same collection boost (Low weight)
+    if (node.collection === type) score += 1;
+
+    return { ...node, score };
+  })
+  .filter(node => node.score > 0)
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 4);
+
+---
+
+{nodes.length > 0 && (
+  <section class="graph-explorer">
+    <div class="graph-header">
+      <div class="graph-label">
+        <Icon icon="rocket" size="1.2em" />
+        <span>Semantic Connections</span>
+      </div>
+      <h2 class="graph-title">Explore the Knowledge Graph</h2>
+    </div>
+    
+    <div class="graph-nodes">
+      {nodes.map(node => (
+        <a href={`/${node.collection}/${node.id}`} class="node-card">
+          <div class="node-icon">
+            <Icon icon={node.collection === 'blog' ? 'pencil' : 'terminal-window'} size="1rem" />
+          </div>
+          <div class="node-content">
+            <span class="node-type">{node.collection}</span>
+            <h3 class="node-title">{node.data.title}</h3>
+            <div class="node-tags">
+              {node.data.tags.slice(0, 3).map(tag => (
+                <span class="node-tag">#{tag}</span>
+              ))}
+            </div>
+          </div>
+          <div class="node-arrow">
+            <Icon icon="arrow-right" size="1.2rem" />
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .graph-explorer {
+    margin: 4rem 0;
+    padding: 2rem;
+    background: color-mix(in srgb, var(--gray-999) 40%, transparent);
+    border: 1px solid var(--gray-800);
+    border-radius: 2rem;
+    backdrop-filter: blur(12px);
+  }
+
+  .graph-header {
+    margin-bottom: 2rem;
+  }
+
+  .graph-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-regular);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .graph-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--gray-0);
+  }
+
+  .graph-nodes {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 50em) {
+    .graph-nodes {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .node-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--gray-999);
+    border: 1px solid var(--gray-800);
+    border-radius: 1.25rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .node-card:hover {
+    border-color: var(--accent-regular);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .node-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--gray-800);
+    color: var(--gray-300);
+    border-radius: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .node-card:hover .node-icon {
+    background: var(--accent-regular);
+    color: white;
+  }
+
+  .node-content {
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .node-type {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .node-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gray-200);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .node-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+  }
+
+  .node-tag {
+    font-size: 0.7rem;
+    color: var(--gray-500);
+  }
+
+  .node-arrow {
+    color: var(--gray-700);
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .node-card:hover .node-arrow {
+    transform: translateX(4px);
+    color: var(--accent-regular);
+  }
+</style>

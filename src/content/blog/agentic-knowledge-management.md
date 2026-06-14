@@ -29,4 +29,6 @@ Memory is a tier.
 ### THE STACK
 Implemented in my [Obsidian MCP Plugin](https://github.com/moughamir/obsidian-mcp-plugin). Built on Bun + SQLite. 
 
+→ [RAG vs CAG: Choosing the Right AI Architecture for 2026](/vs/rag-vs-cag)
+
 Stop hitting the ceiling. Build the floor.

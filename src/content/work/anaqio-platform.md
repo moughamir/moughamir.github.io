@@ -110,6 +110,8 @@ The runtime choice was critical. Bun delivers fast installs, native TypeScript e
 - **Shared packages work without build step** — Bun resolves TypeScript directly
 - **SQLite-native** for local development, PostgreSQL via Supabase in production
 
+→ [Bun vs Node.js for Next.js Monorepos](/vs/bun-vs-node)
+
 The trade-off was real: Bun's ecosystem is younger. Some ESLint plugins require workarounds, and Supabase tooling sometimes expects Node. But for a greenfield platform where iteration speed was the primary constraint, Bun paid for itself in the first week.
 
 ## Key Decisions

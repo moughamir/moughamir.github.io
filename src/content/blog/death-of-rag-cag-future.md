@@ -24,4 +24,6 @@ Large windows + Prompt Caching = Superior Reasoning.
 ### THE SHIFT
 Vector DBs are overhead. Context windows are the new RAM. Navigate, don't just search.
 
+→ [RAG vs CAG: Choosing the Right AI Architecture for 2026](/vs/rag-vs-cag)
+
 [github.com/moughamir/obsidian-agentic-rag](https://github.com/moughamir/obsidian-agentic-rag)
