@@ -19,43 +19,40 @@ const sortedTags = Array.from(allTags).sort();
 
 const pillars = [
     {
-        label: "AI Engineering",
+        number: "1",
         title: "AI Engineering & Production Workflows",
         description: "Moving past the wrapper hype to build reliable, production-grade AI infrastructure.",
         points: [
-            "Deterministic output strategies for grounding LLMs",
-            "Agentic orchestration that doesn't waste compute",
-            "Cost and energy efficient architectures",
+            { label: "Deterministic Output", text: "Strategies for grounding LLMs and handling structured data validation." },
+            { label: "Agentic Orchestration", text: "Designing autonomous workflows that don't loop endlessly or waste compute." },
+            { label: "Cost & Energy Efficiency", text: "Building minimal, energy-conscious background layers and architectures." },
         ],
     },
     {
-        label: "MCP & Knowledge",
-        title: "Model Context Protocol & Knowledge Systems",
-        description: "Bridging the gap between runtime environments and local cognitive architecture.",
+        number: "2",
+        title: "Model Context Protocol (MCP) & Knowledge Systems",
+        description: "Bridging the gap between developmental runtime environments and local cognitive architecture.",
         points: [
-            "Obsidian MCP for knowledge graph integration",
-            "Contextual framing for better AI decisions",
-            "Structured context to reduce token waste",
+            { label: "Obsidian MCP", text: "Extending local, markdown-based knowledge graphs (PARA/Zettelkasten) into executable tools for LLMs." },
+            { label: "Contextual Framing", text: "How to structure deep technical context so AI agents can make better decisions with less token waste." },
         ],
     },
     {
-        label: "Open Source",
+        number: "3",
         title: "Open Source & Pragmatic Tooling",
-        description: "Minimalist, high-performance utilities built for security, speed, and zero bloat.",
+        description: "Building minimalist, high-performance utilities from source, focusing on security, speed, and zero bloat.",
         points: [
-            "Rust and minimal daemons for speed",
-            "Distroless containers and hardened CI/CD",
-            "Event-driven tools from source",
+            { label: "Rust & Minimal Daemons", text: "Event-driven tools (like structured NDJSON file watchers) built for speed." },
+            { label: "Distroless & Containerization", text: "Hardening CI/CD pipelines by stripping away everything but the executable." },
         ],
     },
     {
-        label: "Shipping",
+        number: "4",
         title: "Startup Execution & Real-World Shipping",
-        description: "Taking ideas from scrappy MVP to functional systems without drowning in technical debt.",
+        description: "The mechanics of taking an idea from a scrappy MVP to a functional system without burying yourself in technical debt.",
         points: [
-            "Velocity over perfection — ship value on day one",
-            "Legacy rescues: stabilize broken systems profitably",
-            "Tactical scope narrowing for real constraints",
+            { label: "Velocity Over Perfection", text: "Tactical lessons on narrowing project scope to ship value on day one." },
+            { label: "Legacy Rescues", text: "The unglamorous, highly profitable art of stepping into broken enterprise systems or WordPress wrecks and stabilizing them." },
         ],
     },
 ];
@@ -68,54 +65,58 @@ const pillars = [
     <main id="main-content" class="wrapper stack gap-8">
         <Hero
             title="What I Build. What I Write About."
-            tagline="Engineering notes on AI systems, developer tooling, and production SaaS architecture."
+            tagline=""
             align="start"
         />
 
-        <section class="substack-banner brutal-card">
-            <div class="card-content">
-                <p class="label">Engineering Notes</p>
-                <p class="banner-text">
-                    I document the exact engineering principles, architectural patterns, and execution strategies used to ship production systems. No growth hacks, no marketing noise. Just raw builder logs.
-                </p>
-                <div class="banner-row">
-                    <a href="https://moughamir.substack.com" class="brutal-btn" target="_blank" rel="noopener noreferrer">
-                        READ ON SUBSTACK
-                    </a>
-                    <a href="https://github.com/moughamir" class="ghost-link" target="_blank" rel="noopener noreferrer">
-                        GITHUB
-                    </a>
-                </div>
-            </div>
+        <section class="intro-section">
+            <p class="intro-text">
+                I don't optimize for frameworks, and I don't track vanity metrics. I build useful things, fast.
+            </p>
+            <p class="intro-text">
+                On my <a href="https://moughamir.substack.com" target="_blank" rel="noopener noreferrer">Substack</a>, I document the exact engineering principles, architectural patterns, and execution strategies used to ship these projects under real-world constraints.
+            </p>
+            <p class="intro-text">
+                If you are navigating the gap between high-tech complexity and actual business results, these are the core domains I break down:
+            </p>
         </section>
 
         <section class="pillars-section stack gap-8">
-            <h2 class="section-title">Core Domains</h2>
-            <div class="pillars-grid">
-                {pillars.map((pillar) => (
-                    <article class="brutal-card pillar-card">
-                        <div class="card-content">
-                            <p class="label">{pillar.label}</p>
-                            <h3>{pillar.title}</h3>
-                            <p class="pillar-desc">{pillar.description}</p>
-                            <ul class="pillar-points">
-                                {pillar.points.map((point) => (
-                                    <li>{point}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    </article>
-                ))}
-            </div>
+            {pillars.map((pillar) => (
+                <article class="pillar-item">
+                    <h3 class="pillar-number">{pillar.number}. {pillar.title}</h3>
+                    <p class="pillar-desc">{pillar.description}</p>
+                    <ul class="pillar-points">
+                        {pillar.points.map((point) => (
+                            <li><strong>{point.label}:</strong> {point.text}</li>
+                        ))}
+                    </ul>
+                </article>
+            ))}
         </section>
 
+        <hr class="divider" />
+
         <section class="thesis-section">
-            <div class="brutal-card thesis-card">
-                <div class="card-content">
-                    <p class="thesis-text">
-                        Outcomes over frameworks. Value over complexity. Judgment over code volume.
-                    </p>
-                </div>
+            <blockquote class="thesis-quote">
+                <p><strong>Outcomes &gt; Frameworks.</strong></p>
+                <p><strong>Value &gt; Complexity.</strong></p>
+                <p><strong>Judgment &gt; Code Volume.</strong></p>
+            </blockquote>
+        </section>
+
+        <section class="cta-section">
+            <p class="cta-text">
+                If this approach to engineering resonates with you, you should join the publication. No growth hacks, no marketing noise. Just the raw logs of a builder working at the edge of AI and software architecture.
+            </p>
+            <div class="cta-row">
+                <a href="https://moughamir.substack.com" class="brutal-btn" target="_blank" rel="noopener noreferrer">
+                    SUBSCRIBE TO THE SUBSTACK
+                </a>
+                <span class="cta-separator">•</span>
+                <a href="https://github.com/moughamir" class="ghost-link" target="_blank" rel="noopener noreferrer">
+                    EXPLORE THE CODE ON GITHUB
+                </a>
             </div>
         </section>
 
@@ -129,88 +130,51 @@ const pillars = [
                 ))}
             </div>
         </section>
-
-        <section class="cta-section brutal-card">
-            <div class="card-content">
-                <p class="label">Join the publication</p>
-                <p class="cta-text">
-                    If this approach to engineering resonates with you, subscribe for weekly breakdowns of real production systems.
-                </p>
-                <div class="banner-row">
-                    <a href="https://moughamir.substack.com" class="brutal-btn" target="_blank" rel="noopener noreferrer">
-                        SUBSCRIBE
-                    </a>
-                    <a href="https://github.com/moughamir" class="ghost-link" target="_blank" rel="noopener noreferrer">
-                        EXPLORE THE CODE
-                    </a>
-                </div>
-            </div>
-        </section>
     </main>
 </BaseLayout>
 
 <style>
-    .substack-banner {
-        background: var(--gray-0);
-        color: var(--gray-999);
+    .intro-section {
+        max-width: 65ch;
     }
 
-    .banner-text {
-        font-size: 1.15rem;
+    .intro-text {
+        font-size: 1.1rem;
         font-weight: 500;
         color: var(--gray-300);
-        max-width: 60ch;
-        line-height: 1.6;
+        line-height: 1.7;
+        margin-bottom: 1.25rem;
+    }
+
+    .intro-text :global(a) {
+        color: var(--link-color);
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+        font-weight: 700;
+    }
+
+    .intro-text :global(a:hover) {
+        color: var(--accent-dark);
+    }
+
+    .pillars-section {
+        max-width: 65ch;
+    }
+
+    .pillar-item {
         margin-bottom: 1.5rem;
     }
 
-    .banner-row {
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    .ghost-link {
-        color: var(--gray-999);
-        font-weight: 800;
-        text-transform: uppercase;
-        text-decoration: underline;
-        text-underline-offset: 0.3em;
-    }
-
-    .label {
-        color: var(--accent-regular);
-        font-family: var(--font-mono);
-        font-size: 0.85rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        margin-bottom: 1rem;
-        display: block;
-    }
-
-    .section-title {
-        font-size: 2rem;
-        text-transform: uppercase;
-        letter-spacing: -0.04em;
-    }
-
-    .pillars-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .pillar-card h3 {
+    .pillar-number {
         font-size: 1.25rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
     }
 
     .pillar-desc {
         color: var(--gray-300);
         font-weight: 500;
         line-height: 1.6;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
     }
 
     .pillar-points {
@@ -223,9 +187,10 @@ const pillars = [
     }
 
     .pillar-points li {
-        color: var(--gray-400);
-        font-size: 0.9rem;
+        color: var(--gray-300);
+        font-size: 0.95rem;
         font-weight: 500;
+        line-height: 1.6;
         padding-left: 1rem;
         position: relative;
     }
@@ -237,19 +202,76 @@ const pillars = [
         color: var(--accent-regular);
     }
 
-    .thesis-card {
-        background: var(--color-base-200);
+    .pillar-points li :global(strong) {
+        color: var(--gray-0);
+        font-weight: 700;
     }
 
-    .thesis-text {
+    .divider {
+        border: none;
+        border-top: 2px solid var(--gray-0);
+        margin: 2rem 0;
+    }
+
+    .thesis-quote {
+        border-left: 3px solid var(--accent-regular);
+        padding-left: 1.5rem;
+        margin: 0;
+    }
+
+    .thesis-quote p {
         font-family: var(--font-brand);
-        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        font-size: clamp(1.1rem, 2.5vw, 1.5rem);
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: -0.02em;
-        line-height: 1.3;
+        line-height: 1.4;
         color: var(--gray-0);
-        margin: 0;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .cta-section {
+        max-width: 65ch;
+    }
+
+    .cta-text {
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: var(--gray-300);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+    }
+
+    .cta-row {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .cta-separator {
+        color: var(--gray-400);
+        font-size: 1.2rem;
+    }
+
+    .ghost-link {
+        color: var(--gray-0);
+        font-weight: 800;
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-underline-offset: 0.3em;
+        font-family: var(--font-brand);
+        font-size: 0.9rem;
+    }
+
+    .ghost-link:hover {
+        color: var(--accent-regular);
+    }
+
+    .section-title {
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: -0.04em;
     }
 
     .topics-grid {
@@ -275,24 +297,5 @@ const pillars = [
     .tag-chip:hover {
         background: var(--gray-0);
         color: var(--gray-999);
-    }
-
-    .cta-section {
-        background: var(--color-base-200);
-    }
-
-    .cta-text {
-        font-size: 1.1rem;
-        font-weight: 500;
-        color: var(--gray-300);
-        max-width: 50ch;
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
-    }
-
-    @media (min-width: 50em) {
-        .pillars-grid {
-            grid-template-columns: 1fr 1fr;
-        }
     }
 </style>
