@@ -8,7 +8,6 @@ import ArticleHeader from "../../components/ArticleHeader.astro";
 import Icon from "../../components/Icon.astro";
 import Pill from "../../components/Pill.astro";
 import { render } from "astro:content";
-import GraphExplorer from "../../components/GraphExplorer.astro";
 import Prose from "../../components/Prose.astro";
 
 interface Props {
@@ -33,42 +32,29 @@ const related = filtered.slice(0, 2);
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description}>
+<BaseLayout title={entry.data.title} description={entry.data.description} schemaItem={entry} schemaType="blog">
     <main id="main-content">
         <ArticleHeader
             title={entry.data.title}
-            cover={entry.data.img}
             description={entry.data.description}
-            subtitle={entry.data.subtitle}
         >
             <div class="flex flex-wrap gap-2 mt-6">
                 {entry.data.tags.map((t) => (
-                    <a href={`/topics/${t.toLowerCase()}`} class="tag-link">
-                        <Pill>{t}</Pill>
-                    </a>
+                    <Pill>{t}</Pill>
                 ))}
             </div>
         </ArticleHeader>
 
-        <!-- Paper card content -->
-        <div class="paper-stack">
-            <div class="paper-card">
-                <div class="margin-line"></div>
-                <div class="paper-card-body">
-                    
-                    <Prose>
-                        <Content />
-                    </Prose>
-                    <GraphExplorer currentId={entry.id} tags={entry.data.tags} type="blog" />
-                </div>
-            </div>
+        <!-- Blog content -->
+        <div class="blog-content wrapper">
+            <Prose>
+                <Content />
+            </Prose>
         </div>
 
         {related.length > 0 && (
             <section class="related-section wrapper">
-                <div class="related-header">
-                    <h2 class="related-title">Continue reading</h2>
-                </div>
+                <h2 class="related-title">Continue reading</h2>
                 <div class="related-grid">
                     {related.map((r) => {
                         const formattedDate = r.data.publishDate.toLocaleDateString("en-US", {
@@ -78,17 +64,16 @@ const { Content } = await render(entry);
                         });
                         return (
                             <a class="related-card" href={`/blog/${r.id}`}>
-                                <div class="related-card-bloom" />
                                 <div
                                     class="related-card-image"
                                     style={`background-image: url(${r.data.img})`}
                                 />
-                                <div class="related-card-content">
+                                <div class="related-card-body">
                                     <time class="related-date">{formattedDate}</time>
                                     <h3 class="related-card-title">{r.data.title}</h3>
                                     <p class="related-card-desc">{r.data.description}</p>
                                     <span class="related-arrow">
-                                        <Icon icon="arrow-right" size="0.8em" />
+                                        <Icon icon="arrow-right" size="0.8em" /> Read
                                     </span>
                                 </div>
                             </a>
@@ -103,285 +88,94 @@ const { Content } = await render(entry);
 </BaseLayout>
 
 <style>
-    .tag-link { text-decoration: none; } 
-    /* ── Paper Stack ───────────────────────────────────────── */
-    .paper-stack {
-        max-width: 76rem;
-        margin-inline: auto;
-        padding-inline: 1.25rem;
-        margin-top: -2rem;
-        position: relative;
-        z-index: 10;
-    }
-
-    .paper-card {
+    /* ── Blog Content ────────────────────────────────────────── */
+    .blog-content {
         max-width: 65ch;
         margin-inline: auto;
-        position: relative;
-        isolation: isolate;
-        /* Paper stock: warm off-white */
-        background: #fcf8f0;
-        /* Physical paper shadow: thicker at bottom = paper stack effect */
-        box-shadow:
-            0 1px 2px rgba(0, 0, 0, 0.04),
-            0 4px 8px rgba(0, 0, 0, 0.03),
-            0 12px 24px rgba(0, 0, 0, 0.04),
-            0 1px 0 0 color-mix(in srgb, #e8e0d0 60%, transparent);
-        transition:
-            transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
-            box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+        padding-block: 3rem;
     }
 
-    /* Paper grain texture overlay */
-    .paper-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-        opacity: 0.35;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        background-size: 200px 200px;
-        background-repeat: repeat;
-        mix-blend-mode: multiply;
-    }
-
-    /* Ruled lines: subtle notebook ruling */
-    .paper-card::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        pointer-events: none;
-        background-image: repeating-linear-gradient(
-            to bottom,
-            transparent,
-            transparent 27px,
-            color-mix(in srgb, #d0c8b8 25%, transparent) 27px,
-            color-mix(in srgb, #d0c8b8 25%, transparent) 28px
-        );
-        background-position: 0 1.75rem;
-    }
-
-    /* Red margin line (notebook style) */
-    .paper-card .margin-line {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: calc(1.5rem + 1.75rem);
-        z-index: 2;
-        width: 1px;
-        pointer-events: none;
-        background: linear-gradient(
-            to bottom,
-            color-mix(in srgb, #f87171 30%, transparent) 0%,
-            color-mix(in srgb, #f87171 20%, transparent) 100%
-        );
-    }
-
-    @media (min-width: 50em) {
-        .paper-card .margin-line {
-            left: calc(2.5rem + 1.75rem);
-        }
-    }
-
-    .paper-card-body {
-        position: relative;
-        z-index: 3;
-        padding: 1.75rem 1.5rem 3rem;
-    }
-
-    /* Softer prose colors on warm paper */
-    .paper-card-body :global(p) {
-        line-height: 1.85;
-    }
-
-    .paper-card-body :global(ul),
-    .paper-card-body :global(ol) {
-        line-height: 1.85;
-    }
-
-    .paper-card-body :global(li) {
-        line-height: 1.85;
-    }
-
-    /* ── Dark mode: darker paper stock ─────────────────────── */
-    :global(.theme-dark) .paper-card {
-        background: #1a1816;
-        box-shadow:
-            0 1px 2px rgba(0, 0, 0, 0.2),
-            0 4px 8px rgba(0, 0, 0, 0.3),
-            0 12px 24px rgba(0, 0, 0, 0.4),
-            0 1px 0 0 color-mix(in srgb, #2a2824 60%, transparent);
-    }
-
-    :global(.theme-dark) .paper-card::after {
-        background-image: repeating-linear-gradient(
-            to bottom,
-            transparent,
-            transparent 27px,
-            color-mix(in srgb, #3a3834 25%, transparent) 27px,
-            color-mix(in srgb, #3a3834 25%, transparent) 28px
-        );
-    }
-
-    :global(.theme-dark) .paper-card .margin-line {
-        background: linear-gradient(
-            to bottom,
-            color-mix(in srgb, #ef4444 15%, transparent) 0%,
-            color-mix(in srgb, #ef4444 10%, transparent) 100%
-        );
-    }
-
-    /* ── Related ───────────────────────────────────────────── */
+    /* ── Related Section ────────────────────────────────────── */
     .related-section {
-        margin-top: 4rem;
-        padding-top: 3rem;
-        border-top: 1px solid var(--gray-800);
-    }
-
-    .related-header {
-        margin-bottom: 1.5rem;
+        padding-block: 3rem;
+        border-top: 2px solid var(--gray-0);
     }
 
     .related-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        letter-spacing: -0.03em;
+        font-family: var(--font-brand);
+        font-size: 1.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        margin-bottom: 2rem;
     }
 
     .related-grid {
         display: grid;
-        gap: 1rem;
+        gap: 1.5rem;
         grid-template-columns: 1fr;
     }
 
     .related-card {
-        position: relative;
         display: flex;
         flex-direction: column;
-        border-radius: 28px;
-        overflow: hidden;
-        isolation: isolate;
         text-decoration: none;
         color: inherit;
-        border: 0;
-        background: linear-gradient(
-            180deg,
-            color-mix(in srgb, var(--gray-999) 90%, var(--gray-800)),
-            var(--gray-950)
-        );
-        min-height: 14rem;
-        box-shadow:
-            0 8px 24px rgba(0, 0, 0, 0.04),
-            0 2px 4px rgba(0, 0, 0, 0.02);
-        transition:
-            transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-            box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .related-card::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: 2;
-        pointer-events: none;
-        border-radius: inherit;
-        box-shadow:
-            inset 0 2px 8px color-mix(in srgb, var(--gray-999) 70%, transparent),
-            inset 0 -8px 20px rgba(0, 0, 0, 0.03);
+        border: 2px solid var(--gray-0);
+        background: var(--gray-999);
+        position: relative;
+        transition: transform 0.1s, box-shadow 0.1s;
+        overflow: hidden;
     }
 
     .related-card:hover {
-        transform: translateY(-3px);
-        box-shadow:
-            0 12px 32px rgba(0, 0, 0, 0.06),
-            0 4px 8px rgba(0, 0, 0, 0.03);
-    }
-
-    .related-card-bloom {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-        opacity: 0.5;
-        background:
-            radial-gradient(ellipse 60% 30% at 15% 10%, rgba(251, 146, 60, 0.12), transparent 70%),
-            radial-gradient(ellipse 40% 30% at 80% 80%, rgba(249, 115, 22, 0.08), transparent 60%);
+        transform: translate(-4px, -4px);
+        box-shadow: 4px 4px 0 0 var(--accent-regular);
     }
 
     .related-card-image {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
+        width: 100%;
+        height: 10rem;
         background-size: cover;
         background-position: center;
-        opacity: 0.08;
-        transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        border-bottom: 2px solid var(--gray-0);
     }
 
-    .related-card:hover .related-card-image {
-        opacity: 0.16;
-        transform: scale(1.04);
-    }
-
-    .related-card-content {
-        position: relative;
-        z-index: 1;
+    .related-card-body {
         display: flex;
         flex-direction: column;
-        height: 100%;
         padding: 1.25rem;
-        background: linear-gradient(
-            180deg,
-            transparent 0%,
-            color-mix(in srgb, var(--gray-999) 70%, transparent) 35%,
-            color-mix(in srgb, var(--gray-999) 90%, transparent) 65%,
-            var(--gray-999) 100%
-        );
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
+        flex: 1;
     }
 
     .related-date {
-        display: inline-flex;
-        align-items: center;
-        align-self: flex-start;
-        color: var(--gray-500);
         font-family: var(--font-mono);
-        font-size: 0.68rem;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-        padding: 0.25rem 0.55rem;
-        background: color-mix(in srgb, var(--gray-999) 60%, transparent);
-        border-radius: 999px;
-        backdrop-filter: blur(16px) saturate(180%);
-        -webkit-backdrop-filter: blur(16px) saturate(180%);
-        border: 1px solid color-mix(in srgb, var(--gray-800) 30%, transparent);
-        box-shadow:
-            inset 0 1px 0 color-mix(in srgb, var(--gray-999) 60%, transparent),
-            0 2px 6px rgba(0, 0, 0, 0.03);
-        margin-bottom: auto;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--accent-regular);
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
     }
 
     .related-card-title {
-        color: var(--gray-0);
-        font-size: 1rem;
-        font-weight: 600;
+        font-family: var(--font-brand);
+        font-size: 1.15rem;
+        font-weight: 800;
+        text-transform: uppercase;
         letter-spacing: -0.02em;
-        line-height: 1.3;
-        margin-bottom: 0.35rem;
+        line-height: 1.2;
+        color: var(--gray-0);
+        margin-bottom: 0.4rem;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        padding-top: 0.75rem;
     }
 
     .related-card-desc {
-        color: var(--gray-500);
-        font-size: 0.82rem;
+        font-size: 0.88rem;
         line-height: 1.5;
+        color: var(--gray-300);
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -391,43 +185,41 @@ const { Content } = await render(entry);
     .related-arrow {
         display: inline-flex;
         align-items: center;
-        align-self: flex-end;
+        gap: 0.4rem;
         margin-top: auto;
         padding-top: 0.75rem;
-        color: var(--gray-500);
-        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
+        color: var(--gray-0);
+        font-weight: 700;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        transition: transform 0.1s, color 0.1s;
     }
 
     .related-card:hover .related-arrow {
         transform: translateX(4px);
-        color: var(--link-color);
+        color: var(--accent-regular);
     }
 
     @media (min-width: 50em) {
-        .paper-stack {
-            margin-top: -4rem;
-            padding-inline: 2rem;
-        }
-
-        .paper-card-body {
-            padding: 2.5rem 2.5rem 4rem;
+        .blog-content {
+            padding-block: 4rem;
         }
 
         .related-grid {
             grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
 
-        .related-card {
-            min-height: 16rem;
-            border-radius: 32px;
+        .related-card-image {
+            height: 12rem;
         }
 
-        .related-card-content {
+        .related-card-body {
             padding: 1.5rem;
         }
 
         .related-card-title {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
         }
     }
 </style>

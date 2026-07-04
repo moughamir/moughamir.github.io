@@ -8,7 +8,6 @@ import Hero from "../../components/Hero.astro";
 import Icon from "../../components/Icon.astro";
 import Pill from "../../components/Pill.astro";
 import PortfolioPreview from "../../components/PortfolioPreview.astro";
-import GraphExplorer from "../../components/GraphExplorer.astro";
 import { render } from "astro:content";
 
 interface Props {
@@ -33,21 +32,17 @@ const related = allProjects
   .slice(0, 3);
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description}>
+<BaseLayout title={entry.data.title} description={entry.data.description} schemaItem={entry} schemaType="work">
   <div class="stack gap-20">
     <div class="stack">
-      <header
-        class="hero backdrop-blur-sm bg-zinc-900/20 border border-slate-500/50 backdrop-brightness-90 container mx-auto rounded-t-3xl p-10 dark:bg-zinc-50/10"
-      >
-        <div class="wrapper stack gap-2">
+      <header class="page-header wrapper" style={entry.data.img ? `background-image: url(${entry.data.img})` : ''}>
+        <div class="header-overlay">
           <a class="back-link" href="/work/"><Icon icon="arrow-left" /> Work</a>
           <Hero title={entry.data.title} align="start">
             <div class="details">
               <div class="tags">
                 {entry.data.tags.map((t) => (
-                    <a href={`/topics/${t.toLowerCase()}`} class="tag-link">
-                        <Pill>{t}</Pill>
-                    </a>
+                    <Pill>{t}</Pill>
                 ))}
               </div>
               <p class="description">{entry.data.description}</p>
@@ -56,16 +51,9 @@ const related = allProjects
         </div>
       </header>
       <main class="wrapper">
-        <div class="stack gap-10 content">
-          {
-            entry.data.img && (
-              <img src={entry.data.img} alt={entry.data.img_alt || ""} />
-            )
-          }
-          <div class="content">
-            
+        <div class="stack gap-10 content-wrap">
+          <div class="content-body">
             <Content />
-            <GraphExplorer currentId={entry.id} tags={entry.data.tags} type="work" />
           </div>
         </div>
       </main>
@@ -89,84 +77,257 @@ const related = allProjects
 </BaseLayout>
 
 <style>
-    .tag-link { text-decoration: none; } 
-  header {
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--gray-800);
+  /* =========================================================
+     Page Header — Kinetic Brutalist
+     ========================================================= */
+
+  .page-header {
+    position: relative;
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+    min-height: 22rem;
+    border: 2px solid var(--gray-0);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+  .page-header:not([style*="background-image"]) {
+    min-height: auto;
+  }
+
+  .header-overlay {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem 0;
+    background: linear-gradient(
+      180deg,
+      rgba(9, 9, 11, 0.4) 0%,
+      rgba(9, 9, 11, 0.85) 60%,
+      rgba(9, 9, 11, 0.92) 100%
+    );
+    min-height: inherit;
+  }
+
+  .page-header:not([style*="background-image"]) .header-overlay {
+    background: var(--gray-999);
+    min-height: auto;
   }
 
   .back-link {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent-regular);
+    text-decoration: none;
+    margin-bottom: 1rem;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
   }
 
   .details {
     display: flex;
     flex-direction: column;
-    padding: 0.5rem;
     gap: 1.5rem;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .tags {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
   }
 
   .description {
-    font-size: var(--text-lg);
+    font-size: 1.125rem;
     max-width: 54ch;
+    color: var(--gray-300);
   }
 
-  .content {
+  .page-header[style*="background-image"] .description {
+    color: var(--gray-400);
+  }
+
+  :root.theme-dark .page-header:not([style*="background-image"]) .header-overlay {
+    background: var(--gray-900);
+  }
+
+  /* =========================================================
+     Content Body — Brand Typography + Spacing
+     ========================================================= */
+
+  .content-body {
     max-width: 65ch;
     margin-inline: auto;
   }
 
-  .content > :global(* + *) {
+  .content-wrap {
+    padding-bottom: 2rem;
+  }
+
+  .content-body > :global(* + *) {
     margin-top: 1rem;
   }
 
-  .content :global(pre),
-  .content :global(code) {
-    border-radius: 0;
-    box-shadow: none;
-    background: var(--gray-900);
-    border: 1px solid var(--gray-800);
+  .content-body :global(h2) {
+    font-family: var(--font-brand);
+    font-size: clamp(1.5rem, 4vw, 1.75rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--gray-0);
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
   }
 
-  .content :global(blockquote) {
-    font-size: var(--text-lg);
+  .content-body :global(h3) {
+    font-family: var(--font-brand);
+    font-size: 1.25rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--gray-0);
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .content-body :global(p) {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--gray-300);
+    margin-bottom: 1.25rem;
+  }
+
+  .content-body :global(a) {
+    color: var(--link-color);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color var(--theme-transition);
+  }
+
+  .content-body :global(a:hover) {
+    color: var(--accent-dark);
+  }
+
+  .content-body :global(ul),
+  .content-body :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+    color: var(--gray-300);
+  }
+
+  .content-body :global(li) {
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .content-body :global(strong) {
+    color: var(--gray-0);
+    font-weight: 600;
+  }
+
+  .content-body :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--gray-850);
+    color: var(--gray-0);
+    padding: 0.15em 0.4em;
+  }
+
+  .content-body :global(pre) {
+    background: var(--gray-850);
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--gray-700);
+  }
+
+  .content-body :global(pre) :global(code) {
+    background: none;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  .content-body :global(blockquote) {
+    font-size: 1.125rem;
     font-family: var(--font-brand);
     font-weight: 600;
     line-height: 1.1;
     padding-inline-start: 1.5rem;
     border-inline-start: 0.25rem solid var(--accent-dark);
     color: var(--gray-0);
+    margin: 1.5rem 0;
   }
 
-  .back-link,
-  .content :global(a) {
-    text-decoration: 1px solid underline transparent;
-    text-underline-offset: 0.25em;
-    transition: text-decoration-color var(--theme-transition);
+  .content-body :global(hr) {
+    border: none;
+    border-top: 2px solid var(--gray-0);
+    margin: 2.5rem 0;
   }
 
-  .back-link:hover,
-  .back-link:focus,
-  .content :global(a:hover),
-  .content :global(a:focus) {
-    text-decoration-color: currentColor;
+  .content-body :global(img) {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid var(--gray-0);
+    margin: 2rem 0;
   }
+
+  .content-body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .content-body :global(th),
+  .content-body :global(td) {
+    border: 2px solid var(--gray-0);
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  .content-body :global(th) {
+    background: var(--gray-0);
+    color: var(--gray-999);
+    font-family: var(--font-brand);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .content-body :global(td) {
+    color: var(--gray-300);
+  }
+
+  /* =========================================================
+     Related Projects Section
+     ========================================================= */
 
   .related-section {
     padding-top: 2rem;
   }
 
   .related-heading {
+    font-family: var(--font-brand);
     font-size: 1.75rem;
-    font-weight: 600;
-    letter-spacing: -0.04em;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--gray-0);
     margin-bottom: 1.5rem;
   }
 
@@ -178,10 +339,27 @@ const related = allProjects
     padding: 0;
   }
 
+  /* =========================================================
+     Desktop Overrides
+     ========================================================= */
+
   @media (min-width: 50em) {
-    .back-link {
-      display: block;
-      align-self: flex-start;
+    .page-header {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      min-height: 30rem;
+    }
+
+    .page-header:not([style*="background-image"]) {
+      min-height: auto;
+    }
+
+    .header-overlay {
+      padding: 3rem 0;
+    }
+
+    .content-wrap {
+      padding-bottom: 3rem;
     }
 
     .details {
@@ -189,8 +367,8 @@ const related = allProjects
       gap: 2.5rem;
     }
 
-    .content :global(blockquote) {
-      font-size: var(--text-2xl);
+    .content-body :global(blockquote) {
+      font-size: 1.5rem;
     }
 
     .bento-grid {

@@ -66,9 +66,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .ghost-link {
     font-weight: 800;
     text-transform: uppercase;
-    text-decoration: underline;
+    text-decoration: none;
     text-underline-offset: 0.3em;
     color: var(--gray-0);
+    transition: color 0.1s;
+  }
+
+  .ghost-link:hover {
+    color: var(--accent-regular);
+    text-decoration: underline;
   }
 
   .centered {

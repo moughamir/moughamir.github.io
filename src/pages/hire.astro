@@ -3,38 +3,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import Icon from "../components/Icon.astro";
 
-const encodedEmail = btoa("moughamir@gmail.com");
-
 const services = [
-  {
-    title: "Full-Time Role",
-    desc: "Senior or lead engineer who owns the product end-to-end. I don't wait for tickets — I find the problems and ship the fixes.",
-    price: "EMEA Remote"
-  },
-  {
-    title: "Contract Project",
-    desc: "From zero to production or from broken to stable. I take ownership of the product, not just the tasks.",
-    price: "3-6 Month Engagement"
-  },
-  {
-    title: "Rescue Sprint",
-    desc: "Technical debt piling up? Site falling apart? I stabilize, clean up, and get things working again in 48-72h focused bursts.",
-    price: "Flat Fee"
-  }
+  { title: "Full-Time Role", description: "Senior or lead engineer who owns the product end-to-end. I don't wait for tickets — I find the problems and ship the fixes.", price_label: "EMEA Remote" },
+  { title: "Contract Project", description: "From zero to production or from broken to stable. I take ownership of the product, not just the tasks.", price_label: "3-6 Month Engagement" },
+  { title: "Rescue Sprint", description: "Technical debt piling up? Site falling apart? I stabilize, clean up, and get things working again in 48-72h focused bursts.", price_label: "Flat Fee" },
 ];
 
 const reasons = [
-  "10+ Years Shipping Web Products",
-  "AI-First Workflow (Bun, MCP, Gemini)",
-  "EMEA Timezone / Remote Ready",
-  "Clear Communication, No Runaround",
-  "I Solve Problems, Then Move On"
+  { text: "10+ Years Shipping Web Products" },
+  { text: "AI-First Workflow (Bun, MCP, Gemini)" },
+  { text: "EMEA Timezone / Remote Ready" },
+  { text: "Clear Communication, No Runaround" },
+  { text: "I Solve Problems, Then Move On" },
 ];
 ---
 
 <BaseLayout
-  title="Hire Mohamed Moughamir — Senior Full-Stack Engineer"
-  description="Senior Full-Stack and AI Engineer for EMEA remote, contract, or full-time roles."
+  title="Hire Mohamed Moughamir — Full-Stack Engineer & Project Coordinator"
+  description="Full-stack engineer (web + mobile) and project coordinator for EMEA remote, contract, or full-time roles."
 >
   <main id="main-content" class="hire-page wrapper stack gap-20">
     <header class="aggressive-hero">
@@ -44,12 +30,7 @@ const reasons = [
         I take products from idea to production — frontend, backend, infrastructure, AI. 10+ years of full-stack ownership across startups and product teams.
       </p>
       <div class="cta-group">
-        <a 
-          href="javascript:void(0)" 
-          data-email={encodedEmail} 
-          onclick="location.href='mailto:'+atob(this.dataset.email)+'?subject=Engineering+Opportunity&body=Hi+Mohamed,+I+found+you+via+your+portfolio.'"
-          class="brutal-btn hero-cta"
-        >
+        <a href="#contact-form" class="brutal-btn hero-cta">
           LET'S TALK
         </a>
       </div>
@@ -57,8 +38,8 @@ const reasons = [
 
     <section class="reasons-strip">
       <ul class="reason-list">
-        {reasons.map((r) => (
-          <li><Icon icon="strategy" size="1.2em" /> {r}</li>
+        {reasons?.map((r) => (
+          <li><Icon icon="strategy" size="1.2em" /> {r.text}</li>
         ))}
       </ul>
     </section>
@@ -66,34 +47,60 @@ const reasons = [
     <section class="services-grid">
       <h2 class="section-title">HOW I HELP</h2>
       <div class="grid">
-        {services.map((s) => (
+        {services?.map((s) => (
           <article class="brutal-card service-card">
             <div class="card-content">
-              <p class="price-tag">{s.price}</p>
+              <p class="price-tag">{s.price_label}</p>
               <h3>{s.title}</h3>
-              <p>{s.desc}</p>
+              <p>{s.description}</p>
             </div>
           </article>
         ))}
       </div>
     </section>
 
-    <section class="brutal-card final-offer">
+    <section id="contact-form" class="brutal-card contact-section">
       <div class="card-content centered">
         <p class="label">Direct Access</p>
         <h2>WORK DIRECTLY WITH ME.</h2>
         <p class="final-text">
-          No middlemen. Send me your problem, repo link, or brief — I usually respond within a few hours.
+          Send me your problem, repo link, or brief — I usually respond within a few hours.
         </p>
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service">Interested In</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Choose a service...</option>
+              {services?.map((s) => (
+                <option value={s.title}>{s.title} — {s.price_label}</option>
+              ))}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <input type="hidden" name="page_source" value="hire" />
+          <button type="submit" class="brutal-btn submit-btn">SEND MESSAGE</button>
+        </form>
+        <div id="formSuccess" class="form-success" hidden>
+          <p>Message sent! I'll get back to you soon.</p>
+        </div>
         <div class="cta-row">
-          <a 
-            href="javascript:void(0)" 
-            data-email={encodedEmail} 
-            onclick="location.href='mailto:'+atob(this.dataset.email)+'?src=hire'"
-            class="brutal-btn"
-          >
-            SEND AN EMAIL
-          </a>
           <a href="https://linkedin.com/in/moughamir" target="_blank" rel="noopener noreferrer" class="ghost-link">
             LINKEDIN
           </a>
@@ -102,6 +109,49 @@ const reasons = [
     </section>
   </main>
 </BaseLayout>
+
+<script>
+  const form = document.getElementById("contactForm") as HTMLFormElement;
+  const serviceSelect = document.getElementById("service") as HTMLSelectElement;
+  const subjectInput = document.getElementById("subject") as HTMLInputElement;
+  const success = document.getElementById("formSuccess") as HTMLDivElement;
+
+  serviceSelect?.addEventListener("change", () => {
+    if (serviceSelect.value && !subjectInput.value) {
+      subjectInput.value = serviceSelect.value;
+    }
+  });
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    const subject = data.service
+      ? `${data.service} — ${data.subject}`
+      : data.subject;
+
+    const apiUrl = import.meta.env.PUBLIC_INQUIRIES_API_URL;
+    const res = await fetch(`${apiUrl}/api/inquiries`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        subject,
+        message: data.message,
+        page_source: data.page_source || "hire",
+      }),
+    });
+
+    if (res.ok) {
+      form.hidden = true;
+      success.hidden = false;
+    } else {
+      alert("Something went wrong. Please try again or email me directly.");
+    }
+  });
+</script>
 
 <style>
   .hire-page {
@@ -124,7 +174,7 @@ const reasons = [
     font-size: clamp(2.5rem, 10vw, 6.5rem);
     line-height: 1.05;
     font-weight: 800;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.02em;
     margin-bottom: 2.5rem;
   }
 
@@ -172,7 +222,7 @@ const reasons = [
   .section-title {
     font-size: 3rem;
     text-transform: uppercase;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.02em;
     margin-bottom: 3rem;
     text-align: center;
   }
@@ -206,7 +256,7 @@ const reasons = [
     display: block;
   }
 
-  .final-offer {
+  .contact-section {
     background: var(--gray-0);
     color: var(--gray-999);
     margin-top: 4rem;
@@ -227,9 +277,7 @@ const reasons = [
   }
 
   .cta-row {
-    display: flex;
-    gap: 2.5rem;
-    align-items: center;
+    margin-top: 2rem;
   }
 
   .ghost-link {
@@ -248,9 +296,90 @@ const reasons = [
     margin-bottom: 1rem;
   }
 
+  .contact-form {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: transparent;
+    border: 2px solid var(--gray-400);
+    color: var(--gray-999);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0;
+    transition: border-color 0.1s;
+  }
+
+  .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  .form-group select:has(option[value=""]:checked) {
+    color: var(--gray-400);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--accent-regular);
+  }
+
+  .submit-btn {
+    align-self: center;
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    margin-top: 1rem;
+  }
+
+  .form-success {
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 2rem;
+    border: 2px solid var(--accent-regular);
+  }
+
   @media (min-width: 60rem) {
     .reasons-strip {
       margin: 0;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .form-row {
+      grid-template-columns: 1fr;
     }
   }
 </style>

@@ -21,54 +21,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const siteName = "Mohamed Moughamir Portfolio";
 const ogImage = "/og.png";
 const twitterHandle = "@moughamir";
-
-const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Mohamed Moughamir",
-  "alternateName": "moughamir",
-  "jobTitle": "Senior Software Engineer",
-  "url": "https://moughamir.github.io",
-  "image": "https://github.com/moughamir.png",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Bouskoura",
-    "addressRegion": "Casablanca-Settat",
-    "addressCountry": "MA"
-  },
-  "sameAs": [
-    "https://moughamir.github.io/llms.txt",
-    "https://github.com/moughamir",
-    "https://linkedin.com/in/moughamir",
-    "https://www.youtube.com/@moughamir"
-  ],
-  "knowsAbout": ["React", "TypeScript", "Node.js", "Bun", "PHP", "Python", "Astro", "WordPress", "AI-assisted software delivery", "Agentic AI workflows", "MCP (Model Context Protocol)", "RAG (Retrieval-Augmented Generation)", "Full-Stack Web Development", "Remote team collaboration"],
-  "alumniOf": [
-    { "@type": "EducationalOrganization", "name": "Université Hassan II — FSJES Casablanca" },
-    { "@type": "Course", "name": "Harvard CS50" },
-    { "@type": "Course", "name": "MITx Algorithms" }
-  ],
-  "description": "Senior Software Engineer with 10+ years building high-conversion web products. React, TypeScript, Bun, AI-assisted workflows. Available for EMEA remote roles."
-};
-
-const podcastSchema = {
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  "name": "Mohamed Moughamir Podcast",
-  "description": "Conversations on full-stack development, AI engineering, and building a remote tech career from Morocco.",
-  "url": "https://moughamir.github.io",
-  "author": { "@type": "Person", "name": "Mohamed Moughamir" },
-  "sameAs": ["https://open.spotify.com/show/7EmRYqAIgMjQroosj2LV95", "https://open.spotify.com/show/580E02olfe4ZP1X3fsyphs"]
-};
-
-const videoSchema = {
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  "name": "Mohamed Moughamir YouTube",
-  "description": "Full-stack tutorials, AI workflow demos, and career advice for developers targeting remote EMEA roles.",
-  "url": "https://youtube.com/@moughamir",
-  "author": { "@type": "Person", "name": "Mohamed Moughamir" }
-};
 ---
 
 <meta charset="UTF-8" />
@@ -110,11 +62,6 @@ const videoSchema = {
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 <meta name="twitter:image:alt" content="Mohamed Moughamir — Senior Software Engineer" />
-
-<!-- JSON-LD Structured Data -->
-<script type="application/ld+json" set:html={JSON.stringify(personSchema).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')} />
-<script type="application/ld+json" set:html={JSON.stringify(podcastSchema).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')} />
-<script type="application/ld+json" set:html={JSON.stringify(videoSchema).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')} />
 
 <link
   rel="sitemap"

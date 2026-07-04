@@ -1,8 +1,6 @@
-# Mohamed — Systems Builder (AI, SaaS, Developer Infrastructure)
+# Mohamed — Full-Stack Engineer & Project Coordinator (Web, Mobile, Infrastructure)
 
-Building production-grade systems at the intersection of **AI tooling, full-stack SaaS, and developer infrastructure**.
-
-I design and ship systems that move from prototype to production architecture.
+Full-stack delivery across **web, mobile, and infrastructure** — from scoping requirements to shipping production systems. I coordinate the work, not just code it.
 
 ---
 
@@ -10,6 +8,7 @@ I design and ship systems that move from prototype to production architecture.
 
 - AI tool-augmented systems (MCP, agents, context layers)
 - Full-stack SaaS architecture (Next.js + Supabase + API-first design)
+- Mobile development (React Native, Expo)
 - Developer infrastructure and automation tooling
 - Secure system design and backend engineering
 

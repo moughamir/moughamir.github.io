@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import partytown from "@astrojs/partytown";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 
 export default defineConfig({
@@ -16,11 +15,6 @@ export default defineConfig({
     },
   },
   integrations: [
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
-    }),
     sitemap({
       changefreq: "daily",
       priority: 1.0,
@@ -47,12 +41,6 @@ export default defineConfig({
         } else if (item.url.includes("/work/")) {
           item.changefreq = ChangeFreqEnum.MONTHLY;
           item.priority = 0.6;
-        } else if (
-          item.url.includes("/vs/") ||
-          item.url.includes("/blueprints/")
-        ) {
-          item.changefreq = ChangeFreqEnum.MONTHLY;
-          item.priority = 0.9;
         }
         return item;
       },

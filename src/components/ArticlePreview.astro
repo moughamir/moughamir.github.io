@@ -36,7 +36,7 @@ const formattedDate = data.publishDate.toLocaleDateString("en-US", {
             <div class="card-footer">
                 <ul class="card-tags">
                     {data.tags.slice(0, 3).map((t) => (
-                        <li><a href={`/topics/${t.toLowerCase()}/`} class="tag-link"><Pill>{t}</Pill></a></li>
+                        <li><Pill>{t}</Pill></li>
                     ))}
                 </ul>
                 <a href={`/blog/${id}`} class="card-arrow">
@@ -135,11 +135,6 @@ const formattedDate = data.publishDate.toLocaleDateString("en-US", {
         list-style: none;
         padding: 0;
         z-index: 2;
-    }
-
-    .tag-link {
-        text-decoration: none;
-        display: block;
     }
 
     .card-arrow {
