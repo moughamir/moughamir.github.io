@@ -2,50 +2,66 @@
 import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import Schema from "../components/Schema.astro";
 
 interface Props {
-  title?: string | undefined;
-  description?: string | undefined;
+    title?: string | undefined;
+    description?: string | undefined;
+    schemaItem?: any;
+    schemaType?: "blog" | "work" | "general";
+    hideNav?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, schemaItem, schemaType, hideNav = false } = Astro.props;
 ---
 
 <html lang="en">
-  <head>
-    <MainHead title={title} description={description} />
-  </head>
-  <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div class="stack backgrounds">
-      <Nav />
-      <slot />
-      <Footer />
-    </div>
-  </body>
+    <head>
+        <MainHead title={title} description={description} />
+        <Schema item={schemaItem} type={schemaType} />
+    </head>
+    <body>
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        {!hideNav && <Nav />}
+        <div class:list={["stack backgrounds", { "has-nav": !hideNav }]}>
+            <slot />
+            <Footer />
+        </div>
+    </body>
 </html>
 
 <style>
-  .backgrounds {
-    min-height: 100vh;
-    background: var(--color-base-100);
-  }
+    .backgrounds {
+        min-height: 100vh;
+        background: var(--color-base-100);
+    }
 
-  .skip-link {
-    position: fixed;
-    top: -100%;
-    left: 0;
-    z-index: 9999;
-    padding: 1rem 2rem;
-    background: var(--gray-0);
-    color: var(--gray-999);
-    font-weight: 800;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: top 0.1s;
-  }
+    .backgrounds.has-nav {
+        margin-left: 10rem;
+    }
 
-  .skip-link:focus {
-    top: 0;
-  }
+    .skip-link {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        z-index: 9999;
+        padding: 1rem 2rem;
+        background: var(--gray-0);
+        color: var(--gray-999);
+        font-weight: 800;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: top 0.1s;
+    }
+
+    .skip-link:focus {
+        top: 0;
+    }
+
+    @media (max-width: 50em) {
+        .backgrounds.has-nav {
+            margin-left: 0;
+            padding-bottom: 4rem;
+        }
+    }
 </style>

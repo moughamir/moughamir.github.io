@@ -16,6 +16,7 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.local
 
 # macOS-specific files
 .DS_Store
@@ -27,3 +28,12 @@ dev-log.md
 # agent working state
 .omo/
 .hermes/
+mimocode.json
+.mimocode/
+.agents/
+package-lock.json
+skills/
+skills-lock.json
+
+# vercel
+.vercel/

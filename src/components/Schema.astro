@@ -1,0 +1,160 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  item?: CollectionEntry<'blog'> | CollectionEntry<'work'> | any;
+  type?: 'blog' | 'work' | 'general';
+}
+
+const { item, type } = Astro.props;
+const url = Astro.url;
+const canonicalUrl = new URL(url.pathname, Astro.site).toString();
+
+const personSchema = {
+  "@type": "Person",
+  "@id": "https://moughamir.github.io/#person",
+  "name": "Mohamed Moughamir",
+  "alternateName": "moughamir",
+  "jobTitle": "Senior Software Engineer",
+  "url": "https://moughamir.github.io",
+  "image": "https://github.com/moughamir.png",
+  "description": "Senior Software Engineer with 10+ years building high-conversion web products. React, TypeScript, Bun, AI-assisted workflows. Available for EMEA remote roles.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bouskoura",
+    "addressRegion": "Casablanca-Settat",
+    "addressCountry": "MA"
+  },
+  "sameAs": [
+    "https://moughamir.github.io/llms.txt",
+    "https://github.com/moughamir",
+    "https://linkedin.com/in/moughamir",
+    "https://www.youtube.com/@moughamir",
+    "https://moughamir.substack.com"
+  ],
+  "knowsAbout": ["React", "TypeScript", "Node.js", "Bun", "PHP", "Python", "Astro", "WordPress", "AI-assisted software delivery", "Agentic AI workflows", "MCP (Model Context Protocol)", "RAG (Retrieval-Augmented Generation)", "Full-Stack Web Development", "Remote team collaboration"],
+  "alumniOf": [
+    { "@type": "EducationalOrganization", "name": "Université Hassan II — FSJES Casablanca" },
+    { "@type": "Course", "name": "Harvard CS50" },
+    { "@type": "Course", "name": "MITx Algorithms" }
+  ]
+};
+
+const organizationSchema = {
+  "@type": "Organization",
+  "@id": "https://moughamir.github.io/#organization",
+  "name": "Mohamed Moughamir",
+  "url": "https://moughamir.github.io",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://moughamir.github.io/favicon.svg"
+  }
+};
+
+const websiteSchema = {
+  "@type": "WebSite",
+  "@id": "https://moughamir.github.io/#website",
+  "url": "https://moughamir.github.io",
+  "name": "Mohamed Moughamir Portfolio",
+  "publisher": { "@id": "https://moughamir.github.io/#person" }
+};
+
+const podcastSchema = {
+  "@type": "CreativeWork",
+  "name": "Mohamed Moughamir Podcast",
+  "description": "Conversations on full-stack development, AI engineering, and building a remote tech career from Morocco.",
+  "url": "https://moughamir.github.io",
+  "author": { "@id": "https://moughamir.github.io/#person" },
+  "sameAs": ["https://open.spotify.com/show/7EmRYqAIgMjQroosj2LV95", "https://open.spotify.com/show/580E02olfe4ZP1X3fsyphs"]
+};
+
+const videoSchema = {
+  "@type": "CreativeWork",
+  "name": "Mohamed Moughamir YouTube",
+  "description": "Full-stack tutorials, AI workflow demos, and career advice for developers targeting remote EMEA roles.",
+  "url": "https://youtube.com/@moughamir",
+  "author": { "@id": "https://moughamir.github.io/#person" },
+  "sameAs": ["https://youtube.com/@moughamir"]
+};
+
+// Breadcrumbs
+const segments = url.pathname.split('/').filter(Boolean);
+const breadcrumbList = {
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": Astro.site?.toString()
+    },
+    ...segments.map((segment, index) => {
+      const path = '/' + segments.slice(0, index + 1).join('/') + '/';
+      return {
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' '),
+        "item": new URL(path, Astro.site).toString()
+      };
+    })
+  ]
+};
+
+// Navigation
+const navigationSchema = {
+  "@type": "SiteNavigationElement",
+  "name": ["Work", "Blog", "About", "Let's talk"],
+  "url": [
+    new URL("/work/", Astro.site).toString(),
+    new URL("/blog/", Astro.site).toString(),
+    new URL("/about/", Astro.site).toString(),
+    new URL("/hire/", Astro.site).toString()
+  ]
+};
+
+let specificSchemas: any[] = [];
+
+if (type === 'blog' && item) {
+  specificSchemas.push({
+    "@type": "BlogPosting",
+    "headline": item.data.title,
+    "description": item.data.description,
+    "image": new URL(item.data.img, Astro.site).toString(),
+    "datePublished": item.data.publishDate.toISOString(),
+    "author": { "@id": "https://moughamir.github.io/#person" },
+    "publisher": { "@id": "https://moughamir.github.io/#organization" },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    }
+  });
+} else if (type === 'work' && item) {
+  specificSchemas.push({
+    "@type": "CreativeWork",
+    "name": item.data.title,
+    "description": item.data.description,
+    "image": new URL(item.data.img, Astro.site).toString(),
+    "datePublished": item.data.publishDate.toISOString(),
+    "author": { "@id": "https://moughamir.github.io/#person" },
+    "keywords": item.data.tags.join(', ')
+  });
+}
+
+const graph = [
+  personSchema,
+  organizationSchema,
+  websiteSchema,
+  breadcrumbList,
+  navigationSchema,
+  podcastSchema,
+  videoSchema,
+  ...specificSchemas
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": graph
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')} />
