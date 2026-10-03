@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mohamed Moughamir — Agentic Systems Engineer</title>
+<meta name="description" content="Agentic systems engineer building a self-verifying OS layer and a four-node agent network that actually communicates. Arch Linux + Omarchy.">
+<meta property="og:title" content="Mohamed Moughamir — Agentic Systems Engineer">
+<meta property="og:description" content="A machine that verifies itself. OS layer, four-node A2A agent network, 1200+ agent sessions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0b0d; --surface:#121418; --surface-2:#181b21; --line:#242832;
+  --text:#e8eaed; --dim:#8b919b; --dimmer:#5a606b;
+  --accent:#7dd3a0; --accent-2:#6ba8f5; --warn:#e0a458; --bad:#e06c75;
+  --mono:'JetBrains Mono',ui-monospace,monospace; --sans:'Inter',system-ui,sans-serif;
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.65}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(900px 500px at 15% -10%,rgba(125,211,160,.055),transparent 60%),
+             radial-gradient(800px 500px at 90% 5%,rgba(107,168,245,.05),transparent 60%)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+code,.k{font-family:var(--mono);font-size:.88em}
+
+/* header */
+header{padding:88px 0 56px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+h1{font-size:clamp(38px,6.4vw,66px);line-height:1.04;font-weight:800;letter-spacing:-.03em;margin-bottom:22px}
+h1 .dim{color:var(--dimmer);font-weight:400}
+.sub{font-size:19px;color:var(--dim);max-width:64ch;margin-bottom:32px}
+.sub strong{color:var(--text);font-weight:600}
+.badges{display:flex;flex-wrap:wrap;gap:10px}
+.badge{font-family:var(--mono);font-size:11.5px;padding:6px 12px;border:1px solid var(--line);
+  border-radius:999px;color:var(--dim);background:var(--surface)}
+.badge.on{border-color:rgba(125,211,160,.4);color:var(--accent)}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);
+  margin-right:7px;vertical-align:middle;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* sections */
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:12px;flex-wrap:wrap}
+.sec-num{font-family:var(--mono);font-size:12px;color:var(--dimmer);letter-spacing:.1em}
+h2{font-size:clamp(25px,3.4vw,34px);font-weight:700;letter-spacing:-.02em}
+.sec-lede{color:var(--dim);max-width:70ch;margin-bottom:36px;font-size:16.5px}
+
+/* hero telemetry */
+.hero-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.stat{background:var(--surface);padding:22px 20px}
+.stat .v{font-family:var(--mono);font-size:29px;font-weight:700;color:var(--accent);line-height:1.1;letter-spacing:-.02em}
+.stat .l{font-size:12px;color:var(--dimmer);margin-top:7px;text-transform:uppercase;letter-spacing:.07em}
+.stat.b2 .v{color:var(--accent-2)}
+.telemetry-note{font-family:var(--mono);font-size:11.5px;color:var(--dimmer);margin-top:12px}
+
+/* network */
+.net{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.node{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;position:relative}
+.node.me{border-color:rgba(125,211,160,.45);background:linear-gradient(var(--surface),rgba(125,211,160,.03))}
+.node .role{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--dimmer);margin-bottom:9px}
+.node .nm{font-size:17px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:9px}
+.node .ds{font-size:14px;color:var(--dim);line-height:1.55}
+.node .sys{position:absolute;top:18px;right:18px;font-family:var(--mono);font-size:10px;
+  padding:3px 8px;border-radius:4px;background:var(--surface-2);border:1px solid var(--line);color:var(--dimmer)}
+.node.me .sys{color:var(--accent);border-color:rgba(125,211,160,.35)}
+
+/* traffic */
+.traffic{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:16px}
+.tf{background:var(--surface);padding:20px}
+.tf .n{font-family:var(--mono);font-size:25px;font-weight:700}
+.tf .d{font-size:12px;color:var(--dimmer);text-transform:uppercase;letter-spacing:.07em;margin-top:5px}
+.tf.in .n{color:var(--accent-2)} .tf.out .n{color:var(--accent)}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;
+  transition:border-color .18s,transform .18s}
+.card:hover{border-color:#333844;transform:translateY(-2px)}
+.card h3{font-size:16.5px;font-weight:600;margin-bottom:9px;display:flex;align-items:center;gap:9px}
+.card p{font-size:14.5px;color:var(--dim);line-height:1.6}
+.card .proof{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11.5px;color:var(--dimmer);line-height:1.75}
+.card .proof b{color:var(--accent);font-weight:500}
+.tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 7px;border-radius:4px;border:1px solid var(--line);color:var(--dimmer)}
+.tag.s1{color:var(--warn);border-color:rgba(224,164,88,.4)}
+.tag.s2{color:var(--accent-2);border-color:rgba(107,168,245,.4)}
+
+/* code */
+pre{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;
+  overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.75;margin-bottom:14px}
+pre .c{color:var(--dimmer)} pre .s{color:var(--accent)} pre .n{color:var(--accent-2)}
+pre .p{color:var(--warn)}
+
+/* failures */
+.fail{display:grid;gap:12px}
+.f-item{background:var(--surface);border:1px solid var(--line);border-left:2px solid var(--bad);
+  border-radius:0 8px 8px 0;padding:18px 20px}
+.f-item .q{font-size:15px;margin-bottom:10px;font-weight:500}
+.f-item .w{font-family:var(--mono);font-size:12.5px;color:var(--dimmer);line-height:1.8}
+.f-item .w .lbl{color:var(--bad)}
+.f-item .w .fix{color:var(--accent)}
+.f-item.ok{border-left-color:var(--accent)}
+.f-item.ok .w .lbl{color:var(--accent)}
+
+/* projects */
+.proj{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.proj:last-child{border-bottom:none}
+.proj .nm{font-family:var(--mono);font-size:14px;color:var(--text);min-width:220px;flex-shrink:0}
+.proj .ds{font-size:14px;color:var(--dim);flex:1}
+.proj .vis{font-family:var(--mono);font-size:10.5px;color:var(--dimmer);flex-shrink:0}
+
+footer{padding:48px 0;color:var(--dimmer);font-family:var(--mono);font-size:12.5px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:640px){.wrap{padding:0 18px}header{padding:56px 0 40px}.proj{flex-direction:column;gap:4px}.traffic{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="wrap">
+  <div class="eyebrow">m7r · Mohamed Moughamir</div>
+  <h1>A machine that<br><span class="dim">verifies itself.</span></h1>
+  <p class="sub">
+    I'm an <strong>agentic systems engineer</strong>. Most people dotfile their setup and call it done.
+    I build an operating layer that <strong>proves it works</strong> — a repo that owns the shell,
+    the skills, the MCP servers and the tools, with invariants a verifier enforces — and a
+    <strong>four-node agent network</strong> that talks to itself over A2A so the work actually moves.
+  </p>
+  <div class="badges">
+    <span class="badge on"><span class="dot"></span>Arch Linux · Omarchy</span>
+    <span class="badge">A2A · MCP · Hermes · OpenCode</span>
+    <span class="badge">Bun · TypeScript · Python · Terraform</span>
+    <span class="badge" id="liveBadge">telemetry: loading</span>
+  </div>
+</div>
+</header>
+
+<!-- 01 · LIVE TELEMETRY -->
+<section>
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">01</span><h2>This machine, right now</h2></div>
+  <p class="sec-lede">
+    Every number below is measured from the live system by
+    <code>bin/telemetry.py</code> and injected at build time. Nothing here is a screenshot or a
+    claim — if the machine is idle, the numbers say so.
+  </p>
+  <div class="hero-grid" id="stats"></div>
+  <div class="telemetry-note" id="tlNote"></div>
+</div>
+</section>
+
+<!-- 02 · THE NETWORK -->
+<section>
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Four nodes, one contract</h2></div>
+  <p class="sec-lede">
+    Not a diagram of an idea — a network that runs. Two agents speak System 2 (do the work);
+    a decision API speaks System 1 (pick, with a probability). The split is deliberate: System 2
+    agents are good at building and bad at deciding, so decisions get routed to something that
+    returns a number instead of an opinion.
+  </p>
+
+  <div class="net">
+    <div class="node">
+      <div class="sys">System 2</div>
+      <div class="role">coordination</div>
+      <div class="nm">openclaude</div>
+      <div class="ds">Reaches this agent over A2A as a named peer. Coordination and external research.</div>
+    </div>
+    <div class="node">
+      <div class="sys">System 1</div>
+      <div class="role">decision</div>
+      <div class="nm">jev</div>
+      <div class="ds">BeatAPI Decisions API. Returns a number, a named option, or a position on a scale — each with a probability. It never writes prose, which is the point.</div>
+    </div>
+    <div class="node me">
+      <div class="sys">System 2 · you are here</div>
+      <div class="role">orchestration · memory</div>
+      <div class="nm">hermes <span class="k">· omnizya-agent</span></div>
+      <div class="ds">Session recall over 1,200+ sessions, kanban, cron, MCP, delegation, and the vault this site is written into.</div>
+    </div>
+    <div class="node">
+      <div class="sys">System 2</div>
+      <div class="role">build · review · test</div>
+      <div class="nm">opencode</div>
+      <div class="ds">Implementation over A2A JSON-RPC. Wrote the MCP registry and the skills inventory — and corrected me twice when my own claims were wrong.</div>
+    </div>
+  </div>
+
+  <div class="traffic">
+    <div class="tf in"><div class="n" data-t="a2a_inbound">—</div><div class="d">A2A messages inbound</div></div>
+    <div class="tf out"><div class="n" data-t="a2a_outbound">—</div><div class="d">A2A messages sent</div></div>
+  </div>
+  <div class="telemetry-note">
+    peers observed in <code>~/.hermes/a2a_audit.jsonl</code>:
+    <span id="peers">—</span> · <span id="convs">—</span> per-task conversations persisted
+  </div>
+</div>
+</section>
+
+<!-- 03 · OS LAYER -->
+<section>
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">03</span><h2>OS — a single-writer layer that checks itself</h2></div>
+  <p class="sec-lede">
+    <code>~/Work/os</code> declares itself the sole writer for shell environment, agent skills,
+    MCP servers, hooks and tools. What makes it more than a dotfiles repo is the second half:
+    <strong>invariants, and a verifier that fails the build when they break.</strong>
+    A safety property that is only enforced by an agent's good intentions is not a property.
+  </p>
+  <div class="cards">
+    <div class="card">
+      <h3>Single writer, declared link graph <span class="tag">links.yaml</span></h3>
+      <p>Every symlink in the consumer trees is declared once, with an explicit policy. The default
+         is <code>refuse</code> — a real file is never overwritten, because that's a human decision,
+         not something an apply loop resolves.</p>
+      <div class="proof">consumer trees · <b id="osSkills">—</b> skills adopted · <b id="osAgents">—</b> rulebooks</div>
+    </div>
+    <div class="card">
+      <h3>Verification, not vibes <span class="tag">os-verify</span></h3>
+      <p>Seven invariant checks: no secrets, no runtime state, no symlink into a throwaway directory,
+         every declared link resolves, the shell suite passes, git hygiene. It is designed to be
+         runnable by an unsupervised agent.</p>
+      <div class="proof">current: <b id="osVerify">—</b></div>
+    </div>
+    <div class="card">
+      <h3>A shell suite with teeth <span class="tag">test.sh</span></h3>
+      <p>The suite exists because <code>zsh -n</code> passed over two real bugs: <code>local path</code>
+         silently rewriting <code>PATH</code> for the rest of a function, and <code>command cd</code>
+         exiting 127 under zsh. Both parsed clean and both broke at runtime.</p>
+      <div class="proof"><b id="osTest">—</b> lines · runs under bash <i>and</i> zsh</div>
+    </div>
+    <div class="card">
+      <h3>One MCP registry, drift made visible <span class="tag">mcp/registry.yaml</span></h3>
+      <p>Every server declared exactly once. The registry names the three that are declared in
+         multiple trees in <em>incompatible shapes</em> — a local token-authenticated process here,
+         a hosted OAuth endpoint there, so they don't see the same projects or the same audit trail.</p>
+      <div class="proof"><b id="mcp">—</b> servers · <b id="mcpDrift">—</b> drifted across trees</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 04 · A2A -->
+<section>
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">04</span><h2>A2A is a protocol, not a demo</h2></div>
+  <p class="sec-lede">
+    Agent-to-agent sounds like a feature until you implement it. Three things had to be true before
+    anything was exchanged, and each one failed first.
+  </p>
+  <pre><span class="c"># a real exchange — peer identity comes from the credential, never the body</span>
+curl -s -X POST http://127.0.0.1:9900/ \
+  -H <span class="s">"Authorization: Bearer $A2A_COMM_TOKEN"</span> \
+  -H <span class="s">'Content-Type: application/json'</span> \
+  -d <span class="s">'{"jsonrpc":"2.0","method":"message/send","params":{…}}</span>'</code></pre>
+  <div class="cards">
+    <div class="card">
+      <h3>Identity is the credential</h3>
+      <p>Under a multiplexed gateway the agent resolves peers from a per-profile secret scope, not
+         the process environment. The first token I generated lived in a file nobody read — the peer
+         was correctly rejected as unauthorized until it was registered.</p>
+      <div class="proof">a2a_audit.jsonl · <b id="a2aTotal">—</b> records · <b id="a2aConv2">—</b> contexts</div>
+    </div>
+    <div class="card">
+      <h3>Untrusted by construction</h3>
+      <p>Inbound peer text is framed as data from another agent and defanged against prompt-injection
+         markers. Outbound text is scrubbed for credentials and email addresses before it leaves.
+         A remote peer cannot reach the operator's slash commands.</p>
+      <div class="proof">peers seen: <b id="peers2">—</b></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 05 · THE HUMBLE STUFF -->
+<section>
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">05</span><h2>The habits underneath</h2></div>
+  <p class="sec-lede">The interesting part is only interesting because these existed first.</p>
+  <div class="hero-grid">
+    <div class="stat"><div class="v" data-t="sessions">—</div><div class="l">agent sessions</div></div>
+    <div class="stat"><div class="v" data-t="messages">—</div><div class="l">messages exchanged</div></div>
+    <div class="stat b2"><div class="v" data-t="cron_jobs">—</div><div class="l">scheduled jobs</div></div>
+    <div class="stat b2"><div class="v" data-t="kanban_tasks">—</div><div class="l">kanban tasks</div></div>
+    <div class="stat"><div class="v" data-t="agent_skills">—</div><div class="l">agent skills</div></div>
+    <div class="stat b2"><div class="v" data-t="profiles">—</div><div class="l">hermes profiles</div></div>
+  </div>
+  <div class="telemetry-note">
+    Every session and message is retrievable. That's the actual product of a memory layer:
+    <em>the machine can be asked what it decided and when.</em>
+  </div>
+</div>
+</section>
+
+<!-- 06 · WHAT WENT WRONG -->
+<section>
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">06</span><h2>What went wrong, published</h2></div>
+  <p class="sec-lede">
+    Every item here was a real failure during one build night, found by a check that was run rather
+    than reasoned about. I've kept them because the failure log is the more useful artifact than the
+    success log — it's the part you can't fake.
+  </p>
+  <div class="fail" id="failures"></div>
+  <div class="telemetry-note">
+    The through-line: <b>a green check is not proof.</b> Three of these were endorsed by something
+    that reported success.
+  </div>
+</div>
+</section>
+
+<!-- 07 · WORK -->
+<section>
+<div class="wrap">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Selected work</h2></div>
+  <p class="sec-lede">
+    Public repositories. The interesting ones are on GitHub under <a href="https://github.com/moughamir">moughamir</a>.
+  </p>
+  <div id="projects"></div>
+</div>
+</section>
+
+<footer>
+<div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;width:100%">
+  <span>m7r — Mohamed Moughamir · Arch Linux + Omarchy</span>
+  <span id="footNote">built by the machine it describes</span>
+</div>
+</footer>
+
+<script>
+// Telemetry is inlined at build time so the page renders with zero network calls.
+const T = DATA_T;
+
+const fmt = n => n == null ? "—" : n.toLocaleString();
+
+document.querySelectorAll("[data-t]").forEach(el => {
+  el.textContent = fmt(T[el.dataset.t]);
+});
+
+const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+
+// hero
+document.getElementById("stats").innerHTML = [
+  [T.a2a_total, "A2A messages", ""],
+  [T.agent_skills, "agent skills", "b2"],
+  [T.mcp_servers, "MCP servers", ""],
+  [T.os_test_lines, "lines of shell tests", "b2"],
+  [T.repos_public, "public repos", ""],
+  [T.sessions, "agent sessions", "b2"],
+].map(([v, l, c]) => `<div class="stat ${c}"><div class="v">${fmt(v)}</div><div class="l">${l}</div></div>`).join("");
+
+set("tlNote", "measured " + T.generated + " · regenerate with: python3 telemetry.py");
+set("osSkills", T.os_skills); set("osAgents", T.os_agents);
+set("osVerify", T.os_verify_line);
+set("osTest", fmt(T.os_test_lines));
+set("mcp", fmt(T.mcp_servers)); set("mcpDrift", fmt(T.mcp_drifted));
+set("a2aTotal", fmt(T.a2a_total)); set("a2aConv2", fmt(T.a2a_conversations));
+set("convs", fmt(T.a2a_conversations));
+set("peers", Object.entries(T.a2a_peers).map(([k, v]) => `${k} ×${v}`).join(" · "));
+set("peers2", Object.entries(T.a2a_peers).map(([k, v]) => `${k} ×${v}`).join(" · "));
+document.getElementById("liveBadge").innerHTML = '<span class="dot"></span>telemetry: live';
+
+// failures — real incidents from the build
+const FAILURES = DATA_F;
+document.getElementById("failures").innerHTML = FAILURES.map(f => `
+  <div class="f-item ${f.ok ? "ok" : ""}">
+    <div class="q">${f.q}</div>
+    <div class="w"><span class="lbl">${f.bad}</span><br><span class="fix">${f.fix}</span></div>
+  </div>`).join("");
+
+// projects
+document.getElementById("projects").innerHTML = DATA_P.map(p => `
+  <div class="proj">
+    <span class="nm">${esc(p.n)}</span>
+    <span class="ds">${esc(p.d)}</span>
+    <span class="vis">${p.v}</span>
+  </div>`).join("");
+
+set("footNote", "telemetry " + T.generated.slice(0, 16).replace("T", " "));
+</script>
+
+<script>
+const DATA = {"t": {"sessions": 1205, "messages": 44869, "skills": 120, "agent_skills": 129, "profiles": 5, "cron_jobs": 14, "kanban_tasks": 54, "a2a_total": 88, "a2a_inbound": 44, "a2a_outbound": 44, "a2a_peers": {"ip:127.0.0.1": 72, "jabr": 2, "openclaude": 14}, "a2a_conversations": 42, "os_commits": 9, "os_test_lines": 670, "os_skills": 67, "os_agents": 7, "mcp_servers": 30, "mcp_drifted": 3, "os_verify_line": "6 ok, 1 FAIL, 0 INFO, 0 SKIP", "os_verify_ok": 6, "os_verify_fail": 1, "repos_total": 100, "repos_public": 61, "generated": "2026-10-03T02:45:13+00:00"}, "f": [{"ok": false, "q": "A dry-run flag that wrote anyway.", "bad": "py(){ python3 - \"$@\"; } passed an extra '-', so sys.argv[1] was '-' not '1', dry evaluated False, and every 'dry run' wrote.", "fix": "fixed the arg handling; diffed the config semantically against backups to confirm only model keys changed. The lesson recorded: use patch, never yaml.safe_dump, on config files."}, {"ok": false, "q": "A green verifier endorsing a deletion that would have broken 68 paths.", "bad": "os-verify check [3] reports 'no consumer symlink points into Work/tries' — but it only scans consumer trees. I read green as 'safe to delete' and nearly removed the rollback material.", "fix": "ran the pre-delete check the original session had specified. Found the links. The check was true and my conclusion from it was not."}, {"ok": false, "q": "A regression test that passed against broken code.", "bad": "the zsh PATH-splitting test inherited an ambient PATH that already contained the directories, so omnizya_path_add's guard declined to add them — green whether or not the adapter worked.", "fix": "scrubbed PATH and re-sourced the adapter inside the test, then verified it goes red when the bug is reintroduced. A test that cannot fail is not a test."}, {"ok": false, "q": "A delegating client that reported failure as success.", "bad": "a 30-character stub and exit code 0 when a long agent task exceeded the wrapper's 600s prompt timeout. Two separate times I read that as truncation and wrote it up as a finding.", "fix": "found the real cause in the wrapper's own log line: 'Prompt timed out 600000'. Raised the timeout to 30 minutes in config. The answer had been in a log I hadn't scrolled to."}, {"ok": false, "q": "A verifier that couldn't see the failure it was supposed to catch.", "bad": "all 68 symlinks in state/hermes-skills-backup/ are dangling — relative targets use ../../Work/tries/... and resolve under a path that never existed. check [3] cannot detect this; it never scans state/.", "fix": "found by the delegated agent, which used raw find instead of a pattern match. My own search matched the string inside the link and never resolved it."}, {"ok": true, "q": "A delegated agent correcting me on a fact I had told the user twice.", "bad": "I had twice reported '66 live rollback symlinks into winry'. All 68 were already dead, and only 28 targets still hold content.", "fix": "verified it myself with readlink -m before accepting it — then corrected the record. Self-reports get checked; that habit is the whole reason the error cost nothing."}], "p": [{"n": "sesame", "d": "pass cli Password Storage", "v": "private"}, {"n": "firstmate", "d": "Talk to one agent. Ship with a crew.", "v": "public"}, {"n": "platform", "d": "Anaqio AI Fashion Platform — Bun workspaces monorepo", "v": "private"}, {"n": "register", "d": "Grab your own sweet-looking '.is-a.dev' subdomain.", "v": "public"}, {"n": "vaults-personal", "d": "Personal Obsidian Vault — system ops, security, projects", "v": "private"}, {"n": "vaults-work", "d": "Work Obsidian Vault — career, clients, meetings", "v": "private"}, {"n": "bttf", "d": "A web app that calculates the total price of a DVD basket, applying dynamic discounts for a given trilogy.", "v": "public"}, {"n": "dkv", "d": "Dev Knowledge Vault", "v": "public"}, {"n": "omarchy-install-scripts", "d": "My bash scripts to automate machine setup for Omarchy", "v": "public"}, {"n": "kasbah-bi", "d": "Jabr Agents Kasbah brand", "v": "private"}, {"n": "moughamir.github.io", "d": ":cat: Main Repo", "v": "public"}, {"n": "omnizya-dotfiles", "d": "omnizya dotfiles (bare repo, work-tree $HOME)", "v": "private"}, {"n": "colab", "d": "Co(lab) is a hybrid web browser + local code editor with integrated PTY Terminal and AI designed for startup builders who need to move fast.", "v": "public"}, {"n": "omnizya-bank", "d": "COBOL bank learning project — mainframe banking app, Next.js lessons app, full curriculum (paused)", "v": "private"}]};
+const esc = s => String(s ?? '').replace(/[&<>"']/g,
+  c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const DATA_T = DATA.t, DATA_F = DATA.f, DATA_P = DATA.p;
+</script>
+</body>
+</html>

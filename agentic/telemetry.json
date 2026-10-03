@@ -1,0 +1,30 @@
+{
+  "sessions": 1205,
+  "messages": 44869,
+  "skills": 120,
+  "agent_skills": 129,
+  "profiles": 5,
+  "cron_jobs": 14,
+  "kanban_tasks": 54,
+  "a2a_total": 88,
+  "a2a_inbound": 44,
+  "a2a_outbound": 44,
+  "a2a_peers": {
+    "ip:127.0.0.1": 72,
+    "jabr": 2,
+    "openclaude": 14
+  },
+  "a2a_conversations": 42,
+  "os_commits": 9,
+  "os_test_lines": 670,
+  "os_skills": 67,
+  "os_agents": 7,
+  "mcp_servers": 30,
+  "mcp_drifted": 3,
+  "os_verify_line": "6 ok, 1 FAIL, 0 INFO, 0 SKIP",
+  "os_verify_ok": 6,
+  "os_verify_fail": 1,
+  "repos_total": 100,
+  "repos_public": 61,
+  "generated": "2026-10-03T02:45:13+00:00"
+}
