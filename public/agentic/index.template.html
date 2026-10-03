@@ -193,7 +193,7 @@ footer{padding:48px 0;color:var(--dimmer);font-family:var(--mono);font-size:12.5
       <div class="sys">System 2</div>
       <div class="role">build · review · test</div>
       <div class="nm">opencode</div>
-      <div class="ds">Implementation over A2A JSON-RPC. Wrote the MCP registry and the skills inventory — and corrected me twice when my own claims were wrong.</div>
+      <div class="ds">Implementation over A2A JSON-RPC. Wrote the MCP registry and the skills inventory — and corrected me twice when my own claims were wrong. <span style="color:var(--dimmer)">Note: opencode does not appear in the A2A audit log; it is reachable over A2A but not yet a recorded peer.</span></div>
     </div>
   </div>
 
@@ -224,11 +224,11 @@ footer{padding:48px 0;color:var(--dimmer);font-family:var(--mono);font-size:12.5
       <p>Every symlink in the consumer trees is declared once, with an explicit policy. The default
          is <code>refuse</code> — a real file is never overwritten, because that's a human decision,
          not something an apply loop resolves.</p>
-      <div class="proof">consumer trees · <b id="osSkills">—</b> skills adopted · <b id="osAgents">—</b> rulebooks</div>
+      <div class="proof">consumer trees · <b id="osSkills">—</b> skills adopted · <b id="osAgents">—</b> rulebooks + README</div>
     </div>
     <div class="card">
       <h3>Verification, not vibes <span class="tag">os-verify</span></h3>
-      <p>Seven invariant checks: no secrets, no runtime state, no symlink into a throwaway directory,
+      <p>Six invariant checks: no secrets, no runtime state, no symlink into a throwaway directory,
          every declared link resolves, the shell suite passes, git hygiene. It is designed to be
          runnable by an unsupervised agent.</p>
       <div class="proof">current: <b id="osVerify">—</b></div>
