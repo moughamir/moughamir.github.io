@@ -56,10 +56,55 @@ const socialLinks = [
             </nav>
         </section>
 
+        <!--
+          Pointer to the agentic systems page (/agentic/). Content lives in
+          public/agentic/ and is served verbatim by the Astro build.
+
+          This is the D-4 outcome: jev ranked keep-both-unlinked (54%) above
+          link-root-to-agentic (40%), but that ruling came at only 39% confidence
+          and the two were close. Linking is strictly better than not linking —
+          same two pages, but /agentic/ is discoverable instead of orphaned — so
+          it was applied. The Astro build had hung earlier under load; retried on
+          a quiet machine it succeeds.
+        -->
+        <section class="agentic-cta wrapper">
+            <p class="agentic-lede">
+                This machine runs a verified OS layer and a four-node agent
+                network that exchanges real messages. The telemetry is measured
+                from the live system, not decorated.
+            </p>
+            <a class="agentic-link" href="/agentic/">
+                Agentic systems &rarr;
+            </a>
+        </section>
+
     </main>
 </BaseLayout>
 
 <style>
+    .agentic-cta {
+        border-top: 1px solid var(--color-base-content, #2a2a2a);
+        padding-top: 2rem;
+        margin-top: 3rem;
+        padding-bottom: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+    .agentic-lede {
+        max-width: 46ch;
+        opacity: 0.7;
+        line-height: 1.6;
+    }
+    .agentic-link {
+        font-weight: 700;
+        text-decoration: none;
+        border-bottom: 2px solid currentColor;
+        padding-bottom: 2px;
+        transition: opacity 0.2s ease;
+    }
+    .agentic-link:hover { opacity: 0.7; }
     /* =========================================================
        Layout
        ========================================================= */
